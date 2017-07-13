@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <!--
+        <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
+        <link rel="stylesheet" type="text/css" href="app_framework/3.0/af.ui.css">
+        <link rel="stylesheet" type="text/css" href="app_framework/3.0/icons.min.css">
+-->
+        <link rel="stylesheet" type="text/css" href="app_framework/2.1/css/af.ui.min.css">
+        <link rel="stylesheet" type="text/css" href="app_framework/2.1/css/icons.min.css">
+
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <meta charset="UTF-8">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="-1">
+
+        <!--
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="629413010047-mirv8igteh3qrh1vfigu8lalr55hgo21.apps.googleusercontent.com">
+        
+      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+            
+            @-ms-viewport {
+                width: 100vw;
+                min-zoom: 100%;
+                zoom: 100%;
+            }
+            
+            @viewport {
+                width: 100vw;
+                min-zoom: 100% zoom: 100%;
+            }
+            
+            @-ms-viewport {
+                user-zoom: fixed;
+                min-zoom: 100%;
+            }
+            
+            @viewport {
+                user-zoom: fixed;
+                min-zoom: 100%;
+            }
+            /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <!--    <script src="intelxdk.js"></script>
+        <script src="xhr.js"></script>
+      -->
+        <script src="cordova.js"></script>
+        <script src="xdk/init-dev.js"></script>
+        <!--
+      You may substitute jQuery for the App Framework selector library.
+      See http://app-framework-software.intel.com/documentation.php#afui/afui_jquery
+    -->
+
+        <script type="application/javascript" src="app_framework/2.1/appframework.js"></script>
+        <script type="application/javascript" src="app_framework/2.1/appframework.ui.js" data-ver="1"></script>
+        <!--
+    <script type="application/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+-->
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="application/javascript" src="js/app.js"></script>
+        <script type="application/javascript" src="js/init-app.js"></script>
+        <!--
+        <script type="application/javascript" src="js/init-app-startup.js"></script>
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script type="application/javascript" src="xdk/ad/angular_support.js"></script>
+-->
+
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="lib/angular.min.js"></script>
+
+        <script type="text/javascript" src="bower_components/gibberish-aes/dist/gibberish-aes-1.0.0.min.js"></script>
+        <script type="text/javascript" src="bower_components/crypto-js/build/rollups/sha256.js"></script>
+        <!--<script type="text/javascript" src="bower_components/crypto-js/build/rollups/aes.js"></script>-->
+        <script type="text/javascript" src="js/moment.js"></script>
+        <script type="text/javascript" src="js/jsonpath.js"></script>
+        <script type="text/javascript" src="js/graph_xdk_obj.js"></script>
+        <script type="text/javascript" src="js/graph_create.js"></script>
+        <script type="text/javascript" src="js/tsensor_hw.js"></script>
+        <script type="text/javascript" src="js/base64_encode.js"></script>
+        <script type="text/javascript" src="js/network.js"></script>
+        <script type="text/javascript" src="js/barcode.js"></script>
+        <!--
+        <script type="text/javascript" src="js/cordova.oauth2.js"></script>
+        -->
+
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <!--
+      You may substitute jQuery for the App Framework selector library.
+      See http://app-framework-software.intel.com/documentation.php#afui/afui_jquery
+    -->
+        <script type="application/javascript" src="xdk/ad/af_subpage.js"></script>
+        <script type="application/javascript" src="app_framework/pageChangeRepeater.js"></script>
+        <!--
+      You may substitute jQuery for the App Framework selector library.
+      See http://app-framework-software.intel.com/documentation.php#afui/afui_jquery
+        <script type="application/javascript" src="console/console_widget.js"></script>
+    -->
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+            
+              ga('create', 'UA-96345559-1', 'auto');
+              ga('send', 'pageview');
+        </script>
+
+        <!--
+    <script src="http://debug-software.intel.com/target/target-script-min.js#A0oaM1vX9ocpCR1lmLJXwtjRHgIMnwrMGlwfuCL-RzI"></script>
+
+<script type="application/javascript" src="sidebar/js/hammer.js"></script>
+    <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+    <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+    <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+        <script type="application/javascript" src="app_framework/3.0/appframework.ui.min.js"></script>
+    -->
+        <script type="application/javascript" src="xdk/ad/jquery.ba-throttle-debounce.min.js"></script>
+        <script type="application/javascript" src="xdk/services/service-credentials.js"></script>
+        <script type="application/javascript" src="xdk/services/service-methods.js"></script>
+        <script type="application/javascript" src="xdk/ad/ad_events_data.js"></script>
+        <script type="application/javascript" src="js/index_init_services.js"></script>
+        <script type="application/javascript" src="xdk/ad/index_setup_services.js"></script>
+
+        <script type="text/javascript" src="js/angular_ctrl.js"></script>
+
+        <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0rk-f5HdafVKxLhe8SaVkwNmNw06RcbI" async="" defer=""></script>
+        <!--
+        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async="" defer=""></script>
+-->
+        <script type="application/javascript" src="xdk/appdesigner/js/rest-of-space.js"></script>
+    </head>
+
+    <body id="afui" ng-app="myApp" ng-controller="myCtrl">
+
+        <header class="wrapping-col wrap-element uib_w_66" data-uib="app_framework/header" data-ver="2" id="af-header-0">
+            <!-- <a class="button widget uib_w_67 d-margins header-right icon info botao_header" data-uib="app_framework/button" data-ver="1" id="btn_info"></a> -->
+            <div class="tarea widget uib_w_373 d-margins titulo-header" data-uib="media/text" data-ver="0" name="uib_w_373">
+                <div class="widget-container left-receptacle"></div>
+                <div class="widget-container right-receptacle"></div>
+                <div class="text-container">
+                    <p>
+                        <span id="text-leituras">Leituras</span>
+                        <a class="button widget uib_w_374 botao_header icon info" data-uib="app_framework/button" data-ver="1" id="btn_info"></a>
+                    </p>
+
+                </div>
+            </div>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_88" data-uib="app_framework/header" data-ver="2" id="af-header-modulos">
+            <div class="tarea widget uib_w_369 titulo-header" data-uib="media/text" data-ver="0" name="uib_w_369">
+                <div class="widget-container left-receptacle"></div>
+                <div class="widget-container right-receptacle"></div>
+                <div class="text-container">
+                    <p>Módulos</p>
+                </div>
+            </div>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_126" data-uib="app_framework/header" data-ver="2" id="af-header-sensor">
+            <div class="tarea widget uib_w_368 d-margins titulo-header" data-uib="media/text" data-ver="0" name="uib_w_368">
+                <div class="widget-container left-receptacle"></div>
+                <div class="widget-container right-receptacle"></div>
+                <div class="text-container">
+                    <p>Sensor</p>
+                </div>
+            </div>
+
+        </header>
+
+        <header class="wrapping-col wrap-element uib_w_216" data-uib="app_framework/header" data-ver="2" id="af-header-login">
+            <div class="tarea widget uib_w_370 d-margins titulo-header" data-uib="media/text" data-ver="0" name="uib_w_370">
+                <div class="widget-container left-receptacle"></div>
+                <div class="widget-container right-receptacle"></div>
+                <div class="text-container">
+                    <p>
+                        <span id="text-painel">Login</span>
+                    </p>
+                </div>
+            </div>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_261" data-uib="app_framework/header" data-ver="2" id="af-header-config">
+            <div class="tarea widget uib_w_371 d-margins titulo-header" data-uib="media/text" data-ver="0" name="uib_w_371">
+                <div class="widget-container left-receptacle"></div>
+                <div class="widget-container right-receptacle"></div>
+                <div class="text-container">
+                    <p>Configuração</p>
+                </div>
+            </div>
+        </header>
+        <header class="wrapping-col wrap-element uib_w_384" data-uib="app_framework/header" data-ver="1" id="af-header-1">
+            <div class="tarea widget uib_w_385 titulo-header" data-uib="media/text" data-ver="0" name="uib_w_385">
+                <div class="widget-container left-receptacle"></div>
+                <div class="widget-container right-receptacle"></div>
+                <div class="text-container">
+                    <p>Iniciando...</p>
+                </div>
+            </div>
+            <h1></h1>
+        </header>
+        <div class="uwrap" id="content">
+
+            <div class="upage vertical-col left panel" id="uib_page_startup" data-header="af-header-1" data-footer="af-footer-startup">
+
+                <div class="grid grid-pad urow uib_row_43 row-height-43" data-uib="layout/row" data-ver="0">
+                    <div class="col uib_col_54 col-0_12-12" data-uib="layout/col" data-ver="0">
+                        <div class="widget-container content-area vertical-col">
+                            <div class="grid grid-pad urow uib_row_44 row-height-44" data-uib="layout/row" data-ver="0">
+                                <div class="col uib_col_55 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                    <div class="widget-container content-area vertical-col">
+                                        <span class="uib_shim"></span>
+                                    </div>
+                                </div>
+                                <span class="uib_shim"></span>
+                            </div>
+
+                            <div class="widget uib_w_379 scale-image d-margins" data-uib="media/img" data-ver="0">
+                                <figure class="figure-align">
+                                    <img src="images/logo_sol1.png" id="startup-img">
+
+                                    <figcaption data-position="bottom">@2016-2017</figcaption>
+                                </figure>
+                            </div><span class="uib_shim"></span>
+                        </div>
+                    </div>
+                    <span class="uib_shim"></span>
+                </div>
+
+                <div class="tarea widget uib_w_387 d-margins" data-uib="media/text" data-ver="0" name="uib_w_387" id="text-inicial">
+                    <div class="widget-container left-receptacle"></div>
+                    <div class="widget-container right-receptacle"></div>
+                    <div class="text-container"></div>
+                </div>
+
+            </div>
+
+            <div class="upage vertical-col left panel" id="uib_page_login" data-header="af-header-login" data-footer="af-footer-login">
+                <div class="upage-content ac0 content-area hidden vertical-col" id="uib_page_13">
+                    <div class="grid grid-pad urow uib_row_31 row-height-31" data-uib="layout/row" data-ver="0">
+                        <div class="uib_col_38" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_325 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_325">
+                                    <div class="text-container">
+                                        <p>Email</p>
+                                    </div>
+                                </div>
+                                <div class="table-thing with-label widget uib_w_326 d-margins" data-uib="app_framework/input" data-ver="1">
+
+                                    <input class="wide-control" placeholder="<email>" type="text" id="text-sign-email">
+                                </div><a class="button widget uib_w_327 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-sign-email">Salvar</a>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <div class="widget uib_w_217 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Login</p>
+                        </div>
+                    </div><a class="button widget uib_w_218 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-sign-in">Entrar</a>
+                    <div class="grid grid-pad urow uib_row_32 row-height-32" data-uib="layout/row" data-ver="0">
+                        <div class="uib_col_39" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <div class="widget uib_w_219 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Novo Usuário</p>
+                        </div>
+                    </div><a class="button widget uib_w_220 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-sign-up">Cadastrar</a>
+
+                    <div class="widget uib_w_256 d-margins" data-uib="media/text" data-ver="0" id="text-sessao-id">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="uib_page_sign_in" class="upage-content hidden vertical-col">
+                    <div class="widget uib_w_279 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Login</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_223 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-user-name">Usuário</label>
+
+                        <input class="wide-control" type="text" id="text-user-name">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_224 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-user-passwd">Senha</label>
+
+                        <input class="wide-control" type="password" id="text-user-passwd">
+                    </div>
+                    <div class="widget uib_w_347 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                        <input type="checkbox" id="af-checkbox-credenciais">
+                        <label class="content-box" for="af-checkbox-credenciais">salvar credenciais</label>
+                    </div>
+                    <div class="widget uib_w_375 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                        <input type="checkbox" id="af-checkbox-database">
+                        <label class="content-box" for="af-checkbox-database">DB develop</label>
+                    </div>
+                    <div class="grid grid-pad urow uib_row_40 row-height-40" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_50 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                    <div class="button-grouped flex widget uib_w_225 d-margins" data-uib="app_framework/button_group" data-ver="1">
+                        <a class="button widget uib_w_226" data-uib="app_framework/button" data-ver="1" id="btn-sign-in-entrar">Login</a>
+                        <a class="button widget uib_w_227" data-uib="app_framework/button" data-ver="1" id="btn-sign-in-limpar">Limpar</a>
+                        <a class="button widget uib_w_244" data-uib="app_framework/button" data-ver="1" id="btn-sign-out">Logoff</a>
+
+                    </div>
+                    <!--<a ng-if="platform == Windows" class="widget uib_w_402 d-margins" id="my-signin2" data-uib="app_framework/button" data-ver="1">Button-Google</a>
+            -->
+
+                    <div class="grid grid-pad urow uib_row_33 row-height-33" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_40 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <a class="button widget uib_w_243 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-login-reenviar">Re-enviar senha</a>
+                </div>
+                <div id="uib_page_sign_up" class="upage-content hidden vertical-col">
+                    <div class="tarea widget uib_w_372 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_372">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div class="text-container">
+                            <p>Cadastro</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_228 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-top-left" for="text-nome-completo">Nome completo</label>
+
+                        <input class="wide-control" type="text" id="text-nome-completo">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_235 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-top-left" for="text-email">Email</label>
+                        <input class="wide-control" type="text" id="text-email">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_229 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-usuario">Usuário</label>
+
+                        <input class="wide-control" type="text" id="text-usuario">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_230 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-senha-1">Senha</label>
+                        <input class="wide-control" type="password" id="text-senha-1">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_231 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-senha-2">Confirmação</label>
+                        <input class="wide-control" placeholder="repetir a senha" type="password" id="text-senha-2">
+                    </div>
+                    <div class="button-grouped flex widget uib_w_232 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_233" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                        id="btn-enviar-cadastro">Enviar</a><a class="button widget uib_w_234" data-uib="app_framework/button" data-ver="1" id="btn-limpar-cadastro">Limpar</a>
+                    </div>
+                </div>
+
+                <div id="uib_page_senha" class="upage-content hidden vertical-col">
+                    <div class="widget uib_w_251 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Troca de senha</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_253 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-senha-antiga">Antiga</label>
+                        <input class="wide-control" type="password" id="text-senha-antiga">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_254 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-senha-nova">Nova senha</label>
+                        <input class="wide-control" type="password" id="text-senha-nova">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_255 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-senha-confirmacao">Confirmação</label>
+                        <input class="wide-control" type="password" id="text-senha-confirmacao">
+                    </div><a class="button widget uib_w_252 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-senha-trocar">Alterar</a>
+                </div>
+                <div id="uib_page_painel" class="upage-content hidden vertical-col">
+                    <div class="grid grid-pad urow uib_row_35 row-height-35" data-uib="layout/row" data-ver="0">
+
+                        <div class="col uib_col_45 col-0_6-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="th-sensor">
+                                                Sensor
+                                            </th>
+                                            <th class="th-sensor">
+                                                Local
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="field in sensores">
+                                            <td class="td-val" ng-click="goSensor($index)" style="{{field.style}}">{{field.valor}}{{field.unidade}}</td>
+                                            <td class="td-cel">{{field.nome}}
+                                                <br>{{field.sensor}}</td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="upage vertical-col left panel" id="mainpage" data-header="af-header-0" data-footer="af-footer-0">
+
+                <div class="upage-outer">
+                    <div class="upage-content vertical-col hidden" id="uib_page_2">
+
+                        <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
+                            <div class="uib_col_6" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <span class="uib_shim">
+                                <div id="chart11_div"></div>
+                                <div id="chart12_div"></div>
+                                <div id="chart13_div"></div>
+                                <div id="chart14_div"></div>
+                                <div id="chart15_div"></div>
+                                <div id="chart16_div"></div>
+                                <div id="chart17_div"></div>
+                                <div id="chart18_div"></div>
+                                <div id="chart19_div" style="display: none"></div>
+                  </span>
+                                </div>
+                            </div>
+
+                            <span class="uib_shim"></span>
+                        </div>
+                        <div class="grid grid-pad urow uib_row_22 row-height-22" data-uib="layout/row" data-ver="0">
+                            <div class="uib_col_29" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <div class="sbs-container widget uib_w_213 d-margins" data-uib="layout/side_by_side" data-ver="0">
+                                        <div class="leftContent widget-container">
+                                            <div class="widget uib_w_214 d-margins" data-uib="media/text" data-ver="0" id="text_pag_2_1">
+                                                <div class="widget-container left-receptacle"></div>
+                                                <div class="widget-container right-receptacle"></div>
+                                                <div>
+                                                    <p>&nbsp;</p>
+                                                    <div id="text_pag_1"></div>
+                                                    <div id="text_pag_2"></div>
+                                                    <div id="text_pag_3"></div>
+                                                    <div id="text_pag_4"></div>
+                                                    <div id="text_pag_5"></div>
+                                                    <div id="text_pag_6"></div>
+                                                    <div id="text_pag_7"></div>
+                                                    <div id="text_pag_8"></div>
+                                                    <div id="text_pag_9"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="rightContent widget-container">
+                                            <div class="table-thing with-label widget uib_w_215 d-margins hide" data-uib="app_framework/select" data-ver="1">
+                                                <select class="wide-control" id="sel_horas">
+                                                    <option>2 horas</option>
+                                                    <option>6 horas</option>
+                                                    <option>24 horas</option>
+                                                    <option>48 horas</option>
+                                                    <option># pontos</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                        <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+                            <div class="uib_col_7" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <span class="uib_shim">
+                                <div id="chart21_div"></div>
+                                <div id="chart22_div"></div>
+                                <div id="chart23_div"></div>
+                                <div id="chart24_div"></div>
+                                <div id="chart25_div"></div>
+                                <div id="chart26_div"></div>
+                                <div id="chart27_div"></div>
+                                <div id="chart28_div"></div>
+                                <div id="chart29_div"></div>
+                    </span>
+                                </div>
+                            </div>
+
+                            <div class="widget uib_w_113 d-margins" data-uib="media/text" data-ver="0" id="text_pag_2_2">
+                                <div class="widget-container left-receptacle"></div>
+                                <div class="widget-container right-receptacle"></div>
+                                <div>
+                                    <p>_</p>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                            <div id="text_pag_2_2"></div>
+
+                        </div>
+                        <div class="table-thing with-label widget uib_w_311 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="txt-data">Data</label>
+                            <input class="wide-control" type="date" id="txt-data">
+                        </div>
+
+                        <p id="div_campos" ng-repeat="(key,value) in feeds[0]">
+                            {{key}}:{{value}}
+                            <br>
+                        </p>
+
+                    </div>
+                    <div id="uib_page_9" class="upage-content vertical-col hidden">
+                        <div class="table-thing with-label widget uib_w_51 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="en_entrada">Entrada</label>
+
+                            <input class="wide-control" type="text" id="en_entrada">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_52 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="en_saida">Saida</label>
+
+                            <input class="wide-control" type="text" id="en_saida">
+                        </div>
+                        <div class="button-grouped flex widget uib_w_53 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_54" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                            id="btn_encode">Encode</a>
+                            <a class="button widget uib_w_56" data-uib="app_framework/button" data-ver="1" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" id="btn_decode">Decode</a>
+                        </div>
+                        <a class="button widget uib_w_89 d-margins" data-uib="app_framework/button" data-ver="1" id="btn_scan">Scan</a>
+                        <div class="widget uib_w_95 d-margins" data-uib="media/text" data-ver="0" id="text_pag_9">
+                            <div class="widget-container left-receptacle"></div>
+                            <div class="widget-container right-receptacle"></div>
+                            <div>
+                                <p>&nbsp;</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="uib_page_10" class="upage-content vertical-col hidden">
+                        <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col center">
+                                    <span class="uib_shim">
+                                              <div id="chart3_div"></div>
+                  </span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="widget uib_w_72 d-margins titulo-2" data-uib="media/text" data-ver="0" id="text_pag_10">
+                            <div class="widget-container left-receptacle"></div>
+                            <div class="widget-container right-receptacle"></div>
+                            <div>
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_10 col-0" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area center-h-v-col">
+                                    <span class="uib_shim">
+                            <div id="chart4_div"></div>
+                  </span>
+                                </div>
+
+                            </div><span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_29 row-height-29" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_36 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <span class="uib_shim"></span>
+                                    <div id="text_pag_10_2"></div>
+
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                    <div id="uib_page_11" class="upage-content vertical-col hidden">
+                        <div class="grid grid-pad urow uib_row_15 row-height-15" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_19 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <span class="uib_shim">
+                  <div id="chart5_div"></div>
+                </span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="widget uib_w_94 d-margins titulo-2" data-uib="media/text" data-ver="0" id="text_pag_11">
+                            <div class="widget-container left-receptacle"></div>
+                            <div class="widget-container right-receptacle"></div>
+                            <div>
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-pad urow uib_row_19 row-height-19" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_23 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <span class="uib_shim">
+                             <div id="chart6_div"></div></span>
+
+                                </div>
+
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_37 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <span class="uib_shim"></span>
+                                    <div id="text_pag_11_2"></div>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                    <div id="uib_page_info" class="upage-content vertical-col hidden">
+                        <div class="widget uib_w_70 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                            <div>
+                                <p>INFO</p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_4 row-height-4" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_9 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <div id="pag_info_status"></div>
+                                    <span class="uib_shim">
+                  </span>
+                                </div>
+                            </div>
+                            <span class="uib_shim">
+              </span>
+                        </div>
+                        <div class="button-grouped flex widget uib_w_97 d-margins" data-uib="app_framework/button_group" data-ver="1">
+                            <a class="button widget uib_w_98 icon left" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;" id="btn_status_anterior"></a>
+
+                            <a class="button widget uib_w_73 icon stack" data-uib="app_framework/button" data-ver="1" id="btn_ler_status"></a>
+                            <a class="button widget uib_w_100 icon right" data-uib="app_framework/button" data-ver="1" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" id="btn_status_proximo"></a>
+                        </div>
+                        <div class="widget uib_w_96 d-margins" data-uib="media/text" data-ver="0" id="text_info_modelo">
+                            <div class="widget-container left-receptacle"></div>
+                            <div class="widget-container right-receptacle"></div>
+                            <div>
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+
+                        <div class="widget uib_w_395 scale-image d-margins" data-uib="media/img" data-ver="0">
+                            <figure class="figure-align">
+                                <img src="images/logo_sol1.png">
+                                <figcaption data-position="bottom"></figcaption>
+                            </figure>
+                        </div>
+                        <div class="tarea widget uib_w_396 d-margins" data-uib="media/text" data-ver="0" name="uib_w_396" id="text-about">
+                            <div class="widget-container left-receptacle"></div>
+                            <div class="widget-container right-receptacle"></div>
+                            <div class="text-container">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="uib_page_alerta" class="upage-content vertical-col left hidden">
+                        <div class="widget uib_w_277 d-margins titulo-2" data-uib="media/text" data-ver="0" id="text-evento-titulo">
+                            <div>
+                                <p>Evento</p>
+                            </div>
+                        </div>
+                        <div class="table-thing with-label widget uib_w_278 d-margins" data-uib="app_framework/input" data-ver="1">
+
+                            <input class="wide-control" type="hidden" id="text-alerta-id">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_286 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="text-alerta-data">Data</label>
+
+                            <input class="wide-control" placeholder="Placeholder Text" type="text" id="text-alerta-data">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_285 d-margins" data-uib="app_framework/input" data-ver="1">
+
+                            <input class="wide-control" placeholder="Placeholder Text" type="text" id="text-alerta-mensagem">
+                        </div>
+                        <div class="widget uib_w_284 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                            <div>
+                                <p>Novo registro</p>
+                            </div>
+                        </div>
+                        <div class="table-thing with-label widget uib_w_268 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="text-alerta-usuario">Usuário</label>
+                            <input class="wide-control" type="text" id="text-alerta-usuario">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_269 d-margins" data-uib="app_framework/textarea" data-ver="1">
+                            <label class="narrow-control label-top-left" for="text-alerta-msg">Comentário</label>
+                            <textarea class="wide-control" rows="3" wrap="soft" id="text-alerta-msg"></textarea>
+                        </div>
+                        <div class="table-thing with-label widget uib_w_270 d-margins" data-uib="app_framework/radio_button_group" data-ver="1" data-child-name="af-group-0">
+                            <label class="narrow-control label-inline">Situacao</label>
+
+                            <div class="wide-control">
+                                <div class="widget uib_w_271" data-uib="app_framework/radio_button" data-ver="1">
+                                    <input type="radio" id="af-alerta-0" name="af-group-0">
+                                    <label class="content-box" for="af-alerta-0">Em atendimento [EA]</label>
+                                </div>
+                                <div class="widget uib_w_272" data-uib="app_framework/radio_button" data-ver="1">
+                                    <input type="radio" id="af-alerta-1" name="af-group-0">
+                                    <label class="content-box" for="af-alerta-1">Resolvido [OK]</label>
+                                </div>
+                                <div class="widget uib_w_273" data-uib="app_framework/radio_button" data-ver="1">
+                                    <input type="radio" id="af-alerta-2" name="af-group-0">
+                                    <label class="content-box" for="af-alerta-2">Não resolvido [NOK]</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="button-grouped flex widget uib_w_274 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_275" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                            id="btn-alerta-salvar">Salvar</a><a class="button widget uib_w_276" data-uib="app_framework/button" data-ver="1" id="btn-alerta-limpar">Limpar</a>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_34 row-height-34" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_41 col-0_6-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <span class="uib_shim"></span>
+                                    <div id="table_feedback_div">feedback</div>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                    <div id="uib_page_seco" class="upage-content vertical-col left hidden">
+                        <a class="button widget uib_w_381 d-margins icon paper" data-uib="app_framework/button" data-ver="1" id="btn-eventos-seco">Eventos</a>
+                        <div class="tarea widget uib_w_388 d-margins" data-uib="media/text" data-ver="0" name="uib_w_388" id="text-last-msg">
+                            <div class="widget-container left-receptacle"></div>
+                            <div class="widget-container right-receptacle"></div>
+                            <div class="text-container">
+                                <p>Ultima atualização</p>
+                            </div>
+                        </div>
+                        <div ng-click="ativar_subpage_eventos_seco()">
+                            <ul>
+                                <li ng-repeat="seco in sensores_seco" style="font-size:large;{{seco.cor}}" id="list-item-seco"><a>{{ seco.nome }}<br>{{seco.texto}}<br>
+                            <span style="font-size:normal" ng-if="seco.atualizado_em != false">{{seco.atualizado_em}}</span>
+                            </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="table-thing with-label widget uib_w_361 d-margins" data-uib="app_framework/flip_switch" data-ver="1">
+                            <label class="narrow-control label-inline">relé</label>
+
+                            <div class="wide-control">
+                                <input type="checkbox" class="toggle" id="af-flipswitch-rele" checked="checked">
+                                <label for="af-flipswitch-rele" data-off="No" data-on="Yes"><span></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="button-grouped flex widget uib_w_356 d-margins" data-uib="app_framework/button_group" data-ver="1">
+                            <a class="button widget uib_w_358" data-uib="app_framework/button" data-ver="1" id="btn-ss-click">Click</a>
+                            <a class="button widget uib_w_359 icon loading" data-uib="app_framework/button" data-ver="1" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" id="btn-ss-rele-estado"></a>
+                        </div>
+                        <div id="text-ss-rele" class="tarea widget uib_w_360 d-margins" data-uib="media/text" data-ver="0" name="uib_w_360">
+                            <div class="widget-container left-receptacle"></div>
+                            <div class="widget-container right-receptacle"></div>
+                            <div class="text-container"></div>
+                        </div>
+                        <div class="grid grid-pad urow uib_row_45 row-height-45" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_56 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <span class="uib_shim">                                   </span>
+                                    <div id="map" style="width:300px;height:300px;">MAP</div>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                        <div class="grid grid-pad urow uib_row_41 row-height-41" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_51 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <span class="uib_shim"></span>
+                                    <table ng-hide="true" ng-if="sensores_alertas != undefined" border="1">
+                                        <tbody>
+                                            <tr>
+                                                <th>Hora</th>
+                                                <th>Evento</th>
+                                            </tr>
+                                            <tr ng-repeat="alerta in sensores_alertas" class="eventos_custom">
+                                                <td><span>{{alerta.atualizado_em}}</span>
+                                                </td>
+                                                <td><span>{{ alerta.texto }}</span>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                    </div>
+                    <div id="uib_page_eventos_seco" class="upage-content vertical-col left hidden">
+                        <div class="grid grid-pad urow uib_row_42 row-height-42" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_53 col-0" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <a class="button widget uib_w_382 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-gerador">Sensores</a>
+                                    <div class="table-thing with-label widget uib_w_386 d-margins" data-uib="app_framework/select" data-ver="1">
+                                        <label class="narrow-control label-top-left" for="sel-tipo_alertas">Alertas</label>
+
+                                        <select class="wide-control" id="sel-tipo_alertas"></select>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+
+                            <span class="uib_shim"></span>
+                        </div>
+                        <div class="widget uib_w_354 widget-container content-area vertical-col uib-card cpad-0 d-margins" data-uib="layout/card" data-ver="0"></div>
+
+                        <div ng-if="sensores_alertas != undefined" ng-click="ativar_subpage_seco()" class="card_grid widget uib_w_377 wrapping-col d-margins flex-basis-377" data-uib="layout/card_grid" data-ver="0">
+                            <div ng-repeat="alerta in sensores_alertas" class="widget widget-container content-area vertical-col uib-card uib_w_378 section-dimension-378 eventos_card eventos_custom cpad-1" data-uib="layout/card" data-ver="0">
+                                <section class="card-header widget-container content-area vertical-col">{{ alerta.atualizado_em }}</section>
+
+                                {{ alerta.texto }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="upage vertical-col left panel" id="uib_page_4" data-header="af-header-config" data-footer="af-footer-5">
+                <div id="uib_page_3" class="upage-content vertical-col hidden">
+                    <div class="widget uib_w_50 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Wifi</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_59 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="ssid">SSID</label>
+
+                        <input class="wide-control" type="text" id="ssid">
+                    </div>
+
+                    <div class="table-thing with-label widget uib_w_9 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="passwd">Senha</label>
+
+                        <input class="wide-control" type="text" id="passwd">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_103 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="proxy">Proxy</label>
+                        <input class="wide-control" placeholder="<ip>:<porta>" type="text" id="proxy">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_266 d-margins" data-uib="app_framework/select" data-ver="1">
+                        <label class="narrow-control label-inline" for="sel-endereco-TS">Endereço</label>
+
+                        <select class="wide-control" id="sel-endereco-TS">
+                            <option>S</option>
+                            <option>T</option>
+                            <option>U</option>
+                            <option>V</option>
+                        </select>
+                    </div><a class="button widget uib_w_10 d-margins" data-uib="app_framework/button" data-ver="1" id="btn_gravar_wifi">Salvar</a><a class="button widget uib_w_110 d-margins" data-uib="app_framework/button" data-ver="1" id="btn_remote_config">Atualizar</a>
+                    <div class="widget uib_w_60 d-margins titulo-2" data-uib="media/text" data-ver="0" id="text_wifi">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="widget uib_w_111 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>Conexão Direta</p>
+                        </div>
+                    </div>
+
+                    <div class="button-grouped flex widget uib_w_105 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_106" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                        id="btn_prog_wifi">Enviar TS</a>
+                        <a class="button widget uib_w_107" data-uib="app_framework/button" data-ver="1" id="btn_reboot_ts">Reboot</a><a class="button widget uib_w_108" data-uib="app_framework/button" data-ver="1" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;"
+                        id="btn_ler_ip">Ler IP</a>
+                    </div>
+                    <a class="button widget uib_w_104 d-margins" data-uib="app_framework/button" data-ver="1" id="btn_browser">Browser</a>
+                    <div class="widget uib_w_109 d-margins titulo-2" data-uib="media/text" data-ver="0" id="text_ips">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="uib_page_5" class="upage-content vertical-col">
+                    <div class="widget uib_w_37 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Equipamento</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_263 d-margins" data-uib="app_framework/select" data-ver="1">
+                        <label class="narrow-control label-inline" for="sel-meus-sensores">Meus</label>
+
+                        <select class="wide-control" id="sel-meus-sensores">
+                            <option>Option 1</option>
+                            <option>Option 2</option>
+                            <option>Option 3</option>
+                        </select>
+                    </div>
+
+                    <div class="table-thing with-label widget uib_w_26 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="modelo">Modelo</label>
+
+                        <input class="wide-control" type="text" id="modelo">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_27 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="serie">Serie</label>
+
+                        <input class="wide-control" type="text" id="serie">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_31 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="chave">Chave</label>
+
+                        <input class="wide-control" type="text" id="chave">
+                    </div>
+                    <div class="button-grouped flex widget uib_w_90 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_91" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                        id="btn_let_config_web">Ler</a>
+                        <a class="button widget uib_w_92" data-uib="app_framework/button" data-ver="1" id="btn_ler_barcode">BarCode</a>
+                        <a class="button widget uib_w_93" data-uib="app_framework/button" data-ver="1" id="btn-assoc-ts">+</a>
+                        <a class="button widget uib_w_265" data-uib="app_framework/button" data-ver="1" id="btn-desassoc-ts">-</a>
+                    </div>
+                    <div class="widget uib_w_65 d-margins titulo-2" data-uib="media/text" data-ver="0" id="text_config">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_74 d-margins" data-uib="app_framework/checkbox_group" data-ver="1">
+                        <label class="narrow-control label-inline">Remotos</label>
+
+                        <div class="wide-control">
+                            <div class="widget uib_w_75" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-campo-6">
+                                <label class="content-box" for="af-campo-6">Modulo 1</label>
+                            </div>
+                            <div class="widget uib_w_76" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-campo-7">
+                                <label class="content-box" for="af-campo-7">Modulo 2</label>
+                            </div>
+                            <div class="widget uib_w_77" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-campo-8">
+                                <label class="content-box" for="af-campo-8">Modulo 3</label>
+                            </div>
+                            <div class="widget uib_w_212 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-campo-9">
+                                <label class="content-box" for="af-campo-9">Modulo 4</label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="uib_page_6" class="upage-content vertical-col hidden">
+                    <div class="widget uib_w_32 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Dados</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_33 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="api_key">user_key</label>
+
+                        <input class="wide-control" type="text" id="api_key">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_34 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="canal">canal</label>
+
+                        <input class="wide-control" type="text" id="canal">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_307 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="str_horas">horas</label>
+                        <input class="wide-control" placeholder="2,4,12,24,#" type="text" id="str_horas">
+                    </div>
+
+                    <div class="table-thing with-label widget uib_w_36 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="nro_pontos">#amostras</label>
+
+                        <input class="wide-control" type="number" id="nro_pontos" value="20">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_196 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="tempo_ler_corrente">freq.leituras</label>
+                        <input class="wide-control" type="number" id="tempo_ler_corrente">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_197 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="contador_enviar_web">#envio web</label>
+
+                        <input class="wide-control" type="number" id="contador_enviar_web">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_346 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="contador_gravar_log">#gravar log</label>
+
+                        <input class="wide-control" type="number" id="contador_gravar_log">
+                    </div>
+
+                    <div class="table-thing with-label widget uib_w_151 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="inatividade">Inatividade</label>
+                        <input class="wide-control" placeholder="hh:mm" type="text" id="inatividade">
+                    </div>
+                    <a class="button widget uib_w_57 d-margins" data-uib="app_framework/button" data-ver="1" id="btn_gravar_ts">Gravar</a>
+                    <div class="widget uib_w_58 d-margins titulo-2" data-uib="media/text" data-ver="0" id="text_ts">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="uib_page_8" class="upage-content vertical-col hidden">
+                    <div class="widget uib_w_44 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Ponto de Acesso</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_45 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="ap_ssid">Rede</label>
+                        <input class="wide-control" type="text" id="ap_ssid">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_46 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="ap_passwd">Senha</label>
+
+                        <input class="wide-control" type="text" id="ap_passwd">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_47 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="ap_canal">Canal</label>
+
+                        <input class="wide-control" type="number" id="ap_canal">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_48 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="ap_cripto">Criptografia</label>
+
+                        <input class="wide-control" type="text" id="ap_cripto">
+                    </div>
+                    <a class="button widget uib_w_63 d-margins" data-uib="app_framework/button" data-ver="1" id="btn_gravar_ap">Salvar</a>
+                    <div class="widget uib_w_64 d-margins titulo-2" data-uib="media/text" data-ver="0" id="text_ap">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="upage vertical-col left panel" id="uib_page_modulos" data-header="af-header-modulos" data-footer="af-footer-modulos">
+                <div id="uib_page_mod1" class="upage-content vertical-col left ">
+                    <div class="grid grid-pad urow uib_row_9 row-height-9" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_13 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim">
+                            <div id="chartx611_div"></div>
+                            <div id="chartx621_div" style="display: none"></div>
+                            <div id="chartx631_div" style="display: none"></div>
+                            <div id="chartx641_div" style="display: none"></div>
+                            <div id="chartx651_div" style="display: none"></div>
+                            <div id="chartx661_div" style="display: none"></div>
+                            <div id="chartx671_div" style="display: none"></div>
+                            <div id="chartx681_div" style="display: none"></div>
+
+</span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_10 row-height-10" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_14 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="widget uib_w_154 d-margins" data-uib="media/text" data-ver="0" id="text-mod1">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </div>
+                                <span class="uib_shim">
+                        <div id="chartx612_div"></div>
+                        <div id="chartx622_div" style="display: none"></div>
+                        <div id="chartx632_div" style="display: none"></div>
+                        <div id="chartx642_div" style="display: none"></div>
+                        <div id="chartx652_div" style="display: none"></div>
+                        <div id="chartx662_div" style="display: none"></div>
+                        <div id="chartx672_div" style="display: none"></div>
+                        <div id="chartx682_div" style="display: none"></div>
+</span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_25 row-height-25" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_32 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
+                                <div id="chartx6_div"></div>
+                            </div>
+                        </div>
+                        <span class="uib_shim">
+                        </span>
+                    </div>
+                    <p ng-repeat="(key,value) in nodes_feed1[0]">
+                        {{key}}:{{value}}#
+                        <br>
+                    </p>
+
+                </div>
+                <div id="uib_page_mod2" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_11 row-height-11" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_15 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim">
+                  </span>
+                                <div id="chartx711_div"></div>
+                                <div id="chartx721_div" style="display: none"></div>
+                                <div id="chartx731_div" style="display: none"></div>
+                                <div id="chartx741_div" style="display: none"></div>
+                                <div id="chartx751_div" style="display: none"></div>
+                                <div id="chartx761_div" style="display: none"></div>
+                                <div id="chartx771_div" style="display: none"></div>
+                                <div id="chartx781_div" style="display: none"></div>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <div class="grid grid-pad urow uib_row_12 row-height-12" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_16 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+
+                                <div class="widget uib_w_192 d-margins" data-uib="media/text" data-ver="0" id="text-mod2">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </div>
+                                <span class="uib_shim">
+                          <div id="chartx712_div"></div>
+                            <div id="chartx722_div" style="display: none"></div>
+                            <div id="chartx732_div" style="display: none"></div>
+                            <div id="chartx742_div" style="display: none"></div>
+                            <div id="chartx752_div" style="display: none"></div>
+                            <div id="chartx762_div" style="display: none"></div>
+                            <div id="chartx772_div" style="display: none"></div>
+                            <div id="chartx782_div" style="display: none"></div>
+                  </span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_26 row-height-26" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_33 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim">
+                                </span>
+                                <div id="chartx7_div"></div>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <p ng-repeat="(key,value) in nodes_feed2[0]">
+                        {{key}}:{{value}}
+                        <br>
+                    </p>
+                </div>
+                <div id="uib_page_mod3" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_13 row-height-13" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_17 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim">
+                         <div id="chartx811_div"></div>
+                                <div id="chartx821_div" style="display: none"></div>
+                            <div id="chartx831_div" style="display: none"></div>
+                            <div id="chartx841_div" style="display: none"></div>
+                            <div id="chartx851_div" style="display: none"></div>
+                            <div id="chartx861_div" style="display: none"></div>
+                            <div id="chartx871_div" style="display: none"></div>
+                            <div id="chartx881_div" style="display: none"></div>
+              </span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_14 row-height-14" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_18 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+
+                                <div class="widget uib_w_201 d-margins" data-uib="media/text" data-ver="0" id="text-mod3">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </div><span class="uib_shim">
+                        <div id="chartx812_div"></div>
+                                <div id="chartx822_div" style="display: none"></div>
+                            <div id="chartx832_div" style="display: none"></div>
+                            <div id="chartx842_div" style="display: none"></div>
+                            <div id="chartx852_div" style="display: none"></div>
+                            <div id="chartx862_div" style="display: none"></div>
+                            <div id="chartx872_div" style="display: none"></div>
+                            <div id="chartx882_div" style="display: none"></div>
+                  </span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_27 row-height-27" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_34 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
+                                <div id="chartx8_div"></div>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <p ng-repeat="(key,value) in nodes_feed3[0]">
+                        {{key}}:{{value}}
+                        <br>
+                    </p>
+                </div>
+                <div id="uib_page_mod4" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_23 row-height-23" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_30 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim">
+                                    <div id="chartx911_div"></div>
+                                <div id="chartx921_div" style="display: none"></div>
+                            <div id="chartx931_div" style="display: none"></div>
+                            <div id="chartx941_div" style="display: none"></div>
+                            <div id="chartx951_div" style="display: none"></div>
+                            <div id="chartx961_div" style="display: none"></div>
+                            <div id="chartx971_div" style="display: none"></div>
+                            <div id="chartx981_div" style="display: none"></div>
+            </span>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_24 row-height-24" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_31 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+
+                                <div class="widget uib_w_203 d-margins" data-uib="media/text" data-ver="0" id="text-mod4">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div>
+                                        <p>&nbsp;</p>
+                                    </div>
+                                </div><span class="uib_shim">
+                                        <div id="chartx912_div"></div>
+                                <div id="chartx922_div" style="display: none"></div>
+                            <div id="chartx932_div" style="display: none"></div>
+                            <div id="chartx942_div" style="display: none"></div>
+                            <div id="chartx952_div" style="display: none"></div>
+                            <div id="chartx962_div" style="display: none"></div>
+                            <div id="chartx962_div" style="display: none"></div>
+                            <div id="chartx982_div" style="display: none"></div>
+            </span>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_28 row-height-28" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_35 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <span class="uib_shim"></span>
+                            </div><span class="uib_shim"> <div id="chartx9_div">
+
+                            </div>
+                        </span>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <p ng-repeat="(key,value) in nodes_feed4[0]">
+                        {{key}}:{{value}}
+                        <br>
+                    </p>
+                </div>
+                <div id="uib_page_mod_config" class="upage-content vertical-col left hidden">
+
+                    <div class="card_grid widget uib_w_156 wrapping-col d-margins flex-basis-156" data-uib="layout/card_grid" data-ver="0">
+                        <div class="widget widget-container content-area vertical-col uib-card uib_w_157 section-dimension-157 cpad-0" data-uib="layout/card" data-ver="0" id="cfg-mod1">
+                            <div class="widget uib_w_162 d-margins" data-uib="media/text" data-ver="0" id="text-cfg-mod1">
+                                <div class="widget-container left-receptacle"></div>
+                                <div class="widget-container right-receptacle"></div>
+                                <div>
+                                    <p>Módulo 1</p>
+                                </div>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_175 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod1-nome">Nome</label>
+
+                                <input class="wide-control" type="text" id="text-mod1-nome">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_184 d-margins" data-uib="app_framework/select" data-ver="1">
+                                <label class="narrow-control label-inline" for="sel-mod1">Sensor</label>
+
+                                <select class="wide-control" id="sel-mod1">
+                                    <option>Temperatura</option>
+                                    <option>Sensor 2</option>
+                                    <option>Sensor 3</option>
+                                </select>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_169 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod1-vcc">Ajuste</label>
+
+                                <input class="wide-control" type="number" id="text-mod1-vcc">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_187 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod1-campo">Campo</label>
+
+                                <input class="wide-control" placeholder="<nome do sensor>" type="text" id="text-mod1-campo">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_160 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod1-min">Min</label>
+
+                                <input class="wide-control" type="number" id="text-mod1-min">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_161 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod1-max">Máx</label>
+
+                                <input class="wide-control" type="number" id="text-mod1-max">
+                            </div>
+
+                        </div>
+                        <div class="widget widget-container content-area vertical-col uib-card uib_w_158 section-dimension-158 cpad-0" data-uib="layout/card" data-ver="0" id="cfg-mod2">
+
+                            <div class="widget uib_w_163 d-margins" data-uib="media/text" data-ver="0" id="text-cfg-mo2">
+                                <div class="widget-container left-receptacle"></div>
+                                <div class="widget-container right-receptacle"></div>
+                                <div>
+                                    <p>Módulo 2</p>
+                                </div>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_176 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod2-nome">Nome</label>
+                                <input class="wide-control" type="text" id="text-mod2-nome">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_185 d-margins" data-uib="app_framework/select" data-ver="1">
+                                <label class="narrow-control label-inline" for="sel-mod2">Sensor</label>
+
+                                <select class="wide-control" id="sel-mod2">
+                                    <option>Temperatura</option>
+                                    <option>Sensor 2</option>
+                                    <option>Sensor 3</option>
+                                </select>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_170 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod2-vcc">Ajuste</label>
+
+                                <input class="wide-control" type="number" id="text-mod2-vcc">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_188 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod2-campo">Campo</label>
+                                <input class="wide-control" placeholder="<nome do sensor>" type="text" id="text-mod2-campo">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_164 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod2-min">Min</label>
+
+                                <input class="wide-control" type="number" id="text-mod2-min">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_165 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod2-max">Máx</label>
+
+                                <input class="wide-control" type="number" id="text-mod2-max">
+                            </div>
+
+                        </div>
+                        <div class="widget widget-container content-area vertical-col uib-card uib_w_159 section-dimension-159 cpad-0" data-uib="layout/card" data-ver="0" id="cfg-mod3">
+
+                            <div class="widget uib_w_166 d-margins" data-uib="media/text" data-ver="0" id="text-cfg-mod3">
+                                <div class="widget-container left-receptacle"></div>
+                                <div class="widget-container right-receptacle"></div>
+                                <div>
+                                    <p>Módulo 3</p>
+                                </div>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_177 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod3-nome">Nome</label>
+
+                                <input class="wide-control" type="text" id="text-mod3-nome">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_186 d-margins" data-uib="app_framework/select" data-ver="1">
+                                <label class="narrow-control label-inline" for="sel-mod3">Sensor</label>
+
+                                <select class="wide-control" id="sel-mod3">
+                                    <option>Temperatura</option>
+                                    <option>Sensor 2</option>
+                                    <option>Sensor 3</option>
+                                </select>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_173 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod3-vcc">Ajuste</label>
+
+                                <input class="wide-control" type="number" id="text-mod3-vcc">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_189 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod3-campo">Campo</label>
+
+                                <input class="wide-control" type="text" id="text-mod3-campo" placeholder="<nome do sensor>">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_171 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod3-min">Min</label>
+
+                                <input class="wide-control" type="number" id="text-mod3-min">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_172 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-mod3-max">Máx</label>
+                                <input class="wide-control" type="number" id="text-mod3-max">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="widget uib_w_204 widget-container content-area vertical-col uib-card d-margins section-dimension-204 cpad-0" data-uib="layout/card" data-ver="0" id="cfg-mod4">
+                        <div class="widget uib_w_205 d-margins" data-uib="media/text" data-ver="0" id="text-cfg-mod4">
+                            <div class="widget-container left-receptacle"></div>
+                            <div class="widget-container right-receptacle"></div>
+                            <div>
+                                <p>Módulo 4</p>
+                            </div>
+                        </div>
+                        <div class="table-thing with-label widget uib_w_206 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="text-mod4-nome">Nome</label>
+                            <input class="wide-control" type="text" id="text-mod4-nome">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_208 d-margins" data-uib="app_framework/select" data-ver="1">
+                            <label class="narrow-control label-inline" for="sel-mod4">Sensor</label>
+                            <select class="wide-control" id="sel-mod4">
+                                <option>Temperatura</option>
+                                <option>Sensor 2</option>
+                                <option>Sensor 3</option>
+                            </select>
+                        </div>
+                        <div class="table-thing with-label widget uib_w_207 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="text-mod4-vcc">Ajuste</label>
+                            <input class="wide-control" type="number" id="text-mod4-vcc">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_209 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="text-mod4-campo">Campo</label>
+                            <input class="wide-control" placeholder="<nome do sensor>" type="text" id="text-mod4-campo">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_210 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="text-mod4-min">Min</label>
+                            <input class="wide-control" type="number" id="text-mod4-min">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_211 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control label-inline" for="text-mod4-max">Máx</label>
+                            <input class="wide-control" type="number" id="text-mod4-max">
+                        </div>
+                    </div>
+                    <a class="button widget uib_w_143 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-mod-salvar">Salvar</a>
+                    <div class="widget uib_w_168 d-margins" data-uib="media/text" data-ver="0" id="text-mod-text">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="upage vertical-col left panel" id="page_sensor" data-header="af-header-sensor" data-footer="af-footer-sensor">
+                <div id="sub-page-sensor-main" class="upage-content vertical-col hidden">
+                    <div class="table-thing with-label widget uib_w_147 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-top-left" for="text-s-nome">Nome</label>
+
+                        <input class="wide-control" placeholder="<nome do sensor>" type="text" id="text-s-nome">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_121 d-margins" data-uib="app_framework/checkbox_group" data-ver="1" id="group-s-recursos">
+                        <label class="narrow-control label-top-left">Recursos</label>
+
+                        <div class="wide-control">
+                            <div class="widget uib_w_122" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-temp">
+                                <label class="content-box" for="af-checkbox-s-temp">Temperatura</label>
+                            </div>
+                            <div class="widget uib_w_123" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-corrente">
+                                <label class="content-box" for="af-checkbox-s-corrente">Corrente</label>
+                            </div>
+                            <div class="widget uib_w_125" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-alimentacao">
+                                <label class="content-box" for="af-checkbox-s-alimentacao">Alimentacao</label>
+                            </div>
+                            <div class="widget uib_w_124" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-rele">
+                                <label class="content-box" for="af-checkbox-s-rele">Chave</label>
+                            </div>
+                            <div class="widget uib_w_300 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-extra">
+                                <label class="content-box" for="af-checkbox-s-extra">Temperatura 2</label>
+                            </div>
+                            <div class="widget uib_w_150 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-extra-2">
+                                <label class="content-box" for="af-checkbox-s-extra-2">Temperatura 3</label>
+                            </div>
+                            <div class="widget uib_w_312 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-humidade">
+                                <label class="content-box" for="af-checkbox-s-humidade">Humidade</label>
+                            </div>
+                            <div class="widget uib_w_355 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-seco">
+                                <label class="content-box" for="af-checkbox-s-seco">Sensor contato</label>
+                            </div>
+                            <div class="widget uib_w_397 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-analogico">
+                                <label class="content-box" for="af-checkbox-s-analogico">Analogico</label>
+                            </div>
+                            <div class="widget uib_w_341 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-modbus">
+                                <label class="content-box" for="af-checkbox-s-modbus">ModBus</label>
+                            </div>
+                            <div class="widget uib_w_313 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-s-wifi">
+                                <label class="content-box" for="af-checkbox-s-wifi">Wifi</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="widget uib_w_127 d-margins titulo-2" data-uib="media/text" data-ver="0">
+                        <div>
+                            <p>Contato</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_128 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-s-email">Email</label>
+
+                        <input class="wide-control" type="text" id="text-s-email" placeholder="<email1,email2,...>">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_129 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-s-celular">Celular/SMS</label>
+
+                        <input class="wide-control" type="text" id="text-s-celular" placeholder="<fone1,fone2,...>">
+                    </div>
+                    <div class="sbs-container widget uib_w_308 d-margins" data-uib="layout/side_by_side" data-ver="0">
+                        <div class="leftContent widget-container">
+                            <div class="widget uib_w_309 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-ativar-email">
+                                <label class="content-box" for="af-checkbox-ativar-email">Ativar Email</label>
+                            </div>
+                        </div>
+                        <div class="rightContent widget-container">
+                            <div class="widget uib_w_310 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-ativar-sms">
+                                <label class="content-box" for="af-checkbox-ativar-sms">Ativar SMS</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_315 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline">Threshold to alert</label>
+                        <input class="wide-control" type="text" id="count_to_alert">
+                    </div>
+                    <div class="button-grouped flex widget uib_w_391 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_392" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                        id="btn-s-s-main">Salvar</a><a class="button widget uib_w_394" data-uib="app_framework/button" data-ver="1" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" id="btn-s-s-testar">Testar</a>
+                    </div>
+
+                    <div class="grid grid-pad urow uib_row_36 row-height-36" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_46 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_306 d-margins" data-uib="media/text" data-ver="0" name="uib_w_306" id="text-s-main">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container"></div>
+                                </div>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="sub-page-sensor-temp" class="upage-content vertical-col hidden">
+
+                    <div class="widget uib_w_280 d-margins" data-uib="app_framework/input_group" data-ver="2">
+                        <div class="formGroupHead">Temperatura</div>
+                        <div class="input-group">
+                            <div class="table-thing with-label widget uib_w_288 d-margins" data-uib="app_framework/select" data-ver="1">
+                                <label class="narrow-control label-inline" for="sel-temp">Sensor</label>
+
+                                <select class="wide-control" id="sel-temp">
+                                    <option>Principal</option>
+                                    <option>Extra</option>
+                                    <option>Extra 2</option>
+                                </select>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_281" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-temp-nome">Nome</label>
+
+                                <input class="wide-control" type="text" id="text-s-temp-nome">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_282" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-vcc">Ajuste</label>
+
+                                <input class="wide-control" type="text" id="text-s-vcc">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_283" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-temp-min">Min</label>
+
+                                <input class="wide-control" type="text" id="text-s-temp-min">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_287 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-temp-max">Máx</label>
+                                <input class="wide-control" type="text" id="text-s-temp-max">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_399 d-margins" data-uib="app_framework/select" data-ver="1">
+                                <label class="narrow-control label-inline" for="sel-temp-porta-analogico">Porta</label>
+
+                                <select class="wide-control" id="sel-temp-porta-analogico">
+                                    <option>desativar</option>
+                                    <option>D10</option>
+                                    <option>A4</option>
+                                    <option>A5</option>
+                                </select>
+                            </div>
+                            <div class="widget uib_w_400 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-pullup">
+                                <label class="content-box" for="af-checkbox-pullup">Pullup</label>
+                            </div>
+                            <div class="widget uib_w_398 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                <input type="checkbox" id="af-checkbox-ocultar-temp">
+                                <label class="content-box" for="af-checkbox-ocultar-temp">Ocultar</label>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="button widget uib_w_143 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-s-s-temp">Salvar</a>
+
+                    <div class="widget uib_w_149 d-margins" data-uib="media/text" data-ver="0" id="text-s-temp">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="sub-page-sensor-corrente" class="upage-content vertical-col hidden">
+
+                    <div class="widget uib_w_289 d-margins" data-uib="app_framework/input_group" data-ver="2">
+                        <div class="formGroupHead">Corrente</div>
+                        <div class="input-group">
+
+                            <div class="table-thing with-label widget uib_w_314 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-corrente-nome">Nome</label>
+
+                                <input class="wide-control" type="text" id="text-s-corrente-nome">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_330 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-corrente-fase1">Fase R</label>
+                                <input class="wide-control" type="text" id="text-s-corrente-fase1">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_329 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-corrente-fase2">Fase S</label>
+                                <input class="wide-control" type="text" id="text-s-corrente-fase2">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_328 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-corrente-fase3">Fase T</label>
+
+                                <input class="wide-control" type="text" id="text-s-corrente-fase3">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_301 d-margins" data-uib="app_framework/checkbox_group" data-ver="1">
+                                <label class="narrow-control label-inline">Fases</label>
+
+                                <div class="wide-control">
+                                    <div class="widget uib_w_302" data-uib="app_framework/checkbox" data-ver="1">
+                                        <input type="checkbox" id="af-checkbox-canal-auto">
+                                        <label class="content-box" for="af-checkbox-canal-auto">Automático</label>
+                                    </div>
+                                    <div class="widget uib_w_303" data-uib="app_framework/checkbox" data-ver="1">
+                                        <input type="checkbox" id="af-checkbox-canal-1">
+                                        <label class="content-box" for="af-checkbox-canal-1">fase R</label>
+                                    </div>
+                                    <div class="widget uib_w_305 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                        <input type="checkbox" id="af-checkbox-canal-2">
+                                        <label class="content-box" for="af-checkbox-canal-2">fase S</label>
+                                    </div>
+                                    <div class="widget uib_w_304" data-uib="app_framework/checkbox" data-ver="1">
+                                        <input type="checkbox" id="af-checkbox-canal-3">
+                                        <label class="content-box" for="af-checkbox-canal-3">fase T</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_296 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-corrente-ajuste">Ajuste</label>
+                                <input class="wide-control" type="number" id="text-s-corrente-ajuste">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_291" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-corrente-min">Min</label>
+                                <input class="wide-control" type="number" id="text-s-corrente-min">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_292" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control label-inline" for="text-s-corrente-max">Máx</label>
+                                <input class="wide-control" type="number" id="text-s-corrente-max">
+                            </div>
+                            <div class="table-thing with-label widget uib_w_293 d-margins" data-uib="app_framework/radio_button_group" data-ver="1" data-child-name="af-group-1">
+                                <label class="narrow-control label-inline">Tensão</label>
+
+                                <div class="wide-control">
+                                    <div class="widget uib_w_294" data-uib="app_framework/radio_button" data-ver="1">
+                                        <input type="radio" id="af-radio-s-127" name="af-group-1">
+                                        <label class="content-box" for="af-radio-s-127">127 volts</label>
+                                    </div>
+                                    <div class="widget uib_w_295" data-uib="app_framework/radio_button" data-ver="1">
+                                        <input type="radio" id="af-radio-s-220" name="af-group-1">
+                                        <label class="content-box" for="af-radio-s-220">220 volts</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget uib_w_401 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                        <input type="checkbox" id="af-checkbox-ocultar-corrente">
+                        <label class="content-box" for="af-checkbox-ocultar-corrente">Ocultar</label>
+                    </div>
+                    <a class="button widget uib_w_142 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-s-s-corrente">Salvar</a>
+                    <div class="widget uib_w_146 d-margins" data-uib="media/text" data-ver="0" id="text-s-corrente">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="uib-page-cmd" class="upage-content vertical-col hidden">
+                    <div class="table-thing with-label widget uib_w_190 d-margins" data-uib="app_framework/select" data-ver="1">
+                        <label class="narrow-control label-inline" for="sel-node">Módulo</label>
+
+                        <select class="wide-control" id="sel-node">
+                            <option>Principal</option>
+                            <option>Node 1</option>
+                            <option>Node 2</option>
+                            <option>Node 3</option>
+                        </select>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_179 d-margins" data-uib="app_framework/select" data-ver="1">
+                        <label class="narrow-control label-inline" for="sel-cmd">Select</label>
+
+                        <select class="wide-control" id="sel-cmd">
+                        </select>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_180 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-s-par1">Par1</label>
+                        <input class="wide-control" type="number" id="text-s-par1">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_181 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-s-par2">Par2</label>
+
+                        <input class="wide-control" type="number" id="text-s-par2">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_182 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-s-par3">Par3</label>
+
+                        <input class="wide-control" type="number" id="text-s-par3">
+                    </div><a class="button widget uib_w_183 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-s-enviar-cmd">Enviar</a>
+                    <div class="table-thing with-label widget uib_w_316 d-margins" data-uib="app_framework/textarea" data-ver="1">
+                        <textarea class="wide-control" placeholder="Orientacoes" rows="2" wrap="soft" id="text-cmd-orientacoes"></textarea>
+                    </div>
+
+                    <div class="widget uib_w_191 d-margins" data-uib="media/text" data-ver="0" id="text-cmd-text">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p class="ellipsis">&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sub-page-sensor-rele" class="upage-content hidden vertical-col">
+
+                    <div class="grid grid-pad urow uib_row_37 row-height-37" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_47 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_331 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_331">
+                                    <div class="text-container">
+                                        <p>Chave</p>
+                                    </div>
+                                </div>
+
+                                <div class="table-thing with-label widget uib_w_319 d-margins" data-uib="app_framework/flip_switch" data-ver="1">
+                                    <label class="narrow-control label-inline">Chave</label>
+
+                                    <div class="wide-control">
+                                        <input type="checkbox" class="toggle" id="af-flipswitch-rele">
+                                        <label for="af-flipswitch-rele" data-off="No" data-on="Yes"><span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="widget uib_w_324 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                                    <input type="checkbox" id="af-checkbox-cmd-limpa">
+                                    <label class="content-box" for="af-checkbox-cmd-limpa">Forçar</label>
+                                </div>
+                                <a class="uib-graphic-button default-graphic-sizing default-image-sizing hover-graphic-button active-graphic-button default-graphic-button default-graphic-text widget uib_w_321 d-margins media-button-text-bottom" data-uib="media/graphic_button" data-ver="0"
+                                href="#">
+                                    <img src="images/lamp_off.png" id="img-lamp-rele">
+                                    <span class="uib-caption" id="img-lamp-rele-g">Situação</span>
+                                </a>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <div class="tarea widget uib_w_322 d-margins" data-uib="media/text" data-ver="0" name="uib_w_322" id="text-rele-text">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div class="text-container"></div>
+                    </div>
+
+                </div>
+
+                <div id="sub-page-modbus" class="upage-content vertical-col left hidden">
+                    <div class="tarea widget uib_w_332 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_332">
+                        <div class="text-container">
+                            <p>Modbus</p>
+                        </div>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_333 d-margins" data-uib="app_framework/select" data-ver="1">
+                        <label class="narrow-control label-inline" for="sel-modbus">MB</label>
+
+                        <select class="wide-control" id="sel-modbus"></select>
+                    </div>
+                    <div class="table-thing with-label widget uib_w_343 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-mb-slave">Slave</label>
+
+                        <input class="wide-control" type="text" id="text-mb-slave">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_334 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-mb-addr">Endereço</label>
+
+                        <input class="wide-control" type="text" id="text-mb-addr">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_335 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-mb-cmd">Comando</label>
+
+                        <input class="wide-control" type="text" id="text-mb-cmd">
+                    </div>
+                    <div class="table-thing with-label widget uib_w_337 d-margins" data-uib="app_framework/input" data-ver="1">
+                        <label class="narrow-control label-inline" for="text-mb-qtde">Qtde</label>
+
+                        <input class="wide-control" type="text" id="text-mb-qtde">
+                    </div>
+                    <div class="button-grouped flex widget uib_w_338 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_339 icon check" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                        id="btn-mb-salvar">Salvar</a>
+                        <a class="button widget uib_w_340 icon close" data-uib="app_framework/button" data-ver="1" id="btn-mb-remover">Remover</a>
+                    </div>
+                    <div class="tarea widget uib_w_344 d-margins" data-uib="media/text" data-ver="0" name="uib_w_344" id="text-s-modbus">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div class="text-container">
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sub-page-config-seco" class="upage-content vertical-col left hidden">
+                    <div class="tarea widget uib_w_367 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_367">
+                        <div class="text-container">
+                            <p>Contato Seco</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <footer class="wrap-element uib_w_114" data-uib="app_framework/footer" data-ver="1" id="af-footer-sensor">
+                <a class="widget uib_w_120 icon home" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;" id="btn_s_inicio"
+                href="#mainpage" data-transition="fade">Inicio</a><a class="widget uib_w_117 icon settings" data-uib="app_framework/button" data-ver="1" id="btn_s_config">Config</a><a class="widget uib_w_118 icon tools" data-uib="app_framework/button"
+                data-ver="1" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" id="btn-s-temp">Sens</a><a class="widget uib_w_116 icon lamp" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
+                id="btn-s-corrente">Corrente</a>
+                <a class="widget uib_w_130 icon pin" data-uib="app_framework/button" data-ver="1" id="btn-s-cmd">Cmd</a><a class="widget uib_w_131 d-margins icon key" data-uib="app_framework/button" data-ver="1" id="btn-s-rele">Chave</a><a class="widget uib_w_342 icon loading"
+                data-uib="app_framework/button" data-ver="1" id="btn-s-modbus">ModBus</a>
+            </footer>
+
+            <footer class="wrap-element uib_w_78" data-uib="app_framework/footer" data-ver="1" id="af-footer-modulos"><a class="widget uib_w_86 d-margins icon home" data-uib="app_framework/button" data-ver="1" id="btn_inicio_mod">Inicio</a><a class="widget uib_w_85 d-margins btn-estilo icon graph" data-uib="app_framework/button" data-ver="1" id="btn_mod1">Mod 1</a>
+                <a class="widget uib_w_84 d-margins icon graph" data-uib="app_framework/button" data-ver="1" id="btn_mod2">Mod 2</a><a class="widget uib_w_83 d-margins icon graph" data-uib="app_framework/button" data-ver="1" id="btn_mod3">Mod 3</a>
+                <a class="widget uib_w_202 d-margins icon graph" data-uib="app_framework/button" data-ver="1" id="btn_mod4">Mod 4</a><a class="widget uib_w_155 d-margins icon settings" data-uib="app_framework/button" data-ver="1" id="btn-m-config">Config</a>
+            </footer>
+
+            <footer class="wrap-element uib_w_13" data-uib="app_framework/footer" data-ver="1" id="af-footer-5">
+                <a class="widget uib_w_17 icon home" data-uib="app_framework/button" data-ver="1" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" id="btn-inicio">Inicio</a>
+                <a class="widget uib_w_49 d-margins icon key" data-uib="app_framework/button" data-ver="1" id="btn-config-principal">Config</a>
+                <a class="widget uib_w_18 d-margins icon wifi" data-uib="app_framework/button" data-ver="1" id="btn-wifi-principal">WIFI</a>
+                <a class="widget uib_w_19 d-margins icon graph" data-uib="app_framework/button" data-ver="1">Cloud</a>
+                <a class="widget uib_w_16 icon download" data-uib="app_framework/button" data-ver="1">AP</a>
+            </footer>
+            <footer class="wrap-element uib_w_3" data-uib="app_framework/footer" data-ver="1" id="af-footer-0"><a class="widget uib_w_4 d-margins icon home" data-uib="app_framework/button" data-ver="1" id="btn_home">Inicio</a><a class="widget uib_w_71 d-margins btn-estilo icon target" data-uib="app_framework/button" data-ver="1" id="btn_mod_extras">Modulos</a>
+                <a class="widget uib_w_5 d-margins icon location" data-uib="app_framework/button" data-ver="1">Sensor</a><a class="widget uib_w_6 d-margins icon camera" data-uib="app_framework/button" data-ver="1" href="#uib_page_4" data-transition="fade"
+                id="btn-config">Caixa</a>
+                <a class="widget uib_w_102 d-margins icon user" data-uib="app_framework/button" data-ver="1" id="btn_login">Login</a>
+            </footer>
+
+            <footer class="wrap-element uib_w_236" data-uib="app_framework/footer" data-ver="1" id="af-footer-login">
+                <a class="widget uib_w_242 d-margins icon home" data-uib="app_framework/button" data-ver="1" id="btn-login-pular">Inicio</a><a class="widget uib_w_299 d-margins icon calendar" data-uib="app_framework/button" data-ver="1">Painel</a>
+                <a class="widget uib_w_241 d-margins icon user" data-uib="app_framework/button" data-ver="1" id="btn-login-login">Login</a>
+                <a class="widget uib_w_264 d-margins icon error" data-uib="app_framework/button" data-ver="1" id="btn-login-logoff">Logoff</a>
+                <a class="widget uib_w_250 d-margins icon key" data-uib="app_framework/button" data-ver="1" id="btn-trocar-senha">Senha</a>
+
+            </footer>
+
+        </div>
+        <footer class="wrap-element uib_w_389" data-uib="app_framework/footer" data-ver="1" id="af-footer-startup">
+            <a class="widget uib_w_390 d-margins icon home" data-uib="app_framework/button" data-ver="1" id="btn-inicio-startup"></a>
+        </footer>
+    </body>
+
+</html>

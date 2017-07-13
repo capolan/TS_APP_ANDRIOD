@@ -1,0 +1,9 @@
+{
+  "name": "TSensor",
+  "dependencies": {
+    "jQuery": "3.1.1",
+    "crypto-js": "CryptoJS#3.1.12",
+    "gibberish-aes": "*",
+    "datepicker": "*"
+  }
+}

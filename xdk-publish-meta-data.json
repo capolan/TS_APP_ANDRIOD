@@ -1,0 +1,79 @@
+{
+  "categorization": {
+    "type": "APPLICATION",
+    "category": "Business"
+  },
+  "description": {
+    "texts": {
+      "title": "SensorOnline",
+      "features": [
+        "sensor",
+        "monitor",
+        "sensoronline"
+      ],
+      "short-description": "Monitoring System",
+      "full-description": "Simple Monitoring System (hw required)",
+      "keywords": "sensor, monitor",
+      "recent-changes": "",
+      "privacy-policy": "",
+      "eula": ""
+    },
+    "images": {
+      "screenshots": [
+        "../../Pictures/tela2.png",
+        "../../Pictures/tela6.png",
+        "../../Pictures/tela3.png"
+      ],
+      "app-icon-small": "../../Dropbox/SensorOnline/Identidade Visual/Logotipos/logo_114.png",
+      "app-icon": "../../Dropbox/SensorOnline/Identidade Visual/Logotipos/logo_512_512.png",
+      "small-promo": "",
+      "large-promo": ""
+    },
+    "videos": {
+      "video-url": ""
+    }
+  },
+  "packages": {
+    "apk-file": "../../Downloads/tsensor.cordova.crosswalk.201704135734/cordova_project-armv7.android.20170413115927.apk",
+    "zip-xdk-compliant": false,
+    "zip-file": "",
+    "secondary-apk-file": ""
+  },
+  "support": {
+    "email": "contato@sensoronline.net",
+    "website": "http://www.sensoronline.net/"
+  },
+  "testing-instructions": "",
+  "description-pt_br": {
+    "texts": {
+      "title": "SensorOnline",
+      "features": [
+        "Monitoramento remodo de temperatura, umidade, consumo energia",
+        "Monitoramento de grupo geradores",
+        "Comunicação por wifi, cabo de rede e GSM"
+      ],
+      "short-description": "Monitoramento e Alertas",
+      "full-description": "Sistema de monitoramento simples e eficiente de eventos, com notificação\nCaracterísticas\n-Monitoramento remoto de temperatura, consumo energia, humidade, gás e outros;\n-Versão para monitoramento de grupo geradores;\n-Alerta por email ou SMS em situação adversa como faixa de tolerância, pilha fraca ou falta de luz;\n-Regras customizadas para cada sensor definidas pelo usuário;\n-Histórico das leituras para análise e/ou tomada de decisão;\n-Aplicativo responsivo para smartphone (iOS, Android e Windows Phone8) ou WEBAPP;\n-Instalação simples;\n-Painel de controle;\n-Operação via APP ou WEB (micro-computador)",
+      "keywords": "sensor, monitoramento",
+      "recent-changes": "",
+      "privacy-policy": "",
+      "eula": ""
+    },
+    "images": {
+      "screenshots": [
+        "../../Pictures/tela6.png",
+        "../../Pictures/tela2.png",
+        "../../Pictures/tela4.png",
+        "../../Pictures/tela3.png",
+        "../../Pictures/tela5.png"
+      ],
+      "app-icon-small": "../../Dropbox/SensorOnline/Identidade Visual/Logotipos/logo_114.png",
+      "app-icon": "../../Dropbox/SensorOnline/Identidade Visual/Logotipos/logo_512_512.png",
+      "small-promo": "",
+      "large-promo": ""
+    },
+    "videos": {
+      "video-url": ""
+    }
+  }
+}

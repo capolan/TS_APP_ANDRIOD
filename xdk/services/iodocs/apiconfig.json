@@ -1,0 +1,12 @@
+{
+  "TSensor_API": {
+    "name": "TS0 API",
+    "description": "SensorOnLine API 2016" ,
+    "dashboardUrl": "http://45.55.77.192",
+    "compatibleProjectTypes": [
+      "com.intel.xdk.projecttype.jsapp",
+      "com.intel.xdk.projecttype.webapp",
+      "com.intel.xdk.projecttype.iotapp"
+    ]
+  }
+}

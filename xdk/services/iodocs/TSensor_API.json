@@ -1,0 +1,44 @@
+{
+"endpoints": [
+  {
+    "name": "Ler configuracao",
+    "dashboardUrl": "http://45.55.77.192/config_ler",
+    "methods": [
+      {
+        "MethodName": "default",
+        "Synopsis": "Ler configuracao de uma caixa",
+        "parameters": [
+          {
+            "Name": "f",
+            "Required": "Y",
+            "Default": "0",
+            "Type": "string",
+            "Description": "Funcao."
+          },
+          {
+            "Name": "m",
+            "Required": "Y",
+            "Default": "",
+            "Type": "string",
+            "Description": "Modelo."
+          },
+          {
+            "Name": "s",
+            "Required": "Y",
+            "Default": "",
+            "Type": "string",
+            "Description": "Serie."
+          },
+          {
+            "Name": "c",
+            "Required": "Y",
+            "Default": "",
+            "Type": "string",
+            "Description": "Chave."
+          }
+        ]
+      }
+    ]
+  }
+]
+}
