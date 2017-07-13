@@ -1018,8 +1018,8 @@
                 if (id_google != null)
                     signOut();
             }
-            
-            
+
+
         });
 
         /* button  #btn_login */
@@ -1372,11 +1372,11 @@
         /* button  #btn-google-signin */
     $(document).on("click", "#btn-google-signin", function(evt)
     {
-        /* your code goes here */ 
+        /* your code goes here */
         googleSiginIn()
         return false;
     });
-    
+
     }
 
     document.addEventListener("app.Ready", register_event_handlers, false);

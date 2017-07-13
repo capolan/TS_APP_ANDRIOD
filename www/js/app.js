@@ -705,7 +705,7 @@ function getMainConfig(tipo, id_sensor) {
                         } else {
                             $('#af-checkbox-ativar-sms').prop('disabled', false);;
                             $('#text-s-celular').prop('readonly', false);
-                            $("#text-s-celular").css({'background-color': '#FFFFFF'});                            
+                            $("#text-s-celular").css({'background-color': '#FFFFFF'});
                         }
 
                         if (rec_temperatura == true) {
@@ -1515,7 +1515,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
 
     }
     if (pag == 't7') {
-        // analogico 
+        // analogico
         var tipo=document.getElementById("af-checkbox-pullup").checked;
         if (tipo)
             tipo=1;
@@ -1534,7 +1534,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
     }
 
     if (pag == 't8') {
-        // analogico 
+        // analogico
         var tipo=document.getElementById("af-checkbox-pullup").checked;
         if (tipo)
             tipo=1;
@@ -2266,7 +2266,7 @@ function onDeviceReady() {
       alert('error: ' + msg);
     }
 );    */
-    
+
     var list=document.getElementById('text-inicial');
     list.innerHTML="LocalStorage";
     localDB = getLocalStorage();
@@ -2310,7 +2310,7 @@ function onDeviceReady() {
         $("#div_campos").hide();
     }
     //angular.element($("#afui")).scope().getDevice();
- 
+
     // sensor principal
     $(".uib_col_6").height(200);
     $(".uib_col_7").height(220);

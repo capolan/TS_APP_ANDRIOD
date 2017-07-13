@@ -40,9 +40,9 @@ function onSignIn(googleUser) {
   //console.log(profile);
  // sendBackend(googleUser);
   id_token = googleUser.getAuthResponse().id_token;
-    
+
   sendBackend();
-  
+
 }
 
 function signOut() {
@@ -51,7 +51,7 @@ function signOut() {
       console.log('User signed out.');
     });
   }
-  
+
     function onFailure(error) {
       console.log(error);
     }
@@ -66,7 +66,7 @@ function signOut() {
         'onfailure': onFailure
       });
     }
-  
+
 
 //////////////////////////////////////////////////////////////////////////////////////////
 var json_barcode;
