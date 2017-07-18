@@ -23,8 +23,10 @@
         $(document).on("change", "#af-checkbox-database", function (evt) {
             if ($(this).is(":checked")) {
                 DATABASE = 'DEV';
+                SERVER_PATH = '/dev/ti';
             } else {
                 DATABASE = null;
+                SERVER_PATH = '/0';
             }
         });
 

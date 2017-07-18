@@ -3,6 +3,9 @@ var myApp = angular.module('myApp', []);
 myApp.controller('myCtrl',  function($scope) {
     $scope.sensores = {};
 
+    $scope.updateFeeds = function() {
+        atualiza_dados();
+    }
     $scope.ativar_subpage_eventos_seco = function() {
         if (typeof $scope.sensores_alertas !== "undefined") {
         console.log(">ativar_subpage_eventos_seco");

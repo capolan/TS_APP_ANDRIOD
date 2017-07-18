@@ -316,7 +316,8 @@ function telaTS_global() {
         $("#chart19_div").css("display", "none");
     }
 
-    document.addEventListener("app.Get_Feed", t_telaTS_global, false);
+    //document.addEventListener("app.Get_Feed", t_telaTS_global, false);
+    //t_telaTS_global();
     app.consoleLog("<telaTS_global", "exit");
 
 }

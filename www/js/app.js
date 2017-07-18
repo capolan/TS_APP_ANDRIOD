@@ -1,18 +1,24 @@
 /*
- * Please see the included README.md file for license terms and conditions.
+ * CAP @2017
  */
+/*********************************************************/
+var r_horas = 2;
+var MAX_NODES = 4;
+var MAX_NODES_SENSORES = 8;
+var MAX_CAIXA_SENSORES = 8;
+var VERSAO = {
+    MAJOR: '1',
+    MINOR: '75',
+    DATE: '18/07/2017'
+};
 
-
-// This file is a suggested starting place for your code.
-// It is completely optional and not required.
-// Not_e the reference that includes it in the index.html file.
-
-
-/*jslint browser:true, devel:true, white:true, vars:true */
-/*global $:false, intel:false app:false, dev:false, cordova:false */
-
-// This file contains your event handlers, the center of your application.
-// NOTE: see app.initEvents() in init-app.js for event handler initialization code.
+var SERVER_HTTP = 'http://';
+var SERVER_IP = 'ts0.sensoronline.net';
+//var SERVER_IP = '45.55.77.192';
+//var SERVER_PATH = '/dev/ti';
+var SERVER_PATH = '/0';
+var DATABASE = 'PROD'; //'DEV';
+/*********************************************************************/
 
 function dateChanged() {
     alert('sss');
@@ -551,67 +557,10 @@ function click_no_gauge(node) {
 var json_config = null;
 // tipo = 0 ler todos os dados
 //        1 = somente os módulos
-function getMainConfig(tipo, id_sensor) {
-    var ret = false, classe;
-    var sens, option, num_nodes=0;
-    app.consoleLog(">getMainConfig", tipo);
-    //clearTimeout(refreshTimer);
-    clearInterval(refreshTimer);
-    refreshTimer=undefined;
-    /*    if (window.cordova) {
-        if (navigator.connection.type == Connection.NONE) {
-        text_obj.innerHTML="Sem conexão de rede.";
-        return;
-        }
-    }
-  */
-    if (id_sensor != undefined ||
-        (localDB.modelo != undefined &&
-            localDB.serie != undefined &&
-            localDB.chave != undefined)) {
-        console.log("modelo=" + localDB.modelo);
-        var chave;
-        if (localDB.chave == undefined)
-            chave = '1234';
-        else
-            chave = localDB.chave;
-        var url = SERVER_HTTP + SERVER_IP + SERVER_PATH + "/config_ler.php?f=" + tipo + "&m=" + localDB.modelo + "&s=" + localDB.serie + "&c=" + chave.substring(0, 4) +
-            '&t1=' + VERSAO.MAJOR +
-            '&t2=' + VERSAO.MINOR +
-            '&td=' + VERSAO.DATE;
 
-        if (DATABASE != null) url = url + '&DB=' + DATABASE;
-        if (window.cordova) {
-            url = url + "&dp=" + device.platform +
-                '&dm=' + device.model +
-                '&dv=' + device.version +
-                '&duuid=' + device.uuid +
-                '&dc=' + device.cordova;
-        }
-
-        if (id_sensor != undefined) {
-            url = url + "&id=" + id_sensor;
-        }
-
-        console.log("url=" + url);
-        //  document.getElementById("text_config").innerHTML=url;
-        //  document.getElementById("text_config").innerHTML="GET";
-        document.getElementById('text-leituras').innerHTML='Leituras';
-        $.ajax({
-            type: 'GET',
-            url: url,
-            dataType: 'json',
-            xhrFields: {
-                withCredentials: true
-            },
-           // headers: {
-        //        'User-Agent': 'APP Tsensor ' + VERSAO.MAJOR + '.' + VERSAO.MINOR + ' ' + VERSAO.DATE
-        //    },
-            beforeSend: function () {
-                document.getElementById("text_config").innerHTML = "Running...";
-                document.getElementById('text-inicial').innerHTML +="<BR>Lendo config " + localDB.serie;
-            },
-            success: function (data) {
+function getMainConfig_success(tipo,data)
+{
+     var num_nodes=0;
                 json_config = data;
                 document.getElementById('text-inicial').innerHTML +="_OK";
                 /*  intel.xdk.notification.alert(json.channel.name, "Canal"); */
@@ -788,7 +737,8 @@ function getMainConfig(tipo, id_sensor) {
                     updateSelTipoAlertas(json_config.alertas);
                     atualizaGraficoConfig();
                     if (json_feed == null) {
-                        atualiza_dados(tipo==0);
+                        //atualiza_dados(tipo==0);
+                        get_feed_update(data.feeds);
                         $(".uib_w_215").show();
                     }
                     // select de 2,6 e 24horas
@@ -805,6 +755,71 @@ function getMainConfig(tipo, id_sensor) {
                     refreshTimer=setInterval('atualiza_dados()', ret, true);
                     document.getElementById("text_config").innerHTML = "OK";
                 }
+}
+
+function getMainConfig(tipo, id_sensor) {
+    var ret = false, classe;
+    var sens, option;
+    app.consoleLog(">getMainConfig", tipo);
+    //clearTimeout(refreshTimer);
+    clearInterval(refreshTimer);
+    refreshTimer=undefined;
+    /*    if (window.cordova) {
+        if (navigator.connection.type == Connection.NONE) {
+        text_obj.innerHTML="Sem conexão de rede.";
+        return;
+        }
+    }
+  */
+    if (id_sensor != undefined ||
+        (localDB.modelo != undefined &&
+            localDB.serie != undefined &&
+            localDB.chave != undefined)) {
+        console.log("modelo=" + localDB.modelo);
+        var chave;
+        if (localDB.chave == undefined)
+            chave = '1234';
+        else
+            chave = localDB.chave;
+        var url = SERVER_HTTP + SERVER_IP + SERVER_PATH + "/config_ler.php?f=" + tipo + "&m=" + localDB.modelo + "&s=" + localDB.serie + "&c=" + chave.substring(0, 4) +
+            '&t1=' + VERSAO.MAJOR +
+            '&t2=' + VERSAO.MINOR +
+            '&td=' + VERSAO.DATE;
+
+        if (DATABASE != null) url = url + '&DB=' + DATABASE;
+        if (window.cordova) {
+            url = url + "&dp=" + device.platform +
+                '&dm=' + device.model +
+                '&dv=' + device.version +
+                '&duuid=' + device.uuid +
+                '&dc=' + device.cordova;
+        }
+
+        if (id_sensor != undefined) {
+            url = url + "&id=" + id_sensor;
+        }
+
+        console.log("url=" + url);
+        //  document.getElementById("text_config").innerHTML=url;
+        //  document.getElementById("text_config").innerHTML="GET";
+        document.getElementById('text-leituras').innerHTML='Leituras';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            xhrFields: {
+                withCredentials: true
+            },
+           // headers: {
+        //        'User-Agent': 'APP Tsensor ' + VERSAO.MAJOR + '.' + VERSAO.MINOR + ' ' + VERSAO.DATE
+        //    },
+            beforeSend: function () {
+                document.getElementById("text_config").innerHTML = "Running...";
+                document.getElementById('text-inicial').innerHTML +="<BR>Lendo config " + localDB.serie;
+            },
+            success: function (data) {
+                 getMainConfig_success(tipo,data);
+
             },
             error: function (data) {
                 mensagemTela(data.responseText, data.status + ':' + data.statusText);
@@ -1003,6 +1018,7 @@ function gravarComandoTS(text_obj, _cmd) {
 function updateSelSensores(data) {
     var i, option;
     var n, m, s, c, canal;
+    var mm='',ss='',cc='';
     json_sensores=data;
     $("#sel-meus-sensores").empty();
     i = 0;
@@ -1018,6 +1034,9 @@ function updateSelSensores(data) {
         n = jsonPath(data, "$.sensores[" + i + "].name");
         s = jsonPath(data, "$.sensores[" + i + "].serie");
         c = jsonPath(data, "$.sensores[" + i + "].chave");
+        if (mm=='') {
+            mm=m;ss=s;cc=c;
+        }
         canal = jsonPath(data, "$.sensores[" + i + "].canal");
         console.log("m=" + m + " s=" + s + " c=" + c + "  canal=" + canal);
         option = $('<option></option>').prop("value", canal).text(n);
@@ -1027,7 +1046,12 @@ function updateSelSensores(data) {
     }
 //    $('#sel-meus-sensores option')[0].selected = true;
     $("#sel-meus-sensores option:eq(0)").prop('selected', true);
-    eventFire(document.getElementById('sel-meus-sensores'), 'change');
+        document.getElementById("modelo").value = mm;
+        document.getElementById("serie").value = ss;
+        document.getElementById("chave").value = cc;
+
+
+   // eventFire(document.getElementById('sel-meus-sensores'), 'change');
 }
 /**********************************************************************/
 function updateSelTipoAlertas(data) {
@@ -1318,7 +1342,13 @@ function signInServer(pag) {
                     localDB.sessao_id=sessao_id;
                     atualizaHeaderLogin(data.login,true);
                     updateSelSensores(data);
-                    activate_subpage("#uib_page_5");
+                    if (refreshTimer!==undefined)
+                        clearInterval(refreshTimer);
+                    refreshTimer=undefined;
+                    json_feed=null;
+
+                    getMainConfig_success(0,data);
+                    //activate_subpage("#uib_page_5");
                 }
             } else
             if (pag == 'out') {
@@ -1660,15 +1690,49 @@ function gravarConfiguracaoSensor(pag, text_obj) {
 }
 
 
-/**********************************************************************/
-// TODO: passar a serie no get_feed e consistir antes de atualizar os grafico
 var json_feed = null;
+/**********************************************************************/
+function get_feed_update(data) {
+        if (data === undefined)
+            return;
+
+            document.getElementById('text-inicial').innerHTML +="<BR>Mostrando...";
+            json_feed = data;
+            //console.log("GET FEED OK " + flag_getMainConfig + " canal=" + json_feed.channel.canal);
+            //document.dispatchEvent(evt_get_feed);
+            t_telaTS_global();
+            lerFlagStatus();
+            //angular.element(document.getElementById('myCtrl')).scope().get();
+            angular.element($("#afui")).scope().getSensores();
+            angular.element($("#afui")).scope().getFeeds();
+            angular.element($("#afui")).scope().getSeco();
+            getCoordinate();
+            if (flag_getMainConfig) {
+                if (rec_sensor_seco)
+                    activate_subpage("#uib_page_seco");
+                else
+                    activate_subpage("#uib_page_2");
+                flag_getMainConfig=false;
+            } else {
+                document.getElementById('text-inicial').innerHTML ="";
+            }
+        if (json_config.canal.refreshTimer !== undefined) {
+                ret=parseInt(json_config.canal.refreshTimer);
+                if (isNaN(ret)) ret=10000;
+        } else
+            ret=10000;
+
+        refreshTimer=setInterval('atualiza_dados()', ret, true);
+}
+/**********************************************************************/
 
 function get_feed() {
     var hoje=moment().format('YYYY-MM-DD');
     var data = document.getElementById('txt-data').value;
     url = SERVER_HTTP + SERVER_IP + SERVER_PATH + '/get_feed.php?f=1' +
         '&api_key=' + Cookies["api_key"] + '&results=' + Cookies["nro_pontos"];
+
+    clearInterval(refreshTimer);
 
     if (DATABASE != null) url = url + '&DB=' + DATABASE;
     url = url + '&r_horas=' + r_horas;
@@ -1700,26 +1764,7 @@ function get_feed() {
         success: function (data) {
             //  console.log("get_feed="+data);
             //    json_feed = JSON.parse(data);
-            document.getElementById('text-inicial').innerHTML +="<BR>Mostrando...";
-            json_feed = data;
-            //console.log("GET FEED OK " + flag_getMainConfig + " canal=" + json_feed.channel.canal);
-            //document.dispatchEvent(evt_get_feed);
-            t_telaTS_global();
-            lerFlagStatus();
-            //angular.element(document.getElementById('myCtrl')).scope().get();
-            angular.element($("#afui")).scope().getSensores();
-            angular.element($("#afui")).scope().getFeeds();
-            angular.element($("#afui")).scope().getSeco();
-            getCoordinate();
-            if (flag_getMainConfig) {
-                if (rec_sensor_seco)
-                    activate_subpage("#uib_page_seco");
-                else
-                    activate_subpage("#uib_page_2");
-                flag_getMainConfig=false;
-            } else {
-                document.getElementById('text-inicial').innerHTML ="";
-            }
+            get_feed_update(data);
         },
         error: function (data) {
             console.log(data);
@@ -2207,22 +2252,6 @@ function c() {
 /*                 0  1  2  3  4  5  6  7  8  9 10  11 12       */
 var ts_cmds_par = [2, 3, 3, 3, 1, 3, 0, 0, 0, 1, 0, 3, 3];
 
-var r_horas = 2;
-var MAX_NODES = 4;
-var MAX_NODES_SENSORES = 8;
-var MAX_CAIXA_SENSORES = 8;
-var VERSAO = {
-    MAJOR: '1',
-    MINOR: '74',
-    DATE: '11/07/2017'
-};
-
-var SERVER_HTTP = 'http://';
-//var SERVER_IP = 'ts0.sensoronline.net';
-var SERVER_IP = '45.55.77.192';
-var SERVER_PATH = '/0';
-var DATABASE = 'PROD'; //'DEV';
-/*********************************************************************/
 var g3, g4, g5, g6;
 
 var gg1 = new Array(MAX_CAIXA_SENSORES+1);
