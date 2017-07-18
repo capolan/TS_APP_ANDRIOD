@@ -1716,6 +1716,8 @@ function get_feed_update(data) {
             } else {
                 document.getElementById('text-inicial').innerHTML ="";
             }
+    
+        check_elem_cor();    
         if (json_config.canal.refreshTimer !== undefined) {
                 ret=parseInt(json_config.canal.refreshTimer);
                 if (isNaN(ret)) ret=10000;

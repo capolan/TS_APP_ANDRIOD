@@ -1,10 +1,24 @@
 var myApp = angular.module('myApp', []);
 
+var elem_cor;
+
+function check_elem_cor(){
+   var elem = document.getElementById("text-leituras");
+    if (elem_cor !== undefined) {
+        elem.style.color = elem_cor;
+        elem_cor=undefined;
+    }
+}
+
 myApp.controller('myCtrl',  function($scope) {
     $scope.sensores = {};
 
     $scope.updateFeeds = function() {
+        var elem = document.getElementById("text-leituras");
+        elem_cor=elem.style.color;
+        elem.style.color = "Red";
         atualiza_dados();
+        //setTimeout(check, 1000); // check again in a second
     }
     $scope.ativar_subpage_eventos_seco = function() {
         if (typeof $scope.sensores_alertas !== "undefined") {
