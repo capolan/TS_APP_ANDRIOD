@@ -161,3 +161,35 @@ th.th-sensor {
 .eventos_card_text {
     font-size: large;
 }
+
+.seco_nome_text {
+    font-size: 1.1em;
+    color: lightskyblue;
+    margin-top: 5px; 
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.seco_input_text {
+    width: 100%;
+    border: 0;
+    margin-top: 2px; 
+    margin-bottom: 2px; 
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 10px;
+}
+
+.seco_in_text {
+    border: 0;
+    margin-top: 2px; 
+    margin-bottom: 2px; 
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.titulo-a {
+    color: #0080ff;
+    font-size: 1.6em;
+    font-weight: bold;
+}
+

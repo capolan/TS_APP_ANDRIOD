@@ -48,6 +48,7 @@ myApp.controller('myCtrl',  function($scope) {
         if (json_seco.length == 0) return;
         delete $scope.sensores_seco;
         $scope.sensores_seco = json_seco;
+        $scope.campos = json_config.campos;
         //console.log(json_feed.sensor);
         $scope.$apply();
     }

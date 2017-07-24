@@ -1515,8 +1515,14 @@
 
             <div class="upage vertical-col left panel" id="page_sensor" data-header="af-header-sensor" data-footer="af-footer-sensor">
                 <div id="sub-page-sensor-main" class="upage-content vertical-col hidden">
+                    <div class="tarea widget uib_w_406 d-margins" data-uib="media/text" data-ver="0" name="uib_w_406">
+                        <div class="widget-container left-receptacle titulo-a">Principal</div>
+                        <div class="widget-container right-receptacle">
+                            <a class="button widget uib_w_403 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-in-sensores">Seco</a>
+                        </div>
+                    </div>
                     <div class="table-thing with-label widget uib_w_147 d-margins" data-uib="app_framework/input" data-ver="1">
-                        <label class="narrow-control label-top-left" for="text-s-nome">Nome</label>
+                        <label class="narrow-control label-inline" for="text-s-nome">Nome</label>
 
                         <input class="wide-control" placeholder="<nome do sensor>" type="text" id="text-s-nome">
                     </div>
@@ -1550,7 +1556,7 @@
                             </div>
                             <div class="widget uib_w_312 d-margins" data-uib="app_framework/checkbox" data-ver="1">
                                 <input type="checkbox" id="af-checkbox-s-humidade">
-                                <label class="content-box" for="af-checkbox-s-humidade">Humidade</label>
+                                <label class="content-box" for="af-checkbox-s-humidade">Umidade</label>
                             </div>
                             <div class="widget uib_w_355 d-margins" data-uib="app_framework/checkbox" data-ver="1">
                                 <input type="checkbox" id="af-checkbox-s-seco">
@@ -1601,7 +1607,7 @@
                         </div>
                     </div>
                     <div class="table-thing with-label widget uib_w_315 d-margins" data-uib="app_framework/input" data-ver="1">
-                        <label class="narrow-control label-inline">Threshold to alert</label>
+                        <label class="narrow-control label-inline">Tolerancia do alerta</label>
                         <input class="wide-control" type="text" id="count_to_alert">
                     </div>
                     <div class="button-grouped flex widget uib_w_391 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_392" data-uib="app_framework/button" data-ver="1" style="border-left-width: 1px; border-left-style: solid; border-left-color: rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;"
@@ -1619,13 +1625,19 @@
                                 <span class="uib_shim"></span>
                             </div>
                         </div>
-                        <span class="uib_shim"></span>
+                        <span class="uib_shim"></span> 
                     </div>
                 </div>
                 <div id="sub-page-sensor-temp" class="upage-content vertical-col hidden">
 
                     <div class="widget uib_w_280 d-margins" data-uib="app_framework/input_group" data-ver="2">
-                        <div class="formGroupHead">Temperatura</div>
+                        <div class="sbs-container widget uib_w_402 d-margins titulo-botao" data-uib="layout/side_by_side" data-ver="0">
+                            <div class="leftContent widget-container titulo-a">Sensores</div>
+                            <div class="rightContent widget-container">
+                                <a class="button widget uib_w_403 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-in-sensores">Seco</a>
+                            </div>
+                        </div>
+
                         <div class="input-group">
                             <div class="table-thing with-label widget uib_w_288 d-margins" data-uib="app_framework/select" data-ver="1">
                                 <label class="narrow-control label-inline" for="sel-temp">Sensor</label>
@@ -1688,7 +1700,7 @@
                 <div id="sub-page-sensor-corrente" class="upage-content vertical-col hidden">
 
                     <div class="widget uib_w_289 d-margins" data-uib="app_framework/input_group" data-ver="2">
-                        <div class="formGroupHead">Corrente</div>
+                        <div class="titulo-a">Corrente</div>
                         <div class="input-group">
 
                             <div class="table-thing with-label widget uib_w_314 d-margins" data-uib="app_framework/input" data-ver="1">
@@ -1774,6 +1786,11 @@
                 </div>
 
                 <div id="uib-page-cmd" class="upage-content vertical-col hidden">
+                    <div class="tarea widget uib_w_404 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_404">
+                        <div class="text-container">
+                            <p>Comandos</p>
+                        </div>
+                    </div>
                     <div class="table-thing with-label widget uib_w_190 d-margins" data-uib="app_framework/select" data-ver="1">
                         <label class="narrow-control label-inline" for="sel-node">Módulo</label>
 
@@ -1861,7 +1878,7 @@
 
                 <div id="sub-page-modbus" class="upage-content vertical-col left hidden">
                     <div class="tarea widget uib_w_332 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_332">
-                        <div class="text-container">
+                        <div class="text-container titulo-a">
                             <p>Modbus</p>
                         </div>
                     </div>
@@ -1908,7 +1925,52 @@
                         <div class="text-container">
                             <p>Contato Seco</p>
                         </div>
+                        <div ng-repeat="model in campos">
+                            <div class="seco_nome_text">
+                                <input type="checkbox" ng-model="model.ativo" ng-true-value="'s'" ng-false-value="'n'">{{model.nome}}
+                            </div>
+                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control seco_in_text label-inline" for="in_nome{{$index}}">Nome</label>
+
+                                <input class="wide-control seco_input_text" ng-model="model.nome" id="in_nome{{$index}}" type="text">
+                            </div>
+
+                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control seco_in_text label-inline" for="in_ordem{{$index}}">Ordem</label>
+
+                                <input class="wide-control seco_input_text" ng-model="model.ordem" id="in_ordem{{$index}}" type="text">
+                            </div>
+
+                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control seco_in_text label-inline" for="in_porta{{$index}}">Porta</label>
+
+                                <input class="wide-control seco_input_text" ng-model="model.porta" id="in_porta{{$index}}" type="text">
+                            </div>
+
+                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control seco_in_text label-inline" for="in_param1{{$index}}">Param</label>
+
+                                <input class="wide-control seco_input_text" ng-model="model.porta" id="in_param1{{$index}}" type="text">
+                            </div>
+
+                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control seco_in_text label-inline" for="in_texto0{{$index}}">Aberto</label>
+
+                                <input class="wide-control seco_input_text" ng-model="model.texto0" id="in_texto0{{$index}}" type="text">
+                                <br>
+                            </div>
+                            <div class="table-thing with-label widget uib_w_282 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Fechado</label>
+
+                                <input class="wide-control seco_input_text" ng-model="model.texto1" id="in_texto1{{$index}}" type="text">
+                            </div>
+
+                            <br>
+                        </div>
+
                     </div>
+
+                    <a class="button widget uib_w_405 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-s-seco-salvar">Salvar</a>
                 </div>
 
             </div>

@@ -423,6 +423,11 @@
         });
 
         /* button  #btn-s-s-temp */
+        $(document).on("click", "#btn-s-seco-salvar", function (evt) {
+                gravarConfiguracaoSensorPOST('s', document.getElementById("text-s-temp"));
+        });
+        
+        /* button  #btn-s-s-temp */
         $(document).on("click", "#btn-s-s-temp", function (evt) {
             var opt = $("#sel-temp option:selected").val();
             opt = parseInt(opt);
@@ -501,7 +506,9 @@
             document.getElementById("text-s-temp-min").value = jsonPath(json_config,"$.canal.field"+opt+"_min");
             document.getElementById("text-s-temp-max").value = jsonPath(json_config,"$.canal.field"+opt+"_max");
             if (json_config.canal.field_ocultar & (1<<opt)) {
-                document.getElementById("af-checkbox-ocultar-temp").checked;
+                document.getElementById("af-checkbox-ocultar-temp").checked=true;
+            } else {
+                document.getElementById("af-checkbox-ocultar-temp").checked=false;                
             }
         });
 
@@ -1379,6 +1386,17 @@
         return false;
     });
 
+        /* button  #btn-in-sensores */
+    
+    
+        /* button  #btn-in-sensores */
+    $(document).on("click", "#btn-in-sensores", function(evt)
+    {
+         /*global activate_subpage */
+         activate_subpage("#sub-page-config-seco"); 
+         return false;
+    });
+    
     }
 
     document.addEventListener("app.Ready", register_event_handlers, false);
