@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '76',
-    DATE: '24/07/2017'
+    MINOR: '77',
+    DATE: '09/08/2017'
 };
 
 var SERVER_HTTP = 'http://';
@@ -2489,7 +2489,8 @@ function onDeviceReady() {
     $("#af-checkbox-s-seco").prop('disabled', true);
     $("#af-checkbox-s-modbus").prop('disabled', true);
     $("#af-checkbox-s-wifi").prop('disabled', true);
-
+    $("#af-checkbox-credenciais").prop('checked',true);
+ 
     document.getElementById('text-about').innerHTML='Site: www.sensoronline.net<br>';
     document.getElementById('text-about').innerHTML +='Email: contato@sensoronline.net';
 

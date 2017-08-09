@@ -2,7 +2,7 @@
 var map=null;
 var markerMap;
 
-//var map=0;  sem mapa
+var map=0; 
 function initMap() {
 	var myHome = {lng:-51.177074,lat:-29.916178};
 	var myLatLng, str_icon, str_name;
