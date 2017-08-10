@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '78',
-    DATE: '09/09/2017'
+    MINOR: '79',
+    DATE: '19/09/2017'
 };
 
 var SERVER_HTTP = 'http://';
@@ -765,7 +765,7 @@ function getMainConfig_success(tipo,data)
                     } else
                         ret=10000;
 
-                    refreshTimer=setInterval('atualiza_dados()', ret, true);
+                    refreshTimer=setTimeout('atualiza_dados()', ret, true);
                     document.getElementById("text_config").innerHTML = "OK";
                 }
 }
@@ -841,7 +841,7 @@ function getMainConfig(tipo, id_sensor) {
                 document.getElementById("chave").value = localDB.chave;
                 document.getElementById("text_config").innerHTML = "Verifique configuração";
                 //activate_subpage("#uib_page_5");
-                refreshTimer=setInterval('atualiza_dados()', 10000, true);
+                refreshTimer=setTimeout('atualiza_dados()', 10000, true);
             }
 
         });
@@ -1808,7 +1808,7 @@ function get_feed_update(data) {
         } else
             ret=10000;
 
-        refreshTimer=setInterval('atualiza_dados()', ret, true);
+        refreshTimer=setTimeout('atualiza_dados()', ret, true);
 }
 /**********************************************************************/
 
