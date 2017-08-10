@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '77',
-    DATE: '09/08/2017'
+    MINOR: '78',
+    DATE: '09/09/2017'
 };
 
 var SERVER_HTTP = 'http://';
@@ -1151,14 +1151,14 @@ function updateSelHoras() {
         }
         $("#sel_horas").append(option);
     }
-}
+} 
 
 /**********************************************************************/
-function signInServer(pag) {
+function signInServer(pag) { 
     var addr = SERVER_HTTP + SERVER_IP + SERVER_PATH + '/config_ts.php?';
     if (DATABASE != null) addr = addr + 'DB=' + DATABASE + '&';
 
-    if (window.cordova) {
+    if (window.cordova) {  
         if (navigator.connection.type == Connection.NONE) {
             navigator.notification.alert(data, // message
                 alertDismissed, 'Sem conexão com a rede.', 'Fechar');
@@ -1170,7 +1170,7 @@ function signInServer(pag) {
     if (pag == 'boot') {
         addr = addr + 'f=0&s=' + sessao_id;
         if (json_user != undefined) {
-            addr = addr + '&u=' + json_user.login + '&p=' + localDB.encodeLogin;
+            addr = addr + '&u=' + json_user.login + '&p=' + localDB.encodeLogin; 
         }
     }
 
@@ -1354,12 +1354,19 @@ function signInServer(pag) {
                     }
                     localDB.sessao_id=sessao_id;
                     atualizaHeaderLogin(data.login,true);
-                    updateSelSensores(data);
+                    updateSelSensores(data); 
                     if (refreshTimer!==undefined)
                         clearInterval(refreshTimer);
                     refreshTimer=undefined;
                     json_feed=null;
 
+                    if (localDB.modelo === undefined ||
+                        localDB.serie === undefined ||
+                        localDB.chave === undefined) {
+                        localDB.modelo = data.sensores[0].modelo;
+                        localDB.serie = data.sensores[0].serie;
+                        localDB.chave = data.sensores[0].chave;
+                    }
                     getMainConfig_success(0,data);
                     //activate_subpage("#uib_page_5");
                 }
@@ -1493,6 +1500,7 @@ function gravarConfiguracao(pag, text_obj) {
         xhrFields: {
             withCredentials: true
         },
+        crossDomain: true,
         success: function (data) {
             console.log(data);
             text_obj.innerHTML = data;
@@ -1735,9 +1743,10 @@ function gravarConfiguracaoSensor(pag, text_obj) {
         headers: {
             'User-Agent': 'APP Tsensor/' + VERSAO.MAJOR + '.' + VERSAO.MINOR + '/' + VERSAO.DATE
         },
-        xhrFields: {
+        xhrFields: { 
             withCredentials: true
         },
+        crossDomain: true,
         beforeSend: function () {
             text_obj.innerHTML = "Running...";
         },
@@ -2372,6 +2381,14 @@ function onDeviceReady() {
       alert('error: ' + msg);
     }
 );    */
+    // set to either landscape
+    screen.orientation.lock('portrait');
+ 
+// allow user rotate 
+//    screen.orientation.unlock();
+ 
+// access current orientation 
+    console.log('Orientation is ' + screen.orientation.type);
 
     var list=document.getElementById('text-inicial');
     list.innerHTML="LocalStorage";
