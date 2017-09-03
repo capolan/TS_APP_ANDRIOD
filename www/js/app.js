@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '79',
-    DATE: '19/09/2017'
+    MINOR: '80',
+    DATE: '01/09/2017'
 };
 
 var SERVER_HTTP = 'http://';
@@ -160,9 +160,11 @@ function atualizaHeaderLogin(txt, flag) {
         $(".uib_row_31").css('visibility','visible'); //sig email
         if (flag == true) {
             console.log("======" + localDB.serie);
-        localDB.modelo = json_user.sensores[0].modelo;
-        localDB.serie = json_user.sensores[0].serie;
-        localDB.chave = json_user.sensores[0].chave;
+            if (json_user.contador > 0) {
+                localDB.modelo = json_user.sensores[0].modelo;
+                localDB.serie = json_user.sensores[0].serie;
+                localDB.chave = json_user.sensores[0].chave;
+            }
         }
 
     }
@@ -1363,12 +1365,14 @@ function signInServer(pag) {
                     if (localDB.modelo === undefined ||
                         localDB.serie === undefined ||
                         localDB.chave === undefined) {
-                        localDB.modelo = data.sensores[0].modelo;
-                        localDB.serie = data.sensores[0].serie;
-                        localDB.chave = data.sensores[0].chave;
+                        if (data.contador > 0 ) {
+                            localDB.modelo = data.sensores[0].modelo;
+                            localDB.serie = data.sensores[0].serie;
+                            localDB.chave = data.sensores[0].chave;
+                        } else 
+                            activate_subpage("#uib_page_5");
                     }
                     getMainConfig_success(0,data);
-                    //activate_subpage("#uib_page_5");
                 }
             } else
             if (pag == 'out') {
