@@ -21,7 +21,7 @@
 <plugin name="cordova-plugin-splashscreen" spec="4.0.3"/>
 <plugin name="cordova-plugin-inappbrowser" spec="1.7.1"/>
 <plugin name="cordova-plugin-screen-orientation" spec="https://github.com/yoik/cordova-yoik-screenorientation"/> <!-- If available via Cordova registry; consider changing to an NPM reference. -->
-<!--<plugin name="cordova-plugin-whitelist" spec="1.2.2"/>-->
+<plugin name="cordova-plugin-whitelist" spec="1.2.2"/>
 <platform name="android" >
     <preference name="android-minSdkVersion" value="16"/>
     <preference name="android-targetSdkVersion" value="19"/>
