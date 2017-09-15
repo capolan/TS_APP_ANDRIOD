@@ -2326,7 +2326,34 @@ function lerFlagStatus() {
 
 }
 
+/**************************************************************/
+ function setupPush() {
+   var push = PushNotification.init({
+       "android": {
+           "senderID": "629413010047"
+       },
+       "ios": {
+         "sound": true,
+         "alert": true,
+         "badge": true
+       },
+       "windows": {}
+   });
 
+   push.on('registration', function(data) {
+       console.log("registration event: " + data.registrationId);
+       var oldRegId = localStorage.getItem('registrationId');
+       if (oldRegId !== data.registrationId) {
+           // Save new registration ID
+           localStorage.setItem('registrationId', data.registrationId);
+           // Post registrationId to your app server as the value has changed
+       }
+   });
+
+   push.on('error', function(e) {
+       console.log("push error = " + e.message);
+   });
+ }
 /************************************************************/
 function atualiza_dados() {
     //console.log(">atualiza_dados");
@@ -2514,33 +2541,14 @@ function onDeviceReady() {
 
     list.innerHTML +="<BR>Up...";
     
-    var plugins = cordova.require("cordova/plugin_list").metadata;
-alert("plugins: " +JSON.stringify(plugins) );
+    //var plugins = cordova.require("cordova/plugin_list").metadata;
+    //alert("plugins: " +JSON.stringify(plugins) );
     
-    push = PushNotification.init({ 
-	android: {
-        senderID: "629413010047"
-	},
-    browser: {
-        pushServiceURL: 'http://push.api.phonegap.com/v1/push'
-    },
-	ios: {
-		alert: "true",
-		badge: "true",
-		sound: "true"
-	},
-	windows: {}
-    });
-
-    push.on('registration', function(data) {
-        console.log(data.registrationId);
-        console.log(data.registrationType);
-        alert(JSON.stringify(data));
-    });
     
-     push.on('error', function(e) {
-       alert("push error = " + e.message);
-   });
+    if (device.platform == 'Android') {
+        setupPush();
+    }
+    
 }
 
 
