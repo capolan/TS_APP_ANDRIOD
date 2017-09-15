@@ -8,13 +8,13 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '80',
-    DATE: '01/09/2017'
+    MINOR: '81',
+    DATE: '15/09/2017'
 };
 
 var SERVER_HTTP = 'http://';
 var SERVER_IP = 'ts0.sensoronline.net';
-//var SERVER_IP = '45.55.77.192';
+//var SERVER_IP = '45.55.77.192'; 
 //var SERVER_PATH = '/dev/ti';
 var SERVER_PATH = '/0';
 var DATABASE = 'PROD'; //'DEV';
@@ -81,7 +81,7 @@ function validatePasswd(str) {
     } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
         return ("caractere invalido");
     }
-    return true;
+    return true; 
 }
 
 /******************************************************************************/
@@ -952,7 +952,8 @@ function writeMainConfig() {
 /**********************************************************************/
 function gravarComandoTS(text_obj, _cmd) {
     var node = $("#sel-node option:selected").index();
-    var cmd_idx = $("#sel-cmd option:selected").index();
+    //var cmd_idx = $("#sel-cmd option:selected").index();
+    var cmd_idx = $("#sel-cmd").val();
     var chave = localDB.chave;
     var addr = SERVER_HTTP + SERVER_IP + SERVER_PATH + '/config_ts.php';
     var data = 'f=1&m=' + localDB.modelo +
@@ -963,7 +964,7 @@ function gravarComandoTS(text_obj, _cmd) {
     var cmd_forca='';
     var cmd;
 
-    if (DATABASE != null) addr = addr + '&DB=' + DATABASE;
+    if (DATABASE != null) data = 'DB=' + DATABASE + '&' + data;
 
     if (_cmd == undefined)
         cmd = jsonPath(json_config, "$.comandos["+cmd_idx+"].comando");
@@ -1127,9 +1128,10 @@ function updateSelComandos(data) {
         desc = jsonPath(data, "$.comandos["+i+"].descricao");
         rec_bits = jsonPath(data, "$.comandos["+i+"].rec_bits");
         console.log("id=" + id + " desc=" + desc+ ' rec_bits=' + rec_bits);
-        if (rec_bits == '' || (recursos & rec_bits) > 0)
-            option = $('<option></option>').prop("value", id).text(desc);
-        $("#sel-cmd").append(option);
+        if (rec_bits == '' || (recursos & rec_bits) > 0) {
+            option = $('<option></option>').prop("value", i).text(desc);
+            $("#sel-cmd").append(option);
+        }
         i++;
         id = jsonPath(data,"$.comandos["+i+"].id");
     }
@@ -2334,13 +2336,6 @@ function atualiza_dados() {
 function c() {
     getMainConfig(1);
 }
-/***************************************************************/
-/* comandos */
-/* número de parametros obrigatórios */
-/* 0 - Sleep  ... 9-Remover node 10 - reset de firmware 11-limites 12-output*/
-/*           5-Rele
-/*                 0  1  2  3  4  5  6  7  8  9 10  11 12       */
-var ts_cmds_par = [2, 3, 3, 3, 1, 3, 0, 0, 0, 1, 0, 3, 3];
 
 var g3, g4, g5, g6;
 
@@ -2364,6 +2359,8 @@ var refreshTimer;
 var HREF = window.location.href;
 var CHAVE1=0;
 
+var push;
+
 function onDeviceReadyXDK() {
     console.log("onDeviceReadyXDK Emulator");
 }
@@ -2386,13 +2383,13 @@ function onDeviceReady() {
     }
 );    */
     // set to either landscape
-    screen.orientation.lock('portrait');
+   // screen.orientation.lock('portrait');
  
 // allow user rotate 
 //    screen.orientation.unlock();
  
 // access current orientation 
-    console.log('Orientation is ' + screen.orientation.type);
+  //  console.log('Orientation is ' + screen.orientation.type);
 
     var list=document.getElementById('text-inicial');
     list.innerHTML="LocalStorage";
@@ -2516,6 +2513,34 @@ function onDeviceReady() {
     document.getElementById('text-about').innerHTML +='Email: contato@sensoronline.net';
 
     list.innerHTML +="<BR>Up...";
+    
+    var plugins = cordova.require("cordova/plugin_list").metadata;
+alert("plugins: " +JSON.stringify(plugins) );
+    
+    push = PushNotification.init({ 
+	android: {
+        senderID: "629413010047"
+	},
+    browser: {
+        pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+    },
+	ios: {
+		alert: "true",
+		badge: "true",
+		sound: "true"
+	},
+	windows: {}
+    });
+
+    push.on('registration', function(data) {
+        console.log(data.registrationId);
+        console.log(data.registrationType);
+        alert(JSON.stringify(data));
+    });
+    
+     push.on('error', function(e) {
+       alert("push error = " + e.message);
+   });
 }
 
 
