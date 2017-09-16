@@ -9,7 +9,7 @@ var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
     MINOR: '81',
-    DATE: '15/09/2017'
+    DATE: '16/09/2017'
 };
 
 var SERVER_HTTP = 'http://';
@@ -1834,6 +1834,10 @@ function get_feed() {
     if (json_user != undefined) {
         url = url + '&login=' + json_user.login;
     }
+    // enviar registro de Push para servidor
+    if (localDB.sendRegistration == false && localDB.registrationId != undefined) {
+        url = url + '&pushId=' + localDB.registrationId;
+    }
 
     app.consoleLog("   get_feed", url);
     if (Cookies["api_key"] == undefined) // || Cookies['api_key'].length != 16)
@@ -1856,6 +1860,7 @@ function get_feed() {
         success: function (data) {
             //  console.log("get_feed="+data);
             //    json_feed = JSON.parse(data);
+            localDB.sendRegistration=true;
             get_feed_update(data);
         },
         error: function (data) {
@@ -2342,10 +2347,10 @@ function lerFlagStatus() {
 
    push.on('registration', function(data) {
        console.log("registration event: " + data.registrationId);
-       var oldRegId = localStorage.getItem('registrationId');
+       var oldRegId = localDB.registrationId;
        if (oldRegId !== data.registrationId) {
            // Save new registration ID
-           localStorage.setItem('registrationId', data.registrationId);
+           localDB.registrationId=data.registrationId;
            // Post registrationId to your app server as the value has changed
        }
    });
@@ -2353,6 +2358,8 @@ function lerFlagStatus() {
    push.on('error', function(e) {
        console.log("push error = " + e.message);
    });
+     
+   localDB.sendRegistration=false;
  }
 /************************************************************/
 function atualiza_dados() {
@@ -2544,7 +2551,7 @@ function onDeviceReady() {
     //var plugins = cordova.require("cordova/plugin_list").metadata;
     //alert("plugins: " +JSON.stringify(plugins) );
     
-    
+    localDB.sendRegistration=true;
     if (device.platform == 'Android') {
         setupPush();
     }
