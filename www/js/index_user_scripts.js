@@ -126,17 +126,18 @@
                 }
 
             }
-            $("#text_info_modelo").append('AP=' + json_feed.channel.ip0 + '<br>');
-            $("#text_info_modelo").append('STA=' + json_feed.channel.ip1);
-            $("#text_info_modelo").append(json_feed.channel.updated_ip_at + '(atualizado)<br>');
-
+            
+            if (json_feed != null) {
+                $("#text_info_modelo").append('AP=' + json_feed.channel.ip0 + '<br>');
+                $("#text_info_modelo").append('STA=' + json_feed.channel.ip1);
+                $("#text_info_modelo").append(json_feed.channel.updated_ip_at + '(atualizado)<br>');
+            }
 
             $("#text_info_modelo").append('Platform:' + device.platform + '<BR>');
             $("#text_info_modelo").append('Model:' + device.model + '<BR>');
             $("#text_info_modelo").append('Version:' + device.version + '<BR>');
             $("#text_info_modelo").append('UUID:' + device.uuid + '<BR>');
             $("#text_info_modelo").append('Cordova:' + device.cordova + '<BR>');
-            $("#text_info_modelo").append('PushId:' + localDB.registrationId + ':' + localDB.sendRegistration);
             $("#text_info_modelo").append('PushId:' + localDB.registrationId + ':' + localDB.sendRegistration);
         });
 
