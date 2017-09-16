@@ -136,6 +136,8 @@
             $("#text_info_modelo").append('Version:' + device.version + '<BR>');
             $("#text_info_modelo").append('UUID:' + device.uuid + '<BR>');
             $("#text_info_modelo").append('Cordova:' + device.cordova + '<BR>');
+            $("#text_info_modelo").append('PushId:' + localDB.registrationId + ':' + localDB.sendRegistration);
+            $("#text_info_modelo").append('PushId:' + localDB.registrationId + ':' + localDB.sendRegistration);
         });
 
         /* button  #btn_ler_status */
