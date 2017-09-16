@@ -1860,7 +1860,7 @@ function get_feed() {
         success: function (data) {
             //  console.log("get_feed="+data);
             //    json_feed = JSON.parse(data);
-            localDB.sendRegistration=true;
+            //localDB.sendRegistration=true;
             get_feed_update(data);
         },
         error: function (data) {
@@ -2351,7 +2351,7 @@ function lerFlagStatus() {
        if (oldRegId !== data.registrationId) {
            // Save new registration ID
            localDB.registrationId=data.registrationId;
-           alert(data.registrationId);
+           //alert(data.registrationId);
            // Post registrationId to your app server as the value has changed
        }
    });
