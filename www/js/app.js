@@ -1909,7 +1909,7 @@ function lerStatus(tipo, _dd_div) {
                 break;
         }
     if (DATABASE != null) url = url + '&DB=' + DATABASE;
-        if (device.platform == 'Andriod') {
+        if (device.platform == 'Android') {
             url = url + '&pushId=' + localDB.registrationId;
         }
 /*        if (tipo == 'alertas') {
@@ -2357,11 +2357,12 @@ function lerFlagStatus() {
            //alert(data.registrationId);
            // Post registrationId to your app server as the value has changed
        }
-       alert(data.registrationId);
+       //alert(data.registrationId);
    });
 
    push.on('error', function(e) {
        console.log("push error = " + e.message);
+       alert("push error = " + e.message);
    });
      
    localDB.sendRegistration=false;
