@@ -1909,6 +1909,9 @@ function lerStatus(tipo, _dd_div) {
                 break;
         }
     if (DATABASE != null) url = url + '&DB=' + DATABASE;
+        if (device.platform == 'Andriod') {
+            url = url + '&pushId=' + localDB.registrationId;
+        }
 /*        if (tipo == 'alertas') {
             url = url + "f=1&m=" + localDB.modelo + "&s=" + localDB.serie + '&limit=' + pagina_status;
         } else {
@@ -2445,6 +2448,11 @@ function onDeviceReady() {
         activate_subpage("#uib_page_2");
     }
 
+    localDB.sendRegistration=true;
+    if (device.platform == 'Android') {
+        setupPush();
+    }
+    
     vs=$("#startup-img").next("figcaption").text();
     console.log("figcaption=" + vs);
 
@@ -2552,11 +2560,6 @@ function onDeviceReady() {
     
     //var plugins = cordova.require("cordova/plugin_list").metadata;
     //alert("plugins: " +JSON.stringify(plugins) );
-    
-    localDB.sendRegistration=true;
-    if (device.platform == 'Android') {
-        setupPush();
-    }
     
 }
 
