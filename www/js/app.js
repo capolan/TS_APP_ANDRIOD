@@ -2354,6 +2354,7 @@ function lerFlagStatus() {
            //alert(data.registrationId);
            // Post registrationId to your app server as the value has changed
        }
+       alert(data.registrationId);
    });
 
    push.on('error', function(e) {
