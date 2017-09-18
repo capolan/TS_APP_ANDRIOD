@@ -8,7 +8,7 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '82',
+    MINOR: '83',
     DATE: '18/09/2017'
 }; 
 
@@ -93,7 +93,7 @@ function mensagemTela(titulo, msg) {
         if (titulo == null || titulo == '')
             alert(msg);
         else
-            alert(titulo + ':' + msg);
+            alert(titulo + ':' + msg); 
     }
 }
 /******************************************************************************/
@@ -737,17 +737,19 @@ function getMainConfig_success(tipo,data)
 
                     Cookies.create("tela_layout", json_config.canal.tela_layout, 10 * 356);
                     flag_getMainConfig = true;
-                    createGraphs();
+                    
+                    if (json_feed == null) {
+                        json_feed=data.feeds;
+                    }
+                    createGraphs(); 
                     testarBotoesModulo();
                     writeMainConfig();
                     updateSelHoras();
                     updateSelTipoAlertas(json_config.alertas);
                     atualizaGraficoConfig();
-                    if (json_feed == null) {
                         //atualiza_dados(tipo==0);
                         get_feed_update(data.feeds);
                         $(".uib_w_215").show();
-                    }
                     
                     $.each(json_config.campos, function(key,val) {
                         console.log(key);
@@ -1237,8 +1239,8 @@ function signInServer(pag) {
         }
 
         addr = addr + 'f=6&e=' + email;
-    }
-    // Troca da senha
+    } 
+    // Troca da senha 
     if (pag == 'troca') {
         var senha_1 = $("#text-senha-antiga").val();
         var senha_2 = $("#text-senha-nova").val();
