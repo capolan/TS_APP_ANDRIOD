@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '81',
-    DATE: '16/09/2017'
+    MINOR: '82',
+    DATE: '18/09/2017'
 };
 
 var SERVER_HTTP = 'http://';
@@ -804,10 +804,17 @@ function getMainConfig(tipo, id_sensor) {
         if (DATABASE != null) url = url + '&DB=' + DATABASE;
         if (window.cordova) {
             url = url + "&dp=" + device.platform +
-                '&dm=' + device.model +
+                '&duuid=' + device.uuid;
+            
+            if (tipo != 2) {
+                url = url + '&dm=' + device.model +
                 '&dv=' + device.version +
-                '&duuid=' + device.uuid +
                 '&dc=' + device.cordova;
+            }
+            if (localDB.registrationId != undefined) {
+                url = url + '&pushId=' + localDB.registrationId;
+                
+            }
         }
 
         if (id_sensor != undefined) {
@@ -2358,6 +2365,7 @@ function lerFlagStatus() {
            // Post registrationId to your app server as the value has changed
        }
        //alert(data.registrationId);
+       getMainConfig(2);
    });
 
    push.on('error', function(e) {
