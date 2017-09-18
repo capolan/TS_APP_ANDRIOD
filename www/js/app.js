@@ -10,7 +10,7 @@ var VERSAO = {
     MAJOR: '1',
     MINOR: '82',
     DATE: '18/09/2017'
-};
+}; 
 
 var SERVER_HTTP = 'http://';
 var SERVER_IP = 'ts0.sensoronline.net';
