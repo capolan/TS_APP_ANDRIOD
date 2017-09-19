@@ -138,7 +138,9 @@
             $("#text_info_modelo").append('Version:' + device.version + '<BR>');
             $("#text_info_modelo").append('UUID:' + device.uuid + '<BR>');
             $("#text_info_modelo").append('Cordova:' + device.cordova + '<BR>');
-            $("#text_info_modelo").append('PushId:' + localDB.registrationId + ':' + localDB.sendRegistration);
+            
+            if (localDB.registrationId != undefined)
+                $("#text_info_modelo").append('PushId:' + localDB.registrationId + ':' + localDB.sendRegistration);
         });
 
         /* button  #btn_ler_status */
@@ -175,6 +177,17 @@
                         aux = (aux % (MAX_CAIXA_SENSORES+1)) + 1;
                         if (gg1[aux] != undefined)
                             ativo=gg1[aux].ativo;
+                    }
+                    if (aux==9 && rec_sensor_seco == true) {
+                            activate_subpage("#uib_page_seco");
+                            flag_seco=true;
+                            aux=1;
+                    ativo=gg1[aux].ativo;
+                    while (ativo == false) {
+                        aux = (aux % (MAX_CAIXA_SENSORES+1)) + 1;
+                        if (gg1[aux] != undefined)
+                            ativo=gg1[aux].ativo;
+                    }
                     }
                     $('#'+_div).css("display", "none");
                     $('#'+_div2).css("display", "none");

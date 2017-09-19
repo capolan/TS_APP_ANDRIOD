@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '83',
-    DATE: '18/09/2017'
+    MINOR: '84',
+    DATE: '19/09/2017'
 }; 
 
 var SERVER_HTTP = 'http://';
@@ -1918,9 +1918,11 @@ function lerStatus(tipo, _dd_div) {
                 break;
         }
     if (DATABASE != null) url = url + '&DB=' + DATABASE;
+    if (window.cordova) {
         if (device.platform == 'Android') {
             url = url + '&pushId=' + localDB.registrationId;
         }
+    }
 /*        if (tipo == 'alertas') {
             url = url + "f=1&m=" + localDB.modelo + "&s=" + localDB.serie + '&limit=' + pagina_status;
         } else {
