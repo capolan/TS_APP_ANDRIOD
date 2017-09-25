@@ -8,7 +8,7 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '85',
+    MINOR: '86',
     DATE: '25/09/2017'
 }; 
 
@@ -2380,8 +2380,8 @@ function lerFlagStatus() {
    push.on('notification', function(data) 
     {
         //alert('['+JSON.stringify(data) + ']' data.title+':'+data.message);
-		mensagemTela(data.message, data.title );
- //push.finish(function () {
+       mensagemTela(data.message, data.title );
+        //push.finish(function () {
         //   alert('finish successfully called');
         //});
     });
