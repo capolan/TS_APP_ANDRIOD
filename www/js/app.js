@@ -2380,8 +2380,8 @@ function lerFlagStatus() {
    push.on('notification', function(data) 
     {
         //alert('['+JSON.stringify(data) + ']' data.title+':'+data.message);
-       mensagemTela('['+JSON.stringify(data) + ']'+ data.title, data.message);
-        //push.finish(function () {
+		mensagemTela(data.message, data.title );
+ //push.finish(function () {
         //   alert('finish successfully called');
         //});
     });
