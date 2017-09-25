@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '84',
-    DATE: '19/09/2017'
+    MINOR: '85',
+    DATE: '25/09/2017'
 }; 
 
 var SERVER_HTTP = 'http://';
@@ -2376,6 +2376,15 @@ function lerFlagStatus() {
        console.log("push error = " + e.message);
        alert("push error = " + e.message);
    });
+     
+   push.on('notification', function(data) 
+    {
+        //alert('['+JSON.stringify(data) + ']' data.title+':'+data.message);
+       mensagemTela('['+JSON.stringify(data) + ']' data.title, data.message);
+        //push.finish(function () {
+        //   alert('finish successfully called');
+        //});
+    });
      
    localDB.sendRegistration=false;
  }
