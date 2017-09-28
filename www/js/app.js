@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '86',
-    DATE: '25/09/2017'
+    MINOR: '87',
+    DATE: '28/09/2017' 
 }; 
 
 var SERVER_HTTP = 'http://';
@@ -1689,6 +1689,10 @@ function gravarConfiguracaoSensor(pag, text_obj) {
 
         data = data.replace("f=2","f=10")
 
+    }
+
+    if (pag == 'p') {
+        data = data.replace("f=2","f=11")
     }
 
     if (pag == 'm') {

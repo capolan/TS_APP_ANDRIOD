@@ -712,6 +712,13 @@
         });
 
 
+        /* button  #btn-s-s-testar */
+        $(document).on("click", "#btn-s-s-push", function (evt) {
+            /* your code goes here */
+            if (confirm("Enviar teste de PUSH. Confirma ?"))
+                gravarConfiguracaoSensor('p', document.getElementById("text-s-main"));
+        });
+
         /* button  #btn_mod_extras */
         $(document).on("click", "#btn_mod_extras", function (evt) {
             var n_mod,aux;
