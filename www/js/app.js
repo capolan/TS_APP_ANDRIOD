@@ -8,7 +8,7 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '87',
+    MINOR: '88',
     DATE: '28/09/2017' 
 }; 
 
@@ -677,6 +677,17 @@ function getMainConfig_success(tipo,data)
                             option = $('<option></option>').prop("value", 3).text("4: " + json_config.canal.field8);
                             $("#sel-temp").append(option);
                         }
+                        if (rec_corrente_100a == true || rec_corrente_30a == true) {
+                            option = $('<option></option>').prop("value", 4).text("5: " + json_config.canal.field1);
+                            $("#sel-temp").append(option);                            
+                            option = $('<option></option>').prop("value", 5).text("6: " + json_config.canal.field2);
+                            $("#sel-temp").append(option);                            
+                            option = $('<option></option>').prop("value", 6).text("7: " + json_config.canal.field3);
+                            $("#sel-temp").append(option);                            
+                            option = $('<option></option>').prop("value", 7).text("8: " + json_config.canal.field4);
+                            $("#sel-temp").append(option);                            
+                        }
+                        
                         json_sensores=null;
                         json_modbus=null;
                         updateSelComandos(json_config);
@@ -1595,6 +1606,7 @@ function gravarConfiguracaoSensorPOST(pag, text_obj) {
 function gravarConfiguracaoSensor(pag, text_obj) {
     var ocultar;
     var chave = localDB.chave;
+    var f,pag1 = pag.substr(0,1);
     var addr = SERVER_HTTP + SERVER_IP + SERVER_PATH + '/config_ts.php?';
     var data = 'f=2&m=' + localDB.modelo +
         '&s=' + localDB.serie +
@@ -1622,6 +1634,14 @@ function gravarConfiguracaoSensor(pag, text_obj) {
 
         data = data + '&updated_flag=10';
 
+    }
+    if (pag1== 's') {
+        f=pag.substr(1,1);
+        data = data + '&ajuste'+f+'=' + document.getElementById("text-s-vcc").value +
+            '&field'+f+'=' + encodeURIComponent(document.getElementById("text-s-temp-nome").value) +
+            '&field'+f+'_min=' + document.getElementById("text-s-temp-min").value +
+            '&field'+f+'_max=' + document.getElementById("text-s-temp-max").value +
+            '&field'+f+'_ocultar=' + document.getElementById("af-checkbox-ocultar-temp").checked;
     }
     if (pag == 't5') {
         // temperatura

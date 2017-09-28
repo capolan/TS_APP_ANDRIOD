@@ -465,7 +465,16 @@
                 return;
             }
             document.getElementById("text-s-temp").innerHTML = "";
+            if (opt >=4)
+                opt = opt-3;
+            else
+                opt = opt +5;
             console.log(">btn-s-s-temp " + opt)
+            if (opt >=1 || opt <=8) {
+                gravarConfiguracaoSensor('s'+opt, document.getElementById("text-s-temp"));
+                
+            }
+            return;
             if (opt == 0) {
                 gravarConfiguracaoSensor('t5', document.getElementById("text-s-temp"));
             }
@@ -479,6 +488,7 @@
             if (opt == 3) {
                 gravarConfiguracaoSensor('t8', document.getElementById("text-s-temp"));
             }
+            
         });
 
         $(document).on("change", "#sel-temp", function (evt) {
@@ -506,7 +516,7 @@
                 $("#sel-temp option:eq(0)").prop('selected', true);
                 return;
             }
-            if (opt >= 2  && rec_sensor_analogico == true) {
+            if ((opt== 2||opt==3)  && rec_sensor_analogico == true) {
                 idx=4-opt;
                 aux=jsonPath(json_config,"$.canal.seco"+idx+"_tipo");
                 document.getElementById('af-checkbox-pullup').checked = (aux & 0x01) == 0x01;
@@ -515,6 +525,10 @@
                 $(".uib_w_400").show();
                 $(".uib_w_399").show();
             }
+            if (opt >= 4 && (rec_corrente_100a == true || rec_corrente_30a == true)) {
+                opt=opt-3-5;
+            }
+            
             document.getElementById("text-s-temp").innerHTML = "";
             opt = opt + 5;
             document.getElementById("text-s-vcc").value = jsonPath(json_config, "$.canal.ajuste"+opt);
