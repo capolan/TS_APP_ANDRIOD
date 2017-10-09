@@ -8,7 +8,7 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '88',
+    MINOR: '89',
     DATE: '28/09/2017' 
 }; 
 
@@ -359,7 +359,7 @@ function lerSensorSeco(_dd_div) {
 
 
     this.loadData = function () {
-        var data, nome, valor,param,flag, ordem, cor, updated_at;
+        var data, nome, valor,param,flag, ordem, cor, updated_at, ativo, flag_ativo;
         var texto,trocou, html, html0, html1, texto0, texto1;
         console.log(json_feed);
         data= jsonPath(json_feed,"$.feeds[0].created_at");
@@ -394,6 +394,7 @@ function lerSensorSeco(_dd_div) {
             html1 = jsonPath(json_feed, "$.campos["+i+"].html1");
             texto0 = jsonPath(json_feed, "$.campos["+i+"].texto0");
             texto1 = jsonPath(json_feed, "$.campos["+i+"].texto1");
+            ativo = jsonPath(json_feed, "$.campos["+i+"].ativo");
             // bit 2   situação regular
             //param = (1 << 2) & param;
             param=0;
@@ -431,8 +432,12 @@ function lerSensorSeco(_dd_div) {
                 updated_at=updated_at.toString();
             else
                 updated_at='';
+            if (ativo == 's')
+                flag_ativo=true;
+            else
+                flag_ativo=false;
             html=cor;
-            json_seco.push({nome: nome, texto:texto, cor:html, atualizado_em: updated_at });
+            json_seco.push({nome: nome, texto:texto, cor:html, atualizado_em: updated_at, ativo: ativo, flag: flag_ativo });
             self.data.addRow(["<font color=black>"+nome+"</font>", {
                         v: '1',
                         f: texto,
@@ -652,11 +657,11 @@ function getMainConfig_success(tipo,data)
                         if ((classe & 0x100) > 0) {
                             $('#af-checkbox-ativar-sms').prop('disabled', true);;
                             $('#text-s-celular').prop('readonly', true);
-                            $("#text-s-celular").css({'background-color': '#FFFEEE'});
+                            //$("#text-s-celular").css({'background-color': '#FFFEEE'});
                         } else {
                             $('#af-checkbox-ativar-sms').prop('disabled', false);;
                             $('#text-s-celular').prop('readonly', false);
-                            $("#text-s-celular").css({'background-color': '#FFFFFF'});
+                            //$("#text-s-celular").css({'background-color': '#FFFFFF'});
                         }
 
                         if (rec_temperatura == true) {

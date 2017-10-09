@@ -1926,8 +1926,9 @@
                             <p>Contato Seco</p>
                         </div>
                         <div ng-repeat="model in campos">
+                            <input type="checkbox" ng-model="model.ativo" ng-true-value="s" ng-false-value="n">
                             <div class="seco_nome_text">
-                                <input type="checkbox" ng-model="model.ativo" ng-true-value="'s'" ng-false-value="'n'">{{model.nome}}
+                                {{model.nome}}
                             </div>
                             <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
                                 <label class="narrow-control seco_in_text label-inline" for="in_nome{{$index}}">Nome</label>
@@ -1962,6 +1963,12 @@
                                 <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Fechado</label>
 
                                 <input class="wide-control seco_input_text" ng-model="model.texto1" id="in_texto1{{$index}}" type="text">
+                            </div>
+
+                            <div class="table-thing with-label widget uib_w_282 d-margins" data-uib="app_framework/input" data-ver="1">
+                                <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Ativo</label>
+
+                                <input class="wide-control seco_input_text" ng-model="model.ativo" id="in_ativo{{$index}}" type="text">
                             </div>
 
                             <br>
