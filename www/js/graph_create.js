@@ -15,7 +15,7 @@ function atualizaGrafico(objG, div, campo) {
         return;
     }
 
-    if (objG.created_at != undefined) {
+    if (objG.created_at != null) {
         if (objG.id_div != "chart1_div") txt = "Atualizado &agrave;s ";
         txt = txt + d.format('DD/MM/YYYY HH:mm:ss')
     }

@@ -8,9 +8,10 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '89',
-    DATE: '28/09/2017' 
+    MINOR: '90',
+    DATE: '10/10/2017' 
 }; 
+var vsApp;
 
 var SERVER_HTTP = 'http://';
 var SERVER_IP = 'ts0.sensoronline.net';
@@ -2507,7 +2508,21 @@ function onDeviceReady() {
     vs=$("#startup-img").next("figcaption").text();
     console.log("figcaption=" + vs);
 
-    vs='APP Tsensor ' + VERSAO.MAJOR + '.' + VERSAO.MINOR + ' ' + VERSAO.DATE;
+    if (window.cordova) {
+        cordova.getAppVersion.getAppName(function (version) {
+                vsApp = 'App=['+version;
+                return true;
+        });
+        cordova.getAppVersion.getVersionCode(function (version) {
+                vsApp = vsApp +'] Code=['+version;
+                return true;
+        });
+        cordova.getAppVersion.getVersionNumber(function (version) {
+                vsApp = vsApp +'] Version=['+version + ']';
+                return true;
+        });
+    }
+    vs='APP Tsensor ' + VERSAO.MAJOR + '.' + VERSAO.MINOR + ' ' + VERSAO.DATE + '(' + vsApp + ')';
 
     $("#startup-img").next("figcaption").text(vs);
 

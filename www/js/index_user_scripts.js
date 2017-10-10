@@ -138,6 +138,7 @@
             $("#text_info_modelo").append('Version:' + device.version + '<BR>');
             $("#text_info_modelo").append('UUID:' + device.uuid + '<BR>');
             $("#text_info_modelo").append('Cordova:' + device.cordova + '<BR>');
+            $("#text_info_modelo").append('vsApp:' + vsApp + '<BR>');
             
             if (localDB.registrationId != undefined)
                 $("#text_info_modelo").append('PushId:' + localDB.registrationId + ':' + localDB.sendRegistration);

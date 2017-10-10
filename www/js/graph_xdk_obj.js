@@ -58,7 +58,7 @@ function runGraph(_tipo, _id_div, _page, _titulo, _largura, _altura, _series, _m
 
     this.series = _series;
     this.serie = null; // numero de serie do node
-    this.created_at = 'NaN';
+    this.created_at = null;
 
     // global variables
     //var chart, charts, data, options;
