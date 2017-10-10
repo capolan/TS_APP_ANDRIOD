@@ -2391,7 +2391,10 @@ function lerFlagStatus() {
 
    push.on('registration', function(data) {
        console.log("registration event: " + data.registrationId);
-       var oldRegId = localDB.registrationId;
+       var oldRegId=1;
+       if (localDB.registrationId !== undefined) {
+           oldRegId=localDB.registrationId;
+       }
        if (oldRegId !== data.registrationId) {
            // Save new registration ID
            localDB.registrationId=data.registrationId;
