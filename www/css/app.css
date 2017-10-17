@@ -162,6 +162,19 @@ th.th-sensor {
     font-size: large;
 }
 
+.text-restricao {
+    font-size: small;
+    text-align: center;
+}
+
+.text-login-r {
+  position: fixed;
+  font-size: small;
+  color: LawnGreen;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+}
 .seco_nome_text {
     font-size: 1.1em;
     color: lightskyblue;

@@ -153,59 +153,28 @@
 
     <body id="afui" ng-app="myApp" ng-controller="myCtrl">
 
-        <header class="wrapping-col wrap-element uib_w_66" data-uib="app_framework/header" data-ver="2" id="af-header-0">
+        <header class="wrapping-col wrap-element uib_w_66 text-header-2" data-uib="app_framework/header" data-ver="2" id="af-header-0">
             <!-- <a class="button widget uib_w_67 d-margins header-right icon info botao_header" data-uib="app_framework/button" data-ver="1" id="btn_info"></a> -->
-            <div class="tarea widget uib_w_373 d-margins titulo-header" data-uib="media/text" data-ver="0" name="uib_w_373" id="id_header_mainpage" ng-click="updateFeeds()">
-                <div class="widget-container left-receptacle"></div>
-                <div class="widget-container right-receptacle"></div>
-                <div class="text-container">
-                    <p>
-                        <span id="text-leituras">Leituras</span>
-                        <a class="button widget uib_w_374 botao_header icon info" data-uib="app_framework/button" data-ver="1" id="btn_info"></a>
-                    </p>
-
-                </div>
-            </div>
+            <div class="text-login-r">user</div>
+            <h1 id="text-leituras" ng-click="updateFeeds()">Leituras</h1>
+            <a class="button widget uib_w_374 botao_header icon info" data-uib="app_framework/button" data-ver="1" id="btn_info"></a>
         </header>
-        <header class="wrapping-col wrap-element uib_w_88" data-uib="app_framework/header" data-ver="2" id="af-header-modulos">
-            <div class="tarea widget uib_w_369 titulo-header" data-uib="media/text" data-ver="0" name="uib_w_369">
-                <div class="widget-container left-receptacle"></div>
-                <div class="widget-container right-receptacle"></div>
-                <div class="text-container">
-                    <p>Módulos</p>
-                </div>
-            </div>
+        <header class="wrapping-col wrap-element uib_w_88  text-header-2" data-uib="app_framework/header" data-ver="2" id="af-header-modulos">
+            <h1>Módulos</h1>
         </header>
-        <header class="wrapping-col wrap-element uib_w_126" data-uib="app_framework/header" data-ver="2" id="af-header-sensor">
-            <div class="tarea widget uib_w_368 d-margins titulo-header" data-uib="media/text" data-ver="0" name="uib_w_368">
-                <div class="widget-container left-receptacle"></div>
-                <div class="widget-container right-receptacle"></div>
-                <div class="text-container">
-                    <p>Sensor</p>
-                </div>
-            </div>
+        <header class="wrapping-col wrap-element uib_w_126 text-header-2" data-uib="app_framework/header" data-ver="2" id="af-header-sensor">
+            <div class="text-login-r">user</div>
+            <h1>Sensores</h1>
 
         </header>
 
-        <header class="wrapping-col wrap-element uib_w_216" data-uib="app_framework/header" data-ver="2" id="af-header-login">
-            <div class="tarea widget uib_w_370 d-margins titulo-header" data-uib="media/text" data-ver="0" name="uib_w_370">
-                <div class="widget-container left-receptacle"></div>
-                <div class="widget-container right-receptacle"></div>
-                <div class="text-container">
-                    <p>
-                        <span id="text-painel">Login</span>
-                    </p>
-                </div>
-            </div>
+        <header class="wrapping-col wrap-element uib_w_216 text-header-2" data-uib="app_framework/header" data-ver="2" id="af-header-login">
+            <div class="text-login-r">user</div>
+            <h1>Login</h1>
         </header>
-        <header class="wrapping-col wrap-element uib_w_261" data-uib="app_framework/header" data-ver="2" id="af-header-config">
-            <div class="tarea widget uib_w_371 d-margins titulo-header" data-uib="media/text" data-ver="0" name="uib_w_371">
-                <div class="widget-container left-receptacle"></div>
-                <div class="widget-container right-receptacle"></div>
-                <div class="text-container">
-                    <p>Configuração</p>
-                </div>
-            </div>
+        <header class="wrapping-col wrap-element uib_w_261 text-header-2" data-uib="app_framework/header" data-ver="2" id="af-header-config">
+            <div class="text-login-r">user</div>
+            <h1>Configuração</h1>
         </header>
         <header class="wrapping-col wrap-element uib_w_384" data-uib="app_framework/header" data-ver="1" id="af-header-1">
             <div class="tarea widget uib_w_385 titulo-header" data-uib="media/text" data-ver="0" name="uib_w_385">
@@ -1924,61 +1893,91 @@
                     <div class="tarea widget uib_w_367 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_367">
                         <div class="text-container">
                             <p>Contato Seco</p>
+
                         </div>
-                        <div ng-repeat="model in campos">
-                            <input type="checkbox" ng-model="model.ativo" ng-true-value="s" ng-false-value="n">
-                            <div class="seco_nome_text">
-                                {{model.nome}}
-                            </div>
-                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control seco_in_text label-inline" for="in_nome{{$index}}">Nome</label>
+                    </div>
+                    <ul class="list widget uib_w_410 d-margins" data-uib="app_framework/listview" data-ver="1">
+                        <li class="widget uib_w_411" data-uib="app_framework/listitem" data-ver="1"><a ng-click="ativar_subpage_restricao()">Restrições</a>
+                        </li>
+                        <!--<li class="widget uib_w_412" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
+                        </li>
+                        <li class="widget uib_w_413" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
+                        </li>-->
+                    </ul>
 
-                                <input class="wide-control seco_input_text" ng-model="model.nome" id="in_nome{{$index}}" type="text">
-                            </div>
+                    <div ng-repeat="model in campos">
+                        <div class="seco_nome_text">
+                            {{model.nome}}
+                        </div>
+                        <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control seco_in_text label-inline" for="in_nome{{$index}}">Nome</label>
 
-                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control seco_in_text label-inline" for="in_ordem{{$index}}">Ordem</label>
-
-                                <input class="wide-control seco_input_text" ng-model="model.ordem" id="in_ordem{{$index}}" type="text">
-                            </div>
-
-                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control seco_in_text label-inline" for="in_porta{{$index}}">Porta</label>
-
-                                <input class="wide-control seco_input_text" ng-model="model.porta" id="in_porta{{$index}}" type="text">
-                            </div>
-
-                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control seco_in_text label-inline" for="in_param1{{$index}}">Param</label>
-
-                                <input class="wide-control seco_input_text" ng-model="model.param1" id="in_param1{{$index}}" type="text">
-                            </div>
-
-                            <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control seco_in_text label-inline" for="in_texto0{{$index}}">Aberto</label>
-
-                                <input class="wide-control seco_input_text" ng-model="model.texto0" id="in_texto0{{$index}}" type="text">
-                            </div>
-                            <div class="table-thing with-label widget uib_w_282 d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Fechado</label>
-
-                                <input class="wide-control seco_input_text" ng-model="model.texto1" id="in_texto1{{$index}}" type="text">
-                            </div>
-
-                            <div class="table-thing with-label widget uib_w_282 d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Ativo</label>
-
-                                <input class="wide-control seco_input_text" ng-model="model.ativo" id="in_ativo{{$index}}" type="text">
-                            </div>
-
-                            <br>
+                            <input class="wide-control seco_input_text" ng-model="model.nome" id="in_nome{{$index}}" type="text">
                         </div>
 
+                        <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control seco_in_text label-inline" for="in_ordem{{$index}}">Ordem</label>
+
+                            <input class="wide-control seco_input_text" ng-model="model.ordem" id="in_ordem{{$index}}" type="text">
+                        </div>
+
+                        <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control seco_in_text label-inline" for="in_porta{{$index}}">Porta</label>
+
+                            <input class="wide-control seco_input_text" ng-model="model.porta" id="in_porta{{$index}}" type="text">
+                        </div>
+
+                        <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control seco_in_text label-inline" for="in_param1{{$index}}">Param</label>
+
+                            <input class="wide-control seco_input_text" ng-model="model.param1" id="in_param1{{$index}}" type="text">
+                        </div>
+
+                        <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control seco_in_text label-inline" for="in_texto0{{$index}}">Aberto</label>
+
+                            <input class="wide-control seco_input_text" ng-model="model.texto0" id="in_texto0{{$index}}" type="text">
+                        </div>
+                        <div class="table-thing with-label widget uib_w_282 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Fechado</label>
+
+                            <input class="wide-control seco_input_text" ng-model="model.texto1" id="in_texto1{{$index}}" type="text">
+                        </div>
+
+                        <div class="table-thing with-label widget uib_w_282 d-margins" data-uib="app_framework/input" data-ver="1">
+                            <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Ativo</label>
+
+                            <input class="wide-control seco_input_text" ng-model="model.ativo" id="in_ativo{{$index}}" type="text">
+                        </div>
+
+                        <br>
                     </div>
 
                     <a class="button widget uib_w_405 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-s-seco-salvar">Salvar</a>
                 </div>
 
+                <div id="uib-page-config-restricao" class="upage-content vertical-col left hidden">
+                    <div class="tarea widget uib_w_408 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_408">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div class="text-container">
+                            <p>Restrições de Alertas SMS</p>
+                        </div>
+                    </div>
+                    <ul class="list widget uib_w_414 d-margins" data-uib="app_framework/listview" data-ver="1">
+                        <li class="widget uib_w_415" data-uib="app_framework/listitem" data-ver="1"><a ng-click="sub_page_config_seco()">Sensores Seco</a>
+                        </li>
+                        <!--<li class="widget uib_w_416" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
+                        </li>
+                        <li class="widget uib_w_417" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
+                        </li>-->
+                    </ul>
+                    <div ng-repeat="desativ in desativados">
+                        <div class="seco_nome_text text-restricao">
+                            {{desativ.starts_at}}-{{desativ.ends_at}}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <footer class="wrap-element uib_w_114" data-uib="app_framework/footer" data-ver="1" id="af-footer-sensor">
@@ -2016,6 +2015,9 @@
 
             </footer>
 
+            <div class="upage vertical-col left panel" id="uib_page_14" data-header="af-header-2" data-footer="none">
+                <div id="uib_page_15" class="upage-content vertical-col left "></div>
+            </div>
         </div>
         <footer class="wrap-element uib_w_389" data-uib="app_framework/footer" data-ver="1" id="af-footer-startup">
             <a class="widget uib_w_390 d-margins icon home" data-uib="app_framework/button" data-ver="1" id="btn-inicio-startup"></a>

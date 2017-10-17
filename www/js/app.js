@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '90',
-    DATE: '10/10/2017' 
+    MINOR: '91',
+    DATE: '16/10/2017' 
 }; 
 var vsApp;
 
@@ -122,7 +122,7 @@ function atualizaHeaderLogin(txt, flag) {
     console.log(json_user);
     if (json_user == undefined) {
         document.getElementById("text-sessao-id").innerHTML = '';
-        $("#text-user-name").empty();
+        $(".text-login-r").empty();
         $("#btn-sign-out").hide();
         $("#btn-login-logoff").hide();
         $('#btn-trocar-senha').hide();
@@ -138,10 +138,11 @@ function atualizaHeaderLogin(txt, flag) {
         $(".uib_w_219").show(); //sigup
         $(".uib_w_220").show(); //sigup
         $(".uib_row_31").css('visibility','hidden'); //sig email
-        $("text-sign-email").val(''); //sig email
+        $("#text-sign-email").val(''); //sig email
 
     } else {
         //document.getElementById("text-sessao-id").innerHTML = sessao_id;
+        $(".text-login-r").text(json_user.login);
         $("#text-user-name").val(json_user.login);
         $("#btn-sign-out").show();
         $("#btn-login-logoff").show();
@@ -697,6 +698,7 @@ function getMainConfig_success(tipo,data)
                         json_sensores=null;
                         json_modbus=null;
                         updateSelComandos(json_config);
+                        json_desativados=json_config.desativado;
                         if (rec_temperatura || rec_humidade) {
                             $("#btn-s-temp").show();
                         } else {
@@ -857,6 +859,7 @@ function getMainConfig(tipo, id_sensor) {
             beforeSend: function () {
                 document.getElementById("text_config").innerHTML = "Running...";
                 document.getElementById('text-inicial').innerHTML +="<BR>Lendo config " + localDB.serie;
+                json_desativados=[];
             },
             success: function (data) {
                  getMainConfig_success(tipo,data);
@@ -1835,6 +1838,7 @@ function get_feed_update(data) {
             angular.element($("#afui")).scope().getSensores();
             angular.element($("#afui")).scope().getFeeds();
             angular.element($("#afui")).scope().getSeco();
+            angular.element($("#afui")).scope().getDesativados();
             getCoordinate();
             if (flag_getMainConfig) {
                 if (rec_sensor_seco)
@@ -2395,13 +2399,14 @@ function lerFlagStatus() {
        if (localDB.registrationId !== undefined) {
            oldRegId=localDB.registrationId;
        }
-       if (oldRegId !== data.registrationId) {
+       if (oldRegId != data.registrationId) {
            // Save new registration ID
            localDB.registrationId=data.registrationId;
            //alert(data.registrationId);
            // Post registrationId to your app server as the value has changed
        }
        //alert(data.registrationId);
+       localDB.sendRegistration=false;
        getMainConfig(2);
    });
 
@@ -2442,6 +2447,7 @@ var json_user;
 var json_modbus=null;
 var json_sensores=null;
 var json_seco=[];
+var json_desativados=[];
 var sensor_seco = { eventos: 'todos', select : -1} ;
 /*********************************************************************/
 var sessao_id = null;
@@ -2504,7 +2510,7 @@ function onDeviceReady() {
     }
 
     localDB.sendRegistration=true;
-    if (device.platform == 'Android') {
+    if (window.cordova && device.platform == 'Android') {
         setupPush();
     }
     

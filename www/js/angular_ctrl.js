@@ -31,6 +31,17 @@ myApp.controller('myCtrl',  function($scope) {
         console.log(">ativar_subpage_seco");
         activate_subpage('#uib_page_seco');
     }
+    
+    $scope.sub_page_config_seco = function() {
+        console.log(">sub-page-config-seco");
+        activate_subpage('#sub-page-config-seco');
+    }
+    
+
+    $scope.ativar_subpage_restricao = function() {
+        console.log(">ativar_subpage_restricao");
+        activate_subpage('#uib-page-config-restricao');
+    }
 
     $scope.getFeeds = function() {
         if (json_feed == null) return;
@@ -57,6 +68,20 @@ myApp.controller('myCtrl',  function($scope) {
         $scope.sensores_seco = arr;
         $scope.campos = json_config.campos;
         //console.log(json_feed.sensor);
+        $scope.$apply();
+    }
+
+    $scope.getDesativados = function() {
+        var arr=[];
+        if (json_desativados == undefined) return;
+        if (json_desativados.length == 0) return;
+        delete $scope.desativados;
+        //$scope.sensores_seco = json_seco;
+        
+        json_desativados.forEach(function(elem) {
+                arr.push(elem);
+        });
+        $scope.desativados = arr;
         $scope.$apply();
     }
 

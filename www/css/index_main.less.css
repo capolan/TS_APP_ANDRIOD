@@ -3291,3 +3291,7 @@ body#afui .splt {
     text-align: -webkit-right;
   }
 }
+.text-header-2 {
+  color: yellow;
+  font-size: 2em;
+}
