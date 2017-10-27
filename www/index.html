@@ -1594,7 +1594,7 @@
                                 <span class="uib_shim"></span>
                             </div>
                         </div>
-                        <span class="uib_shim"></span> 
+                        <span class="uib_shim"></span>
                     </div>
                 </div>
                 <div id="sub-page-sensor-temp" class="upage-content vertical-col hidden">
@@ -1948,6 +1948,7 @@
                             <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Ativo</label>
 
                             <input class="wide-control seco_input_text" ng-model="model.ativo" id="in_ativo{{$index}}" type="text">
+                            <input type="checkbox" ng-model="model.ativo" ng-true-value="'s'" ng-false-value="'n'">
                         </div>
 
                         <br>
@@ -1972,10 +1973,19 @@
                         <li class="widget uib_w_417" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
                         </li>-->
                     </ul>
+                    <select ng-model="desativ.id_field" ng-options="item as item.texto0 for item in campos track by item.id"></select><br>
+                    
                     <div ng-repeat="desativ in desativados">
+                        <select ng-model="desativ.id_field" ng-options="item as item.texto0 for item in campos track by item.id"></select><br>
                         <div class="seco_nome_text text-restricao">
-                            {{desativ.starts_at}}-{{desativ.ends_at}}
+                            {{desativ.id_field}}
+                            <input type="time" id="startsAt" name="input" ng-model="desativ.starts" placeholder="HH:mm:ss" style="width:100px;" ng-change="changeStartsEnds(this)" required="">
+                            <input type="time" id="endsAt" name="input" ng-model="desativ.ends" placeholder="HH:mm:ss" style="width:100px;" ng-change="changeStartsEnds(this)" required="">
+                            <a class="button widget uib_w_418 icon error" data-uib="app_framework/button" data-ver="1" ng-click="removeDesativado(this,$index)" id="btn-res-remover"></a>
                         </div>
+                    </div>
+                    <div class="button-grouped flex widget uib_w_416 d-margins" data-uib="app_framework/button_group" data-ver="1"><a class="button widget uib_w_417" data-uib="app_framework/button" data-ver="1" style="border-left: 1px solid rgb(102, 102, 102); border-top-left-radius: 6px; border-bottom-left-radius: 6px;" id="btn-res-incluir">Incluir</a>
+                        <a class="button widget uib_w_419" data-uib="app_framework/button" data-ver="1" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px;" id="btn-res-salvar">Salvar</a>
                     </div>
                 </div>
             </div>

@@ -9,13 +9,13 @@ var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
     MINOR: '91',
-    DATE: '16/10/2017' 
-}; 
+    DATE: '16/10/2017'
+};
 var vsApp;
 
 var SERVER_HTTP = 'http://';
 var SERVER_IP = 'ts0.sensoronline.net';
-//var SERVER_IP = '45.55.77.192'; 
+//var SERVER_IP = '45.55.77.192';
 //var SERVER_PATH = '/dev/ti';
 var SERVER_PATH = '/0';
 var DATABASE = 'PROD'; //'DEV';
@@ -82,7 +82,7 @@ function validatePasswd(str) {
     } else if (str.search(/[^a-zA-Z0-9\!\@\#\$\%\^\&\*\(\)\_\+]/) != -1) {
         return ("caractere invalido");
     }
-    return true; 
+    return true;
 }
 
 /******************************************************************************/
@@ -94,7 +94,7 @@ function mensagemTela(titulo, msg) {
         if (titulo == null || titulo == '')
             alert(msg);
         else
-            alert(titulo + ':' + msg); 
+            alert(titulo + ':' + msg);
     }
 }
 /******************************************************************************/
@@ -686,15 +686,15 @@ function getMainConfig_success(tipo,data)
                         }
                         if (rec_corrente_100a == true || rec_corrente_30a == true) {
                             option = $('<option></option>').prop("value", 4).text("5: " + json_config.canal.field1);
-                            $("#sel-temp").append(option);                            
+                            $("#sel-temp").append(option);
                             option = $('<option></option>').prop("value", 5).text("6: " + json_config.canal.field2);
-                            $("#sel-temp").append(option);                            
+                            $("#sel-temp").append(option);
                             option = $('<option></option>').prop("value", 6).text("7: " + json_config.canal.field3);
-                            $("#sel-temp").append(option);                            
+                            $("#sel-temp").append(option);
                             option = $('<option></option>').prop("value", 7).text("8: " + json_config.canal.field4);
-                            $("#sel-temp").append(option);                            
+                            $("#sel-temp").append(option);
                         }
-                        
+
                         json_sensores=null;
                         json_modbus=null;
                         updateSelComandos(json_config);
@@ -714,7 +714,7 @@ function getMainConfig_success(tipo,data)
                         if (rec_sensor_seco) {
                             $("#btn-in-sensores").show();
                         } else {
-                            $("#btn-in-sensores").hide();                            
+                            $("#btn-in-sensores").hide();
                         }
                         console.log(data);
                     } // tipo==0
@@ -756,11 +756,11 @@ function getMainConfig_success(tipo,data)
 
                     Cookies.create("tela_layout", json_config.canal.tela_layout, 10 * 356);
                     flag_getMainConfig = true;
-                    
+
                     if (json_feed == null) {
                         json_feed=data.feeds;
                     }
-                    createGraphs(); 
+                    createGraphs();
                     testarBotoesModulo();
                     writeMainConfig();
                     updateSelHoras();
@@ -769,14 +769,14 @@ function getMainConfig_success(tipo,data)
                         //atualiza_dados(tipo==0);
                         get_feed_update(data.feeds);
                         $(".uib_w_215").show();
-                    
+
                     $.each(json_config.campos, function(key,val) {
                         console.log(key);
                         console.log(val);
                         if (val.ativo!='s')
                             val.ativo='n';
                     });
-                    
+
                     // select de 2,6 e 24horas
                     // ativa pagina principal
                     
@@ -826,7 +826,7 @@ function getMainConfig(tipo, id_sensor) {
         if (window.cordova) {
             url = url + "&dp=" + device.platform +
                 '&duuid=' + device.uuid;
-            
+
             if (tipo != 2) {
                 url = url + '&dm=' + device.model +
                 '&dv=' + device.version +
@@ -834,7 +834,7 @@ function getMainConfig(tipo, id_sensor) {
             }
             if (localDB.registrationId != undefined) {
                 url = url + '&pushId=' + localDB.registrationId;
-                
+
             }
         }
 
@@ -1184,14 +1184,14 @@ function updateSelHoras() {
         }
         $("#sel_horas").append(option);
     }
-} 
+}
 
 /**********************************************************************/
-function signInServer(pag) { 
+function signInServer(pag) {
     var addr = SERVER_HTTP + SERVER_IP + SERVER_PATH + '/config_ts.php?';
     if (DATABASE != null) addr = addr + 'DB=' + DATABASE + '&';
 
-    if (window.cordova) {  
+    if (window.cordova) {
         if (navigator.connection.type == Connection.NONE) {
             navigator.notification.alert(data, // message
                 alertDismissed, 'Sem conexão com a rede.', 'Fechar');
@@ -1203,7 +1203,7 @@ function signInServer(pag) {
     if (pag == 'boot') {
         addr = addr + 'f=0&s=' + sessao_id;
         if (json_user != undefined) {
-            addr = addr + '&u=' + json_user.login + '&p=' + localDB.encodeLogin; 
+            addr = addr + '&u=' + json_user.login + '&p=' + localDB.encodeLogin;
         }
     }
 
@@ -1259,8 +1259,8 @@ function signInServer(pag) {
         }
 
         addr = addr + 'f=6&e=' + email;
-    } 
-    // Troca da senha 
+    }
+    // Troca da senha
     if (pag == 'troca') {
         var senha_1 = $("#text-senha-antiga").val();
         var senha_2 = $("#text-senha-nova").val();
@@ -1387,7 +1387,7 @@ function signInServer(pag) {
                     }
                     localDB.sessao_id=sessao_id;
                     atualizaHeaderLogin(data.login,true);
-                    updateSelSensores(data); 
+                    updateSelSensores(data);
                     if (refreshTimer!==undefined)
                         clearInterval(refreshTimer);
                     refreshTimer=undefined;
@@ -1400,7 +1400,7 @@ function signInServer(pag) {
                             localDB.modelo = data.sensores[0].modelo;
                             localDB.serie = data.sensores[0].serie;
                             localDB.chave = data.sensores[0].chave;
-                        } else 
+                        } else
                             activate_subpage("#uib_page_5");
                     }
                     getMainConfig_success(0,data);
@@ -1560,7 +1560,7 @@ function gravarConfiguracaoSensorPOST(pag, text_obj) {
         $.extend(data, {"f":100,"m":localDB.modelo,"s":localDB.serie, "c":chave.substring(0,4)});
         app.consoleLog(data);
     }
-    
+
     if (DATABASE != null) {
         $.extend(data,{"DB":DATABASE});
     }
@@ -1608,7 +1608,7 @@ function gravarConfiguracaoSensorPOST(pag, text_obj) {
             }
         }
     });
-    
+
 }
 /**********************************************************************/
 
@@ -1791,7 +1791,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
         headers: {
             'User-Agent': 'APP Tsensor/' + VERSAO.MAJOR + '.' + VERSAO.MINOR + '/' + VERSAO.DATE
         },
-        xhrFields: { 
+        xhrFields: {
             withCredentials: true
         },
         crossDomain: true,
@@ -1841,6 +1841,9 @@ function get_feed_update(data) {
             angular.element($("#afui")).scope().getDesativados();
             getCoordinate();
             if (flag_getMainConfig) {
+                if (json_user != undefined)
+                    activate_subpage("#uib_page_painel");
+                else
                 if (rec_sensor_seco)
                     activate_subpage("#uib_page_seco");
                 else
@@ -2414,8 +2417,8 @@ function lerFlagStatus() {
        console.log("push error = " + e.message);
        alert("push error = " + e.message);
    });
-     
-   push.on('notification', function(data) 
+
+   push.on('notification', function(data)
     {
         //alert('['+JSON.stringify(data) + ']' data.title+':'+data.message);
        mensagemTela(data.message, data.title );
@@ -2423,7 +2426,7 @@ function lerFlagStatus() {
         //   alert('finish successfully called');
         //});
     });
-     
+
    localDB.sendRegistration=false;
  }
 /************************************************************/
@@ -2484,11 +2487,11 @@ function onDeviceReady() {
 );    */
     // set to either landscape
    // screen.orientation.lock('portrait');
- 
-// allow user rotate 
+
+// allow user rotate
 //    screen.orientation.unlock();
- 
-// access current orientation 
+
+// access current orientation
   //  console.log('Orientation is ' + screen.orientation.type);
 
     var list=document.getElementById('text-inicial');
@@ -2513,7 +2516,7 @@ function onDeviceReady() {
     if (window.cordova && device.platform == 'Android') {
         setupPush();
     }
-    
+
     vs=$("#startup-img").next("figcaption").text();
     console.log("figcaption=" + vs);
 
@@ -2627,15 +2630,15 @@ function onDeviceReady() {
     $("#af-checkbox-s-modbus").prop('disabled', true);
     $("#af-checkbox-s-wifi").prop('disabled', true);
     $("#af-checkbox-credenciais").prop('checked',true);
- 
+
     document.getElementById('text-about').innerHTML='Site: www.sensoronline.net<br>';
     document.getElementById('text-about').innerHTML +='Email: contato@sensoronline.net';
 
     list.innerHTML +="<BR>Up...";
-    
+
     //var plugins = cordova.require("cordova/plugin_list").metadata;
     //alert("plugins: " +JSON.stringify(plugins) );
-    
+
 }
 
 

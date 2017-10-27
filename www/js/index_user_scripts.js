@@ -126,7 +126,7 @@
                 }
 
             }
-            
+
             if (json_feed != null) {
                 $("#text_info_modelo").append('AP=' + json_feed.channel.ip0 + '<br>');
                 $("#text_info_modelo").append('STA=' + json_feed.channel.ip1);
@@ -139,7 +139,7 @@
             $("#text_info_modelo").append('UUID:' + device.uuid + '<BR>');
             $("#text_info_modelo").append('Cordova:' + device.cordova + '<BR>');
             $("#text_info_modelo").append('vsApp:' + vsApp + '<BR>');
-            
+
             if (localDB.registrationId != undefined)
                 $("#text_info_modelo").append('PushId:' + localDB.registrationId + ':' + localDB.sendRegistration);
         });
@@ -443,7 +443,7 @@
         $(document).on("click", "#btn-s-seco-salvar", function (evt) {
                 gravarConfiguracaoSensorPOST('s', document.getElementById("text-s-temp"));
         });
-        
+
         /* button  #btn-s-s-temp */
         $(document).on("click", "#btn-s-s-temp", function (evt) {
             var opt = $("#sel-temp option:selected").val();
@@ -473,7 +473,7 @@
             console.log(">btn-s-s-temp " + opt)
             if (opt >=1 || opt <=8) {
                 gravarConfiguracaoSensor('s'+opt, document.getElementById("text-s-temp"));
-                
+
             }
             return;
             if (opt == 0) {
@@ -489,7 +489,7 @@
             if (opt == 3) {
                 gravarConfiguracaoSensor('t8', document.getElementById("text-s-temp"));
             }
-            
+
         });
 
         $(document).on("change", "#sel-temp", function (evt) {
@@ -529,7 +529,7 @@
             if (opt >= 4 && (rec_corrente_100a == true || rec_corrente_30a == true)) {
                 opt=opt-3-5;
             }
-            
+
             document.getElementById("text-s-temp").innerHTML = "";
             opt = opt + 5;
             document.getElementById("text-s-vcc").value = jsonPath(json_config, "$.canal.ajuste"+opt);
@@ -539,7 +539,7 @@
             if (json_config.canal.field_ocultar & (1<<opt)) {
                 document.getElementById("af-checkbox-ocultar-temp").checked=true;
             } else {
-                document.getElementById("af-checkbox-ocultar-temp").checked=false;                
+                document.getElementById("af-checkbox-ocultar-temp").checked=false;
             }
         });
 
@@ -1425,16 +1425,26 @@
     });
 
         /* button  #btn-in-sensores */
-    
-    
+
+
         /* button  #btn-in-sensores */
     $(document).on("click", "#btn-in-sensores", function(evt)
     {
          /*global activate_subpage */
-         activate_subpage("#sub-page-config-seco"); 
+         activate_subpage("#sub-page-config-seco");
          return false;
     });
-    
+
+        /* button  #btn-res-incluir */
+    $(document).on("click", "#btn-res-incluir", function(evt)
+    {
+        /* your code goes here */
+        var data= {starts_at:"12:00:00", ends_at:"13:00:00"};
+        json_desativados.push(data);
+        angular.element($("#afui")).scope().getDesativados();
+        return false;
+    });
+
     }
 
     document.addEventListener("app.Ready", register_event_handlers, false);
