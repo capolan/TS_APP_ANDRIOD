@@ -1404,6 +1404,8 @@ function signInServer(pag) {
                             activate_subpage("#uib_page_5");
                     }
                     getMainConfig_success(0,data);
+                    activate_subpage("#uib_page_painel");
+
                 }
             } else
             if (pag == 'out') {
@@ -1841,9 +1843,6 @@ function get_feed_update(data) {
             angular.element($("#afui")).scope().getDesativados();
             getCoordinate();
             if (flag_getMainConfig) {
-                if (json_user != undefined)
-                    activate_subpage("#uib_page_painel");
-                else
                 if (rec_sensor_seco)
                     activate_subpage("#uib_page_seco");
                 else
@@ -2500,6 +2499,7 @@ function onDeviceReady() {
     var vm = getUrlVars()["m"];
     var vs = getUrlVars()["s"];
     var vc = getUrlVars()["c"];
+    var platform=device.platform;
     console.log("modelo=[" + vm + ']');
     if (vm != undefined) {
         localDB.modelo=vm;
@@ -2513,7 +2513,8 @@ function onDeviceReady() {
     }
 
     localDB.sendRegistration=true;
-    if (window.cordova && device.platform == 'Android') {
+    if (window.cordova && 
+        (platform.toUpperCase() == 'ANDROID' || platform.toUpperCase() == 'IOS') {
         setupPush();
     }
 
