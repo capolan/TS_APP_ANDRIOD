@@ -2514,7 +2514,7 @@ function onDeviceReady() {
 
     localDB.sendRegistration=true;
     if (window.cordova && 
-        (platform.toUpperCase() == 'ANDROID' || platform.toUpperCase() == 'IOS') {
+        (platform.toUpperCase() == 'ANDROID' || platform.toUpperCase() == 'IOS') ){
         setupPush();
     }
 
