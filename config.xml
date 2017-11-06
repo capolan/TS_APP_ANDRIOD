@@ -39,7 +39,6 @@
 <splash platform="android" src="package-assets/logo_320_470.png" density="mdpi" width="320" height="470" orientation="portrait"/>
 <splash platform="android" src="package-assets/logo_480_640.png" density="hdpi" width="480" height="640" orientation="portrait"/>
 <splash platform="android" src="package-assets/logo_720_960.png" density="xhdpi" width="720" height="960" orientation="portrait"/>
-<splash platform="ios" src="package-assets/logo_2048.png" width="2048" height="2732" orientation="portrait"/>
 <splash platform="ios" src="package-assets/logo_320_480.png" width="320" height="480" orientation="portrait"/>
 <splash platform="ios" src="package-assets/logo_1536_2048.png" width="1536" height="2048" orientation="portrait"/>
 <splash platform="ios" src="package-assets/logo_640_960.png" width="640" height="960" orientation="portrait"/>
@@ -47,6 +46,7 @@
 <splash platform="ios" src="package-assets/logo_750_1334.png" width="750" height="1334" orientation="portrait"/>
 <splash platform="ios" src="package-assets/logo_768_1024.png" width="768" height="1024" orientation="portrait"/>
 <splash platform="ios" src="package-assets/logo_1242_2208.png" width="1242" height="2208" orientation="portrait"/>
+<splash platform="ios" src="package-assets/logo_icone_2048.png" width="2048" height="2732" orientation="portrait"/>
 <icon platform="android" src="package-assets/logo_icone_36.png" density="ldpi" width="36" height="36"/>
 <icon platform="android" src="package-assets/logo_icone_48.png" density="mdpi" width="48" height="48"/>
 <icon platform="android" src="package-assets/logo_icone_72.png" density="hdpi" width="72" height="72"/>
