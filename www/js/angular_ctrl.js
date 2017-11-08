@@ -170,6 +170,7 @@ myApp.controller('myCtrl',  function($scope) {
             //$("#modelo").val('');
             $("#serie").val(serie);
             Cookies["serie"]=serie;
+            localDB.serie=serie;
             $("#chave").val('');
             Cookies.erase("chave");
             getMainConfig(0,id);

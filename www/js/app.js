@@ -2513,8 +2513,15 @@ function onDeviceReady() {
     }
 
     localDB.sendRegistration=true;
+    if (intel.xdk.isxdk == true) {
+        // Application is running in XDK
+        console.log("Running in Intel XDK Emulator");
+        list.innerHTML +="Intel XDK Emulator";
+        $("#div_campos").hide();
+    } else 
     if (window.cordova && 
-        (platform.toUpperCase() == 'ANDROID' || platform.toUpperCase() == 'IOS')) {
+        (platform.toUpperCase() == 'xANDROID' || platform.toUpperCase() == 'IOS')) {
+        list.innerHTML +="<BR>push signin...";
         setupPush();
     }
 
@@ -2550,12 +2557,6 @@ function onDeviceReady() {
     } else
         atualizaHeaderLogin('');
 
-    if (intel.xdk.isxdk == true) {
-        // Application is running in XDK
-        console.log("Running in Intel XDK Emulator");
-        list.innerHTML +="Intel XDK Emulator";
-        $("#div_campos").hide();
-    }
     //angular.element($("#afui")).scope().getDevice();
 
     // sensor principal
