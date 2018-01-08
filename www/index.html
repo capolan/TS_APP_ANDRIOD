@@ -204,9 +204,9 @@
 
                             <div class="widget uib_w_379 scale-image d-margins" data-uib="media/img" data-ver="0">
                                 <figure class="figure-align">
-                                    <img src="images/logo_sol1.png" id="startup-img">
+                                    <img src="images/logo_sol2.png" id="startup-img">
 
-                                    <figcaption data-position="bottom">@2016-2017</figcaption>
+                                    <figcaption data-position="bottom">@2016-2018</figcaption>
                                 </figure>
                             </div><span class="uib_shim"></span>
                         </div>
@@ -1973,10 +1973,12 @@
                         <li class="widget uib_w_417" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
                         </li>-->
                     </ul>
-                    <select ng-model="desativ.id_field" ng-options="item as item.texto0 for item in campos track by item.id"></select><br>
-                    
+                    <select ng-model="desativ.id_field" ng-options="item as item.texto0 for item in campos track by item.id"></select>
+                    <br>
+
                     <div ng-repeat="desativ in desativados">
-                        <select ng-model="desativ.id_field" ng-options="item as item.texto0 for item in campos track by item.id"></select><br>
+                        <select ng-model="desativ.id_field" ng-options="item as item.texto0 for item in campos track by item.id"></select>
+                        <br>
                         <div class="seco_nome_text text-restricao">
                             {{desativ.id_field}}
                             <input type="time" id="startsAt" name="input" ng-model="desativ.starts" placeholder="HH:mm:ss" style="width:100px;" ng-change="changeStartsEnds(this)" required="">

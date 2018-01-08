@@ -1,5 +1,5 @@
 /*
- * CAP @2017
+ * CAP @2018
  */
 /*********************************************************/
 var r_horas = 2;
@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '92',
-    DATE: '08/11/2017'
+    MINOR: '93',
+    DATE: '08/01/2018'
 };
 var vsApp;
 
