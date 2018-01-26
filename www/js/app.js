@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '93',
-    DATE: '08/01/2018'
+    MINOR: '95',
+    DATE: '26/01/2018'
 };
 var vsApp;
 
@@ -585,6 +585,11 @@ function getMainConfig_success(tipo,data)
                     json_feed = null;
 
                     if (tipo == 0) {
+                        if (json_config.chipid !== undefined) {
+                            localDB.chipid=json_config.chipid;
+                            localDB.serie=json_config.serie;
+                            document.getElementById("serie").value=json_config.serie;
+                        }
                         if (json_config.canal.nro_pontos == null)
                             Cookies.create("nro_pontos", 20, 10 * 356);
                         else
@@ -821,6 +826,8 @@ function getMainConfig(tipo, id_sensor) {
             '&t1=' + VERSAO.MAJOR +
             '&t2=' + VERSAO.MINOR +
             '&td=' + VERSAO.DATE;
+        if (localDB.chipid !== undefined)
+            url = url + "&cid=" + localDB.chipid;
 
         if (DATABASE != null) url = url + '&DB=' + DATABASE;
         if (window.cordova) {
