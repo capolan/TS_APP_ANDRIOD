@@ -395,9 +395,11 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="field in sensores">
+                                            <!-- <div ng-hide="{{field.ocultar}} == 1"> --> 
+                                            <td class="td-cel">{{field.nome}}</td>
                                             <td class="td-val" ng-click="goSensor($index)" style="{{field.style}}">{{field.valor}}{{field.unidade}}</td>
-                                            <td class="td-cel">{{field.nome}}
-                                                <br>{{field.sensor}}</td>
+                                            <td class="td-cel">{{field.sensor}}</td>
+                                            <!-- </div> -->
                                         </tr>
                                     </tbody>
 

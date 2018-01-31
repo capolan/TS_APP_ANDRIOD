@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '95',
-    DATE: '26/01/2018'
+    MINOR: '96',
+    DATE: '31/01/2018'
 };
 var vsApp;
 
@@ -160,14 +160,14 @@ function atualizaHeaderLogin(txt, flag) {
         $(".uib_w_220").hide(); //sigup
         $("#text-sign-email").val(json_user.email); //sig email
         $(".uib_row_31").css('visibility','visible'); //sig email
-        if (flag == true) {
+        /*if (flag == true) {
             console.log("======" + localDB.serie);
             if (json_user.contador > 0) {
                 localDB.modelo = json_user.sensores[0].modelo;
                 localDB.serie = json_user.sensores[0].serie;
                 localDB.chave = json_user.sensores[0].chave;
-            }
-        }
+            } 
+        }*/
 
     }
 }
@@ -865,10 +865,10 @@ function getMainConfig(tipo, id_sensor) {
         //    },
             beforeSend: function () {
                 document.getElementById("text_config").innerHTML = "Running...";
-                document.getElementById('text-inicial').innerHTML +="<BR>Lendo config " + localDB.serie;
+                document.getElementById('text-inicial').innerHTML +="<BR>Lendo config " + localDB.serie; 
                 json_desativados=[];
             },
-            success: function (data) {
+            success: function (data) { 
                  getMainConfig_success(tipo,data);
 
             },
@@ -1071,36 +1071,40 @@ function updateSelSensores(data) {
     var i, option;
     var n, m, s, c, canal;
     var mm='',ss='',cc='';
+    var selectOption=0;
+
     json_sensores=data;
     $("#sel-meus-sensores").empty();
     i = 0;
-        document.getElementById("modelo").value = '';
-        document.getElementById("serie").value = '';
-        document.getElementById("chave").value = '';
-        localDB.removeItem('modelo');
-        localDB.removeItem('serie');
-        localDB.removeItem('chave');
+    document.getElementById("modelo").value = '';
+    document.getElementById("serie").value = '';
+    document.getElementById("chave").value = '';
+    localDB.removeItem('chave');
 
     m = jsonPath(data, "$.sensores[" + i + "].modelo");
     while (m != false) {
         n = jsonPath(data, "$.sensores[" + i + "].name");
         s = jsonPath(data, "$.sensores[" + i + "].serie");
         c = jsonPath(data, "$.sensores[" + i + "].chave");
-        if (mm=='') {
-            mm=m;ss=s;cc=c;
+        if (localDB.serie != undefined && localDB.serie == s) {
+                selectOption=i;
+                mm=m;ss=s;cc=c;
         }
         canal = jsonPath(data, "$.sensores[" + i + "].canal");
         console.log("m=" + m + " s=" + s + " c=" + c + "  canal=" + canal);
         option = $('<option></option>').prop("value", canal).text(n);
-        $("#sel-meus-sensores").append(option);
+        $("#sel-meus-sensores").append(option); 
         i++;
         m = jsonPath(data, "$.sensores[" + i + "].modelo");
     }
 //    $('#sel-meus-sensores option')[0].selected = true;
-    $("#sel-meus-sensores option:eq(0)").prop('selected', true);
-        document.getElementById("modelo").value = mm;
-        document.getElementById("serie").value = ss;
-        document.getElementById("chave").value = cc;
+    $("#sel-meus-sensores option:eq("+selectOption+")").prop('selected', true);
+    document.getElementById("modelo").value = mm;
+    document.getElementById("serie").value = ss;
+    document.getElementById("chave").value = cc;
+    localDB.modelo=mm;
+    localDB.serie=ss;
+    localDB.chave=cc; 
 
 
    // eventFire(document.getElementById('sel-meus-sensores'), 'change');
@@ -1193,6 +1197,24 @@ function updateSelHoras() {
     }
 }
 
+/***********************************************************************/
+/* testa se os valores da caixa são consistentes para gravar           */
+/***********************************************************************/
+function testaCaixaValida() {
+    if (localDB.modelo == undefined ||
+        localDB.serie == undefined ||
+       localDB.chave == undefined) {
+        return false;
+    }
+    
+    if (localDB.modelo != document.getElementById("modelo").value)
+        return false;
+    if (localDB.serie != document.getElementById("serie").value)
+        return false;
+    if (localDB.chave != document.getElementById("chave").value)
+        return false;
+    return true;
+}
 /**********************************************************************/
 function signInServer(pag) {
     var addr = SERVER_HTTP + SERVER_IP + SERVER_PATH + '/config_ts.php?';
@@ -1626,9 +1648,17 @@ function gravarConfiguracaoSensor(pag, text_obj) {
     var chave = localDB.chave;
     var f,pag1 = pag.substr(0,1);
     var addr = SERVER_HTTP + SERVER_IP + SERVER_PATH + '/config_ts.php?';
-    var data = 'f=2&m=' + localDB.modelo +
+    var data;
+    
+    if (testaCaixaValida() == false) {
+        text_obj.innerHTML = "Faça nova leitura da caixa, não pode gravar";
+        return;
+    }
+    
+    data = 'f=2&m=' + localDB.modelo +
         '&s=' + localDB.serie +
         "&c=" + chave.substring(0, 4);
+
 
 
     if (DATABASE != null) addr = addr + 'DB=' + DATABASE + '&';
@@ -2506,7 +2536,7 @@ function onDeviceReady() {
     var vm = getUrlVars()["m"];
     var vs = getUrlVars()["s"];
     var vc = getUrlVars()["c"];
-    var platform=device.platform;
+    var platform;
     console.log("modelo=[" + vm + ']');
     if (vm != undefined) {
         localDB.modelo=vm;
@@ -2526,10 +2556,12 @@ function onDeviceReady() {
         list.innerHTML +="Intel XDK Emulator";
         $("#div_campos").hide();
     } else 
-    if (window.cordova && 
-        (platform.toUpperCase() == 'xANDROID' || platform.toUpperCase() == 'IOS')) {
+    if (0 && window.cordova) { 
+        platform=device.platform;
+        if (platform.toUpperCase() == 'ANDROID' || platform.toUpperCase() == 'IOS') {
         list.innerHTML +="<BR>push signin...";
         setupPush();
+        }
     }
 
     vs=$("#startup-img").next("figcaption").text();

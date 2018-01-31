@@ -339,6 +339,9 @@
             var modelo = document.getElementById("modelo").value;
             var serie = document.getElementById("serie").value;
             var chave = document.getElementById("chave").value;
+            localDB.modelo=undefined;
+            localDB.serie=undefined;
+            localDB.chave=undefined;
             console.log("btn_let_config_web  serie=" + serie);
             document.getElementById("text_config").innerHTML = "";
             if (modelo != '' && serie != '' && chave != '') {
