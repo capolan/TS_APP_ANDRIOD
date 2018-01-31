@@ -285,7 +285,9 @@
                 if (rec_sensor_seco && !flag)
                     activate_subpage("#uib_page_seco");
                 else
-                    activate_subpage("#uib_page_2");
+                    //activate_subpage("#uib_page_2");
+                    activate_subpage("#uib_page_painel");
+
         });
 
 

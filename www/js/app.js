@@ -8,7 +8,7 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '96',
+    MINOR: '97',
     DATE: '31/01/2018'
 };
 var vsApp;
@@ -1233,6 +1233,7 @@ function signInServer(pag) {
         addr = addr + 'f=0&s=' + sessao_id;
         if (json_user != undefined) {
             addr = addr + '&u=' + json_user.login + '&p=' + localDB.encodeLogin;
+            addr = addr + '&t1=' + VERSAO.MAJOR + '&t2=' + VERSAO.MINOR + '&td=' + VERSAO.DATE;
         }
     }
 
@@ -1251,6 +1252,7 @@ function signInServer(pag) {
         if (document.getElementById("af-checkbox-credenciais").checked)
             localDB.encodeLogin=encode;
         addr = addr + 'f=3&u=' + user + '&p=' + encode;
+        addr = addr + '&t1=' + VERSAO.MAJOR + '&t2=' + VERSAO.MINOR + '&td=' + VERSAO.DATE;
     }
     // SIGN-OUT logoff
     if (pag == 'out') {

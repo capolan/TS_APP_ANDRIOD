@@ -70,11 +70,18 @@ td.td-val-off {
     color: red;
 }
 
+td.td-tit {
+    padding-left: 8px;
+    font-family: verdana, sans-serif;
+    font-size: 14px;
+    width: 20%;
+}
+
 td.td-cel {
     padding-left: 8px;
     font-family: verdana, sans-serif;
     font-size: 14px;
-    width: 80%;
+/*    width: 30%;*/
 }
 
 tr.tr-none {

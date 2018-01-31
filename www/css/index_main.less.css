@@ -2034,7 +2034,7 @@ body#afui .splt {
 }
 @media all {
   #afui .scale-image img {
-    width: 250px;
+    width: 40%;
   }
 }
 #afui .with-label label.narrow-control {
