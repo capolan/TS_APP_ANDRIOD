@@ -282,11 +282,16 @@
         $(document).on("click", "#btn_home", function (evt) {
             /* your code goes here */
             var flag = rec_temperatura || rec_sensor_analogico;
+                activate_subpage("#uib_page_2");
+            return;
                 if (rec_sensor_seco && !flag)
                     activate_subpage("#uib_page_seco");
                 else
-                    //activate_subpage("#uib_page_2");
-                    activate_subpage("#uib_page_painel");
+                    if (json_feed == null)
+                        activate_subpage("#uib_page_2");
+                    else 
+                        if (json_feed.campos == undefined || json_feed.campos.length == 0)
+                        activate_subpage("#uib_page_painel");
 
         });
 

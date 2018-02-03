@@ -396,7 +396,7 @@
                                     <tbody>
                                         <tr ng-repeat="field in sensores">
                                             <!-- <div ng-hide="{{field.ocultar}} == 1"> -->
-                                            <td class="td-tit">{{field.nome}}</td>
+                                            <td class="td-cel">{{field.nome}}</td>
                                             <td class="td-val" ng-click="goSensor($index)" style="{{field.style}}">{{field.valor}}{{field.unidade}}</td>
                                             <td class="td-cel">{{field.sensor}}</td>
                                             <!-- </div> -->
@@ -408,7 +408,7 @@
                         </div>
 
                     </div>
-                </div>
+                </div> 
 
             </div>
 
@@ -749,7 +749,7 @@
                         </div>
                         <div ng-click="ativar_subpage_eventos_seco()">
                             <ul>
-                                <li ng-repeat="seco in sensores_seco" style="font-size:large;{{seco.cor}}" id="list-item-seco"><a>{{ seco.nome }}<br>{{seco.texto}}<br>
+                                <li ng-repeat="seco in sensores_seco"  ng-click="ativar_page_2()" style="font-size:large;{{seco.cor}}" id="list-item-seco"><a>{{ seco.nome }}<br>{{seco.texto}}<br>
                             <span style="font-size:normal" ng-if="seco.atualizado_em != false">{{seco.atualizado_em}}</span>
                             </a>
                                 </li>

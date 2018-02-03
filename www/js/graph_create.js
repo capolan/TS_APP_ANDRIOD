@@ -107,7 +107,7 @@ function t_telaTS_global() {
             }
             if (gg1[sens] == undefined || gg1[sens].ativo == false) {
                 sens = 0;
-                for (aux = 1; aux <= MAX_CAIXA_SENSORES; aux++) {
+                for (aux = 1; aux <= MAX_CAIXA_SENSORES+1; aux++) {
                     $('#chart1' + aux + "_div").css("display", "none");
                     $('#chart2' + aux + "_div").css("display", "none");
                     $('#text_pag_' + aux).css("display", "none");

@@ -32,6 +32,10 @@ myApp.controller('myCtrl',  function($scope) {
         activate_subpage('#uib_page_seco');
     }
 
+    $scope.ativar_page_2 = function() {
+        activate_subpage('#uib_page_2');
+    }
+
     $scope.sub_page_config_seco = function() {
         console.log(">sub-page-config-seco");
         activate_subpage('#sub-page-config-seco');
@@ -151,21 +155,7 @@ myApp.controller('myCtrl',  function($scope) {
 
         if (serie == $("#serie").val()) {
             if (modulo == 0){
-                switch (sens ) {
-                    case 5:
                         activate_subpage("#uib_page_2");
-                        break;
-                    case 1:
-                    case 6:
-                        activate_subpage("#uib_page_10");
-                        break;
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 7:
-                        activate_subpage("#uib_page_11");
-                        break;
-                }
             }
 
         } else { // carregar modelo e serie

@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '97',
-    DATE: '31/01/2018'
+    MINOR: '98',
+    DATE: '03/02/2018'
 };
 var vsApp;
 
@@ -1881,6 +1881,11 @@ function get_feed_update(data) {
             angular.element($("#afui")).scope().getSeco();
             angular.element($("#afui")).scope().getDesativados();
             getCoordinate();
+            if (data.campos == undefined || data.campos.length == 0) {
+                rec_sensor_seco=false;
+            } else {
+                rec_sensor_seco=true;                
+            }
             if (flag_getMainConfig) {
                 if (rec_sensor_seco)
                     activate_subpage("#uib_page_seco");
@@ -2802,10 +2807,16 @@ function define_recuros() {
     if ((recursos & 0x8000) == 0x8000) {
         rec_rele = true;
         $("#btn-s-rele").show();
+		$(".uib_w_356").show();
+		$(".uib_w_360").show();
+		$(".uib_w_361").show();
     } else {
         rec_rele = false;
         //$("#btn-s-rele").hide();
         $("#btn-s-rele").css('display','none');
+		$(".uib_w_356").hide();
+		$(".uib_w_360").hide();
+		$(".uib_w_361").hide();
     }
     // BOTAO
     if ((recursos & 0x200) == 0x200)
