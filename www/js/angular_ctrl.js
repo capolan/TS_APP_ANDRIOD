@@ -143,13 +143,14 @@ myApp.controller('myCtrl',  function($scope) {
     }
     */
     $scope.goSensor = function(idx) {
-        var modelo, serie, chave, id, ref, modulo, sens;
+        var modelo, serie, chave, id, ref, modulo, sens, canal;
 
         modelo=$scope.sensores[idx].modelo;
         serie=$scope.sensores[idx].serie;
         chave=$scope.sensores[idx].chave;
         id=$scope.sensores[idx].idp;
         ref=$scope.sensores[idx].ref;
+        canal=$scope.sensores[idx].canal;
         modulo = Math.trunc(ref / 10);
         sens = ref % 10;
 
@@ -165,6 +166,11 @@ myApp.controller('myCtrl',  function($scope) {
             localDB.serie=serie;
             $("#chave").val(chave); 
             localDB.chave=chave;
+            //$("div.id_100 select").val("val2");
+            //$("#sel-meus-sensores option:eq("+selectOption+")").prop('selected', true);
+            //$("#sel-meus-sensores select").val(canal);
+            $("#sel-meus-sensores").val(canal).change();
+
             getMainConfig(0,id);
         }
     }
