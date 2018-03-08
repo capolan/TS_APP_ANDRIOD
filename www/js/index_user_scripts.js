@@ -129,7 +129,7 @@
 
             if (json_feed != null) {
                 $("#text_info_modelo").append('AP=' + json_feed.channel.ip0 + '<br>');
-                $("#text_info_modelo").append('STA=' + json_feed.channel.ip1);
+                $("#text_info_modelo").append('STA=' + json_feed.channel.ip1 + '<br>');
                 $("#text_info_modelo").append(json_feed.channel.updated_ip_at + '(atualizado)<br>');
             }
 
@@ -544,9 +544,9 @@
             document.getElementById("text-s-temp-min").value = jsonPath(json_config,"$.canal.field"+opt+"_min");
             document.getElementById("text-s-temp-max").value = jsonPath(json_config,"$.canal.field"+opt+"_max");
             if (json_config.canal.field_ocultar & (1<<opt)) {
-                document.getElementById("af-checkbox-ocultar-temp").checked=true;
+                document.getElementById("af-checkbox-ocultar-temp").checked=!true;
             } else {
-                document.getElementById("af-checkbox-ocultar-temp").checked=false;
+                document.getElementById("af-checkbox-ocultar-temp").checked=!false;
             }
         });
 

@@ -71,6 +71,7 @@ myApp.controller('myCtrl',  function($scope) {
         });
         $scope.sensores_seco = arr;
         $scope.campos = json_config.campos;
+        $scope.modelo = localDB.modelo;
         //console.log(json_feed.sensor);
         $scope.$apply();
     }

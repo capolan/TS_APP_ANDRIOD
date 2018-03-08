@@ -408,7 +408,7 @@
                         </div>
 
                     </div>
-                </div> 
+                </div>
 
             </div>
 
@@ -749,7 +749,7 @@
                         </div>
                         <div ng-click="ativar_subpage_eventos_seco()">
                             <ul>
-                                <li ng-repeat="seco in sensores_seco"  ng-click="ativar_page_2()" style="font-size:large;{{seco.cor}}" id="list-item-seco"><a>{{ seco.nome }}<br>{{seco.texto}}<br>
+                                <li ng-repeat="seco in sensores_seco" ng-click="ativar_page_2()" style="font-size:large;{{seco.cor}}" id="list-item-seco"><a>{{ seco.nome }}<br>{{seco.texto}}<br>
                             <span style="font-size:normal" ng-if="seco.atualizado_em != false">{{seco.atualizado_em}}</span>
                             </a>
                                 </li>
@@ -1490,7 +1490,7 @@
                     <div class="tarea widget uib_w_406 d-margins" data-uib="media/text" data-ver="0" name="uib_w_406">
                         <div class="widget-container left-receptacle titulo-a">Principal</div>
                         <div class="widget-container right-receptacle">
-                            <a class="button widget uib_w_403 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-in-sensores">Seco</a>
+                            <a class="button widget uib_w_403 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-in-sensores">Ent.Digital</a>
                         </div>
                     </div>
                     <div class="table-thing with-label widget uib_w_147 d-margins" data-uib="app_framework/input" data-ver="1">
@@ -1606,7 +1606,7 @@
                         <div class="sbs-container widget uib_w_402 d-margins titulo-botao" data-uib="layout/side_by_side" data-ver="0">
                             <div class="leftContent widget-container titulo-a">Sensores</div>
                             <div class="rightContent widget-container">
-                                <a class="button widget uib_w_403 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-in-sensores">Seco</a>
+                                <a class="button widget uib_w_403 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-in-sensores">Ent.Digital</a>
                             </div>
                         </div>
 
@@ -1640,7 +1640,7 @@
                                 <input class="wide-control" type="text" id="text-s-temp-max">
                             </div>
                             <div class="table-thing with-label widget uib_w_399 d-margins" data-uib="app_framework/select" data-ver="1">
-                                <label class="narrow-control label-inline" for="sel-temp-porta-analogico">Porta</label>
+                                <label class="narrow-control label-inline" id="uib_w_399" for="sel-temp-porta-analogico">Porta</label>
 
                                 <select class="wide-control" id="sel-temp-porta-analogico">
                                     <option>desativar</option>
@@ -1651,11 +1651,11 @@
                             </div>
                             <div class="widget uib_w_400 d-margins" data-uib="app_framework/checkbox" data-ver="1">
                                 <input type="checkbox" id="af-checkbox-pullup">
-                                <label class="content-box" for="af-checkbox-pullup">Pullup</label>
+                                <label class="content-box" id="lbl-af-checkbox-pullup" for="af-checkbox-pullup">Pullup</label>
                             </div>
                             <div class="widget uib_w_398 d-margins" data-uib="app_framework/checkbox" data-ver="1">
                                 <input type="checkbox" id="af-checkbox-ocultar-temp">
-                                <label class="content-box" for="af-checkbox-ocultar-temp">Ocultar</label>
+                                <label class="content-box" for="af-checkbox-ocultar-temp">Em uso</label>
                             </div>
                         </div>
                     </div>
@@ -1681,15 +1681,16 @@
                                 <input class="wide-control" type="text" id="text-s-corrente-nome">
                             </div>
                             <div class="table-thing with-label widget uib_w_330 d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control label-inline" for="text-s-corrente-fase1">Fase R</label>
+                                <label class="narrow-control label-inline" id="lbl-text-s-corrente-fase1" for="text-s-corrente-fase1">Fase R</label>
+
                                 <input class="wide-control" type="text" id="text-s-corrente-fase1">
                             </div>
                             <div class="table-thing with-label widget uib_w_329 d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control label-inline" for="text-s-corrente-fase2">Fase S</label>
+                                <label class="narrow-control label-inline" id="lbl-text-s-corrente-fase2" for="text-s-corrente-fase2">Fase S</label>
                                 <input class="wide-control" type="text" id="text-s-corrente-fase2">
                             </div>
                             <div class="table-thing with-label widget uib_w_328 d-margins" data-uib="app_framework/input" data-ver="1">
-                                <label class="narrow-control label-inline" for="text-s-corrente-fase3">Fase T</label>
+                                <label class="narrow-control label-inline" id="lbl-text-s-corrente-fase3" for="text-s-corrente-fase3">Fase T</label>
 
                                 <input class="wide-control" type="text" id="text-s-corrente-fase3">
                             </div>
@@ -1703,15 +1704,15 @@
                                     </div>
                                     <div class="widget uib_w_303" data-uib="app_framework/checkbox" data-ver="1">
                                         <input type="checkbox" id="af-checkbox-canal-1">
-                                        <label class="content-box" for="af-checkbox-canal-1">fase R</label>
+                                        <label class="content-box" id="lbl-af-checkbox-canal-1" for="af-checkbox-canal-1">fase R</label>
                                     </div>
                                     <div class="widget uib_w_305 d-margins" data-uib="app_framework/checkbox" data-ver="1">
                                         <input type="checkbox" id="af-checkbox-canal-2">
-                                        <label class="content-box" for="af-checkbox-canal-2">fase S</label>
+                                        <label class="content-box" id="lbl-af-checkbox-canal-2" for="af-checkbox-canal-2">fase S</label>
                                     </div>
                                     <div class="widget uib_w_304" data-uib="app_framework/checkbox" data-ver="1">
                                         <input type="checkbox" id="af-checkbox-canal-3">
-                                        <label class="content-box" for="af-checkbox-canal-3">fase T</label>
+                                        <label class="content-box" id="lbl-af-checkbox-canal-3" for="af-checkbox-canal-3">fase T</label>
                                     </div>
                                 </div>
                             </div>
@@ -1728,7 +1729,7 @@
                                 <input class="wide-control" type="number" id="text-s-corrente-max">
                             </div>
                             <div class="table-thing with-label widget uib_w_293 d-margins" data-uib="app_framework/radio_button_group" data-ver="1" data-child-name="af-group-1">
-                                <label class="narrow-control label-inline">Tensão</label>
+                                <label class="narrow-control label-inline" id="lbl-tensao">Tensão</label>
 
                                 <div class="wide-control">
                                     <div class="widget uib_w_294" data-uib="app_framework/radio_button" data-ver="1">
@@ -1739,13 +1740,26 @@
                                         <input type="radio" id="af-radio-s-220" name="af-group-1">
                                         <label class="content-box" for="af-radio-s-220">220 volts</label>
                                     </div>
+                                    <div class="widget uib_w_420" data-uib="app_framework/radio_button" data-ver="1">
+                                        <input type="radio" id="af-radio-0-10" name="af-group-1">
+                                        <label class="content-box" for="af-radio-0-10">0-10v</label>
+                                    </div>
+                                    <div class="widget uib_w_422" data-uib="app_framework/radio_button" data-ver="1">
+                                        <input type="radio" id="af-radio-0-20" name="af-group-1">
+                                        <label class="content-box" for="af-radio-0-20">0-20mA</label>
+                                    </div>
+                                    <div class="widget uib_w_421" data-uib="app_framework/radio_button" data-ver="1">
+                                        <input type="radio" id="af-radio-4-20" name="af-group-1">
+                                        <label class="content-box" for="af-radio-4-20">4-20mA</label>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="widget uib_w_401 d-margins" data-uib="app_framework/checkbox" data-ver="1">
                         <input type="checkbox" id="af-checkbox-ocultar-corrente">
-                        <label class="content-box" for="af-checkbox-ocultar-corrente">Ocultar</label>
+                        <label class="content-box" for="af-checkbox-ocultar-corrente">Em uso</label>
                     </div>
                     <a class="button widget uib_w_142 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-s-s-corrente">Salvar</a>
                     <div class="widget uib_w_146 d-margins" data-uib="media/text" data-ver="0" id="text-s-corrente">
@@ -1895,7 +1909,7 @@
                 <div id="sub-page-config-seco" class="upage-content vertical-col left hidden">
                     <div class="tarea widget uib_w_367 d-margins titulo-2" data-uib="media/text" data-ver="0" name="uib_w_367">
                         <div class="text-container">
-                            <p>Contato Seco</p>
+                            <p>Entrada Digital</p>
 
                         </div>
                     </div>
@@ -1908,7 +1922,7 @@
                         </li>-->
                     </ul>
 
-                    <div ng-repeat="model in campos">
+                    <div ng-repeat="model in campos" ng-init="parent=$parent">
                         <div class="seco_nome_text">
                             {{model.nome}}
                         </div>
@@ -1917,14 +1931,12 @@
 
                             <input class="wide-control seco_input_text" ng-model="model.nome" id="in_nome{{$index}}" type="text">
                         </div>
-
-                        <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                        <div ng-hide="parent.modelo == 'TS2'" class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
                             <label class="narrow-control seco_in_text label-inline" for="in_ordem{{$index}}">Ordem</label>
 
                             <input class="wide-control seco_input_text" ng-model="model.ordem" id="in_ordem{{$index}}" type="text">
                         </div>
-
-                        <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
+                        <div ng-hide="parent.modelo == 'TS2'" class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
                             <label class="narrow-control seco_in_text label-inline" for="in_porta{{$index}}">Porta</label>
 
                             <input class="wide-control seco_input_text" ng-model="model.porta" id="in_porta{{$index}}" type="text">
@@ -1937,24 +1949,23 @@
                         </div>
 
                         <div class="table-thing with-label widget uib_w_282  d-margins" data-uib="app_framework/input" data-ver="1">
-                            <label class="narrow-control seco_in_text label-inline" for="in_texto0{{$index}}">Aberto</label>
+                            <label class="narrow-control seco_in_text label-inline" for="in_texto0{{$index}}">Inativo</label>
 
                             <input class="wide-control seco_input_text" ng-model="model.texto0" id="in_texto0{{$index}}" type="text">
                         </div>
                         <div class="table-thing with-label widget uib_w_282 d-margins" data-uib="app_framework/input" data-ver="1">
-                            <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Fechado</label>
+                            <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Ativo</label>
 
                             <input class="wide-control seco_input_text" ng-model="model.texto1" id="in_texto1{{$index}}" type="text">
                         </div>
 
-                        <div class="table-thing with-label widget uib_w_282 d-margins" data-uib="app_framework/input" data-ver="1">
-                            <label class="narrow-control seco_in_text label-inline" for="in_texto1{{$index}}">Ativo</label>
-
-                            <input class="wide-control seco_input_text" ng-model="model.ativo" id="in_ativo{{$index}}" type="text">
-                            <input type="checkbox" ng-model="model.ativo" ng-true-value="'s'" ng-false-value="'n'">
+                        <div class="widget uib_w_282 d-margins" data-uib="app_framework/checkbox" data-ver="1">
+                            <!--<input class="wide-control seco_input_text" ng-model="model.ativo" id="in_ativo{{$index}}" type="text">-->
+                            <input class="content-box" type="checkbox" ng-model="campos.ativo" ng-checked="model.ativo" ng-true-value="'s'" ng-false-value="'n'" id="in_ativo{{$index}}">
+                            <label class="label-inline content-box" for="in_texto1{{$index}}">Em uso</label>
                         </div>
 
-                        <br>
+                        <br><hr>
                     </div>
 
                     <a class="button widget uib_w_405 d-margins" data-uib="app_framework/button" data-ver="1" id="btn-s-seco-salvar">Salvar</a>
@@ -1969,7 +1980,7 @@
                         </div>
                     </div>
                     <ul class="list widget uib_w_414 d-margins" data-uib="app_framework/listview" data-ver="1">
-                        <li class="widget uib_w_415" data-uib="app_framework/listitem" data-ver="1"><a ng-click="sub_page_config_seco()">Sensores Seco</a>
+                        <li class="widget uib_w_415" data-uib="app_framework/listitem" data-ver="1"><a ng-click="sub_page_config_seco()">Entrada Digital</a>
                         </li>
                         <!--<li class="widget uib_w_416" data-uib="app_framework/listitem" data-ver="1"><a>List Item</a>
                         </li>
@@ -2023,7 +2034,7 @@
             </footer>
 
             <footer class="wrap-element uib_w_236" data-uib="app_framework/footer" data-ver="1" id="af-footer-login">
-                <a class="widget uib_w_242 d-margins icon home" data-uib="app_framework/button" data-ver="1" id="btn-login-pular">Inicio</a><a class="widget uib_w_299 d-margins icon calendar" data-uib="app_framework/button" data-ver="1">Painel</a>
+                <a class="widget uib_w_242 d-margins icon home" data-uib="app_framework/button" data-ver="1" id="btn-login-pular">Inicio</a><a class="widget uib_w_299 d-margins icon calendar" data-uib="app_framework/button" data-ver="1" id="btn-painel">Painel</a>
                 <a class="widget uib_w_241 d-margins icon user" data-uib="app_framework/button" data-ver="1" id="btn-login-login">Login</a>
                 <a class="widget uib_w_264 d-margins icon error" data-uib="app_framework/button" data-ver="1" id="btn-login-logoff">Logoff</a>
                 <a class="widget uib_w_250 d-margins icon key" data-uib="app_framework/button" data-ver="1" id="btn-trocar-senha">Senha</a>

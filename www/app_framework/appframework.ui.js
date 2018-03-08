@@ -2520,8 +2520,6 @@ if (!Date.now)
             }
             $(document).ready(function() {
                 $(document).on("click", ".afFakeSelect", function() {
-                    if (this.linker == undefined)
-                        return;
                     if (this.linker.disabled)
                         return;
                     that.currLinker = this;

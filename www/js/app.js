@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '100',
-    DATE: '23/02/2018'
+    MINOR: '103',
+    DATE: '03/03/2018'
 };
 var vsApp;
 
@@ -131,6 +131,7 @@ function atualizaHeaderLogin(txt, flag) {
         $("#btn-sign-in-entrar").show();
         $("#btn-assoc-ts").hide();
         $("#btn-desassoc-ts").hide();
+        $(".uib_w_299").hide();  // botao Painel
         $(".uib_w_263").hide(); //#sel-meus-sensores
     //    $(".uib_w_217").css('display','block'); //login
         $(".uib_w_217").show(); //login
@@ -152,6 +153,7 @@ function atualizaHeaderLogin(txt, flag) {
         $("#btn-sign-in-entrar").hide();
         $("#btn-assoc-ts").show();
         $("#btn-desassoc-ts").show();
+        $(".uib_w_299").show();  // botao Painel
         $(".uib_w_263").show(); //#sel-meus-sensores
         //$(".uib_w_217").css('display','none'); //login
         $(".uib_w_217").hide(); //login
@@ -699,7 +701,9 @@ function getMainConfig_success(tipo,data)
                             option = $('<option></option>').prop("value", 7).text("8: " + json_config.canal.field4);
                             $("#sel-temp").append(option);
                         }
-
+                        eventFire(document.getElementById('sel-temp'), 'change');
+                        document.getElementById("af-checkbox-ocultar-corrente").checked=(json_config.canal.field_ocultar & 0x1E) != 0x1E; // field2,3,4
+                            
                         json_sensores=null;
                         json_modbus=null;
                         updateSelComandos(json_config);
@@ -795,6 +799,8 @@ function getMainConfig_success(tipo,data)
 
                     refreshTimer=setTimeout('atualiza_dados()', ret, true);
                     document.getElementById("text_config").innerHTML = "OK";
+                    
+                    ajustaShowHide();
                 }
 }
 
@@ -1666,7 +1672,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
     if (DATABASE != null) addr = addr + 'DB=' + DATABASE + '&';
     if (pag == 'r') {
         // rede/corrente
-        ocultar=document.getElementById("af-checkbox-ocultar-corrente").checked;
+        ocultar= !document.getElementById("af-checkbox-ocultar-corrente").checked;
         data = data + '&tensao=' + Cookies["tensao"] +
             '&ajuste1=' + document.getElementById("text-s-corrente-ajuste").value +
             '&fases=' + Cookies['fases'] +
@@ -1691,7 +1697,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
             '&field'+f+'=' + encodeURIComponent(document.getElementById("text-s-temp-nome").value) +
             '&field'+f+'_min=' + document.getElementById("text-s-temp-min").value +
             '&field'+f+'_max=' + document.getElementById("text-s-temp-max").value +
-            '&field'+f+'_ocultar=' + document.getElementById("af-checkbox-ocultar-temp").checked;
+            '&field'+f+'_ocultar=' + !document.getElementById("af-checkbox-ocultar-temp").checked;
     }
     if (pag == 't5') {
         // temperatura
@@ -1700,7 +1706,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
             '&field5_min=' + document.getElementById("text-s-temp-min").value +
             '&field5_max=' + document.getElementById("text-s-temp-max").value
             +
-            '&field5_ocultar=' + document.getElementById("af-checkbox-ocultar-temp").checked;
+            '&field5_ocultar=' + !document.getElementById("af-checkbox-ocultar-temp").checked;
     }
     if (pag == 't6') {
         // temperatura
@@ -1709,7 +1715,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
             '&field6_min=' + document.getElementById("text-s-temp-min").value +
             '&field6_max=' + document.getElementById("text-s-temp-max").value
             +
-            '&field6_ocultar=' + document.getElementById("af-checkbox-ocultar-temp").checked;
+            '&field6_ocultar=' + !document.getElementById("af-checkbox-ocultar-temp").checked;
 
     }
     if (pag == 't7') {
@@ -1725,7 +1731,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
             '&field7_min=' + document.getElementById("text-s-temp-min").value +
             '&field7_max=' + document.getElementById("text-s-temp-max").value
             +
-            '&field7_ocultar=' + document.getElementById("af-checkbox-ocultar-temp").checked+
+            '&field7_ocultar=' + !document.getElementById("af-checkbox-ocultar-temp").checked+
             '&porta7=' + $("#sel-temp-porta-analogico option:selected").index() +
             '&tipo7=' + tipo;
 
@@ -1744,7 +1750,7 @@ function gravarConfiguracaoSensor(pag, text_obj) {
             '&field8_min=' + document.getElementById("text-s-temp-min").value +
             '&field8_max=' + document.getElementById("text-s-temp-max").value
             +
-            '&field8_ocultar=' + document.getElementById("af-checkbox-ocultar-temp").checked +
+            '&field8_ocultar=' + !document.getElementById("af-checkbox-ocultar-temp").checked +
             '&porta8=' + $("#sel-temp-porta-analogico option:selected").index() +
             '&tipo8=' + tipo;
             ;
@@ -2394,12 +2400,12 @@ function lerFlagStatus() {
 
     $("#text_ips").html('')
     if (json_feed.channel.ip0 != undefined)
-        $("#text_ips").append('AP=' + json_feed.channel.ip0 + '<br>');
+        $("#text_ips").append('AP=' + json_feed.channel.ip0 + '<br> ');
     if (json_feed.channel.ip1 != undefined)
-    $("#text_ips").append('STA=' + json_feed.channel.ip1);
+        $("#text_ips").append('STA=' + json_feed.channel.ip1 + '<br> ');
     myIP_updated_at = json_feed.channel.updated_ip_at;
-    $("#text_ips").append('<br>' + myIP_updated_at + '(atualizado)');
-    $("#text_ips").append('<br>' + json_feed.channel.updated_at + ':');
+    $("#text_ips").append(myIP_updated_at + '(atualizado)<br>\n');
+    $("#text_ips").append(json_feed.channel.updated_at + ':');
     switch (json_feed.channel.updated_flag) {
     case '0':
         txt = 'OK';
@@ -2574,6 +2580,7 @@ function onDeviceReady() {
     vs=$("#startup-img").next("figcaption").text();
     console.log("figcaption=" + vs);
 
+    vsApp='';
     if (window.cordova) {
         cordova.getAppVersion.getAppName(function (version) {
                 vsApp = 'App=['+version;
@@ -2587,8 +2594,9 @@ function onDeviceReady() {
                 vsApp = vsApp +'] Version=['+version + ']';
                 return true;
         });
+        vsApp='(' + vsApp + ')';
     }
-    vs='APP Tsensor ' + VERSAO.MAJOR + '.' + VERSAO.MINOR + ' ' + VERSAO.DATE + '(' + vsApp + ')';
+    vs='APP Tsensor ' + VERSAO.MAJOR + '.' + VERSAO.MINOR + ' ' + VERSAO.DATE + vsApp;
 
     $("#startup-img").next("figcaption").text(vs);
 
@@ -2608,7 +2616,7 @@ function onDeviceReady() {
     // sensor principal
     $(".uib_col_6").height(200);
     $(".uib_col_7").height(220);
-    $(".uib_col_8").height(200);
+    $(".uib_col_8").height(200); 
     $(".uib_col_10").height(220);
     $(".uib_col_19").height(200);
     $(".uib_col_23").height(220);
@@ -2627,6 +2635,7 @@ function onDeviceReady() {
     $(".uib_w_400").hide(); // pullup
 
     $(".uib_w_263").hide(); //#sel-meus-sensores
+    $(".uib_w_299").hide();  // botao Painel
     // readonly id_alerta
     //$("#text-alerta-id").prop("readonly", true);
     $("#text-alerta-id").css('width', 100);
@@ -2878,3 +2887,39 @@ function define_recuros() {
     }
 }
 
+function ajustaShowHide() {
+    var modelo=localDB.modelo;
+    
+    if (modelo != 'TS2') {
+        $(".uib_w_420").hide();
+        $(".uib_w_421").hide();
+        $(".uib_w_422").hide();
+        $(".uib_w_294").show();        
+        $(".uib_w_295").show();        
+        $("#lbl-af-checkbox-canal-1").text('Fase R');
+        $("#lbl-af-checkbox-canal-2").text('Fase S');
+        $("#lbl-af-checkbox-canal-3").text('Fase T');
+        $("#lbl-tensao").text("Tensão");
+        $("#lbl-af-checkbox-pullup").show();
+        $("#sel-temp-porta-analogico").show();
+        $("#uib_w_399").show();
+    }
+    if (modelo == 'TS2') {
+        $(".uib_w_420").show();
+        $(".uib_w_421").show();
+        $(".uib_w_422").show();
+        $(".uib_w_294").hide();        
+        $(".uib_w_295").hide();        
+        $("#lbl-text-s-corrente-fase1").text('AN1');
+        $("#lbl-text-s-corrente-fase2").text('AN2');
+        $("#lbl-text-s-corrente-fase3").text('AN3');
+        
+        $("#lbl-af-checkbox-canal-1").text('AN1');
+        $("#lbl-af-checkbox-canal-2").text('AN2');
+        $("#lbl-af-checkbox-canal-3").text('AN3');
+        $("#lbl-tensao").text("Modo");        
+        $("#lbl-af-checkbox-pullup").hide();
+        $("#sel-temp-porta-analogico").hide();
+        $("#uib_w_399").hide();
+    }
+}
