@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '103',
-    DATE: '03/03/2018'
+    MINOR: '105',
+    DATE: '27/08/2018'
 };
 var vsApp;
 
@@ -1074,7 +1074,7 @@ function gravarComandoTS(text_obj, _cmd) {
 
 /**********************************************************************/
 function updateSelSensores(data) {
-    var i, option;
+    var i, option; 
     var n, m, s, c, canal;
     var mm='',ss='',cc='';
     var selectOption=0;
@@ -1094,7 +1094,7 @@ function updateSelSensores(data) {
         c = jsonPath(data, "$.sensores[" + i + "].chave");
         if (localDB.serie != undefined && localDB.serie == s) {
                 selectOption=i;
-                mm=m;ss=s;cc=c;
+                mm=m;ss=s;cc=c; 
         }
         canal = jsonPath(data, "$.sensores[" + i + "].canal");
         console.log("m=" + m + " s=" + s + " c=" + c + "  canal=" + canal);

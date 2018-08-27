@@ -132,17 +132,23 @@ myApp.controller('myCtrl',  function($scope) {
     $scope.getSensores = function() {
         var arr=[];
         var serie;
+        var nome=null;
         if (json_feed == null) return;
         delete $scope.sensores;
         json_feed.sensor.forEach(function(elem) {
             if (elem.ocultar == 0) {
+                if (nome != elem.nome) {
+                    nome=elem.nome;
+                } else {
+                    elem.nome='';
+                }
               arr.push(elem);
             }
         });
 //        $scope.sensores = json_feed.sensor;
         $scope.sensores = arr;
         //console.log(json_feed.sensor);
-        $scope.$apply();
+        $scope.$apply(); 
     }
     /*
     $scope.getDevice = function() {
@@ -163,7 +169,8 @@ myApp.controller('myCtrl',  function($scope) {
         modulo = Math.trunc(ref / 10);
         sens = ref % 10;
 
-        if (serie == $("#serie").val()) {
+        if (serie == json_feed.channel.serie) {
+//        if (serie == $("#serie").val()) {
             if (modulo == 0){
                         activate_subpage("#uib_page_2");
             }
