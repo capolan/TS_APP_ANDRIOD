@@ -130,9 +130,17 @@ myApp.controller('myCtrl',  function($scope) {
         $scope.$apply();
     }
     $scope.getSensores = function() {
+        var arr=[];
+        var serie;
         if (json_feed == null) return;
         delete $scope.sensores;
-        $scope.sensores = json_feed.sensor;
+        json_feed.sensor.forEach(function(elem) {
+            if (elem.ocultar == 0) {
+              arr.push(elem);
+            }
+        });
+//        $scope.sensores = json_feed.sensor;
+        $scope.sensores = arr;
         //console.log(json_feed.sensor);
         $scope.$apply();
     }

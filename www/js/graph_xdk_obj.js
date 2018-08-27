@@ -274,10 +274,8 @@ function runGraph(_tipo, _id_div, _page, _titulo, _largura, _altura, _series, _m
                         if (field_msg != null && campo == field_msg) {
                             mensagem = getObjects(valdata.feeds[i], "mensagem");
                         }
-                        self.min[campo] = getObjects(valdata,
-                            "min_field" + campo);
-                        self.max[campo] = getObjects(valdata,
-                            "max_field" + campo);
+                        self.min[campo] = jsonPath(valdata,"$.channel.min_field" + campo);
+                        self.max[campo] = jsonPath(valdata,"$.channel.max_field" + campo);
                         v_str = jsonPath(valdata,"$.channel.field" + campo + "_flag");
                         if (isNaN(parseInt(v_str)))
                             self.field_flag = 0;
