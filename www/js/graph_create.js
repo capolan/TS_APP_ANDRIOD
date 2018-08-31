@@ -210,7 +210,7 @@ function telaTS_global() {
                 }],
                 null,
                 Cookies["nro_pontos"], Cookies["passo"], 20, 1, min, max, false);
-            if ((field_ocultar & (1 << ncampo)) > 0) {
+            if (field_ocultar & (1 << (ncampo)) > 0) { 
                 gg1[ncampo].ativo = false;
             } else {
                 gg1[ncampo].ativo = true;
