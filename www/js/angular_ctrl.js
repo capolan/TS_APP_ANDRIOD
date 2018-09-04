@@ -138,11 +138,20 @@ myApp.controller('myCtrl',  function($scope) {
         json_feed.sensor.forEach(function(elem) {
             if (elem.ocultar == 0) {
                 if (nome != elem.nome) {
-                    nome=elem.nome;
+                    nome=elem.nome; 
                 } else {
                     elem.nome='';
                 }
               arr.push(elem);
+            }
+        });
+        json_feed.feeds[0].digital.forEach(function(elem) {
+            if (elem.ativo == 's') {
+                elem.nome=elem.titulo;
+                elem.sensor=elem.situacao;
+                elem.valor='';
+                elem.style='border-top:2pt solid grey';
+                arr.push(elem);
             }
         });
 //        $scope.sensores = json_feed.sensor;

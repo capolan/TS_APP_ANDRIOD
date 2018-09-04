@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '107',
-    DATE: '31/08/2018'
+    MINOR: '108',
+    DATE: '05/09/2018'
 };
 var vsApp;
 
