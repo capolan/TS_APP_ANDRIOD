@@ -8,7 +8,7 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '109',
+    MINOR: '110',
     DATE: '05/09/2018'
 };
 var vsApp;
@@ -572,6 +572,7 @@ var json_config = null;
 function getMainConfig_success(tipo,data)
 {
      var num_nodes=0;
+    var f_idx, f_str;
                 json_config = data;
                 document.getElementById('text-inicial').innerHTML +="_OK";
                 /*  intel.xdk.notification.alert(json.channel.name, "Canal"); */
@@ -672,23 +673,39 @@ function getMainConfig_success(tipo,data)
                             $('#text-s-celular').prop('readonly', false);
                             //$("#text-s-celular").css({'background-color': '#FFFFFF'});
                         }
-
+                        f_idx=5;
+                        f_str=jsonPath(json_config, "$.canal.field" + f_idx);
                         if (rec_temperatura == true) {
-                            option = $('<option></option>').prop("value", 0).text("1: " + json_config.canal.field5);
-                            $("#sel-temp").append(option);
                             sens++;
+                            option = $('<option></option>').prop("value", sens-1).text(sens+": " + f_str);
+                            $("#sel-temp").append(option);
+                            f_idx++;
+                            f_str=jsonPath(json_config, "$.canal.field" + f_idx);
                         }
-                        if (rec_temperatura2 == true || rec_humidade == true) {
-                            option = $('<option></option>').prop("value", 1).text("2: " + json_config.canal.field6);
-                            $("#sel-temp").append(option);
+                        if (rec_humidade == true) {
                             sens++;
+                            option = $('<option></option>').prop("value", sens-1).text(sens+": " + f_str);
+                            $("#sel-temp").append(option);
+                            f_idx++;
+                            f_str=jsonPath(json_config, "$.canal.field" + f_idx);
+                        }
+                        if (rec_temperatura2 == true) {
+                            sens++;
+                            option = $('<option></option>').prop("value", sens-1).text(sens+": " + f_str);
+                            $("#sel-temp").append(option);
+                            f_idx++;
+                            f_str=jsonPath(json_config, "$.canal.field" + f_idx);
                         }
                         if (rec_temperatura3 == true || rec_sensor_analogico == true) {
-                            option = $('<option></option>').prop("value", 2).text("3: " + json_config.canal.field7);
+                            sens++;
+                            option = $('<option></option>').prop("value", sens-1).text(sens+": " + f_str);
                             $("#sel-temp").append(option);
+                            f_idx++;
+                            f_str=jsonPath(json_config, "$.canal.field" + f_idx);
                         }
                         if (rec_sensor_analogico == true) {
-                            option = $('<option></option>').prop("value", 3).text("4: " + json_config.canal.field8);
+                            sens++;
+                            option = $('<option></option>').prop("value", sens-1).text(sens+": " + f_str);
                             $("#sel-temp").append(option);
                         }
                         if (rec_corrente_100a == true || rec_corrente_30a == true) {

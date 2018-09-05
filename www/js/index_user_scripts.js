@@ -514,7 +514,7 @@
                 $("#sel-temp option:eq(0)").prop('selected', true);
                 return;
             }
-            if (opt==2 && rec_temperatura3 == false && rec_sensor_analogico == false) {
+            if (opt==2 && rec_temperatura3 == false && rec_sensor_analogico == false && rec_temperatura2 == false && rec_humidade == false) {
                 document.getElementById("text-s-temp").innerHTML = "Nao possui sensor extra 2/sensor analogico";
                 $("#sel-temp option:eq(0)").prop('selected', true);
                 return;
