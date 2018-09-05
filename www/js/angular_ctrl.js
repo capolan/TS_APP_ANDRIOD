@@ -144,7 +144,8 @@ myApp.controller('myCtrl',  function($scope) {
                 }
               arr.push(elem);
             }
-        });
+        });/*
+        if (json_feed.feeds[0].digital != 'undefined')
         json_feed.feeds[0].digital.forEach(function(elem) {
             if (elem.ativo == 's') {
                 elem.nome=elem.titulo;
@@ -153,11 +154,11 @@ myApp.controller('myCtrl',  function($scope) {
                 elem.style='border-top:2pt solid grey';
                 arr.push(elem);
             }
-        });
+        });*/
 //        $scope.sensores = json_feed.sensor;
-        $scope.sensores = arr;
-        //console.log(json_feed.sensor);
-        $scope.$apply(); 
+        $scope.sensores = arr; 
+        //console.log(json_feed.sensor); 
+        $scope.$apply();
     }
     /*
     $scope.getDevice = function() {
@@ -165,7 +166,7 @@ myApp.controller('myCtrl',  function($scope) {
         $scope.model=device.platform;
         $scope.$apply();
     }
-    */
+    */ 
     $scope.goSensor = function(idx) {
         var modelo, serie, chave, id, ref, modulo, sens, canal;
 
