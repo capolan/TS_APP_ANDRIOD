@@ -8,8 +8,8 @@ var MAX_NODES_SENSORES = 8;
 var MAX_CAIXA_SENSORES = 8;
 var VERSAO = {
     MAJOR: '1',
-    MINOR: '110',
-    DATE: '05/09/2018'
+    MINOR: '111',
+    DATE: '10/10/2018'
 };
 var vsApp;
 
@@ -1092,7 +1092,7 @@ function gravarComandoTS(text_obj, _cmd) {
 /**********************************************************************/
 function updateSelSensores(data) {
     var i, option; 
-    var n, m, s, c, canal;
+    var n, m, s, c, m1='',canal;
     var mm='',ss='',cc='';
     var selectOption=0;
 
@@ -1111,15 +1111,24 @@ function updateSelSensores(data) {
         c = jsonPath(data, "$.sensores[" + i + "].chave");
         if (localDB.serie != undefined && localDB.serie == s) {
                 selectOption=i;
-                mm=m;ss=s;cc=c; 
+                mm=m;ss=s;cc=c;
         }
         canal = jsonPath(data, "$.sensores[" + i + "].canal");
         console.log("m=" + m + " s=" + s + " c=" + c + "  canal=" + canal);
         option = $('<option></option>').prop("value", canal).text(n);
-        $("#sel-meus-sensores").append(option); 
+        $("#sel-meus-sensores").append(option);
         i++;
+                // CAP 09102018
+                if (m1=='')     m1=m;
         m = jsonPath(data, "$.sensores[" + i + "].modelo");
     }
+        // CAP 09102018 ini
+        if (mm=='') {
+                mm=m1;
+                ss=s;
+                cc=c;
+        }
+        // CAP 09102018 fim
 //    $('#sel-meus-sensores option')[0].selected = true;
     $("#sel-meus-sensores option:eq("+selectOption+")").prop('selected', true);
     document.getElementById("modelo").value = mm;
@@ -1127,7 +1136,7 @@ function updateSelSensores(data) {
     document.getElementById("chave").value = cc;
     localDB.modelo=mm;
     localDB.serie=ss;
-    localDB.chave=cc; 
+    localDB.chave=cc;
 
 
    // eventFire(document.getElementById('sel-meus-sensores'), 'change');
