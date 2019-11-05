@@ -13,7 +13,7 @@
     <access origin="*"/>
 </platform>
 <preference name="Fullscreen" value="true" />
-<preference name="phonegap-version" value="cli-8.0.0" />
+<preference name="phonegap-version" value="cli-9.0.0" />
 <preference name="xwalkMultipleApk" value="false" />
 <plugin name="cordova-plugin-crosswalk-webview"/>
 <plugin name="cordova-plugin-device"/>
@@ -21,7 +21,7 @@
 <plugin name="cordova-plugin-dialogs"/>
 <plugin name="phonegap-plugin-barcodescanner" />
 <plugin name="cordova-plugin-splashscreen" />
-<plugin name="cordova-plugin-inappbrowser" "/>
+<plugin name="cordova-plugin-inappbrowser" />
 <plugin name="phonegap-plugin-push" />
 <plugin name="cordova-plugin-app-version" />
 <platform name="android" >
