@@ -25,6 +25,7 @@
 <plugin name="phonegap-plugin-push" />
 <plugin name="cordova-plugin-app-version" />
 <platform name="android" >
+    <resource-file src="google-services.json" target="/google-services.json" />
     <preference name="android-minSdkVersion" value="21"/>
     <preference name="android-targetSdkVersion" value="28"/>
     <preference name="android-installLocation" value="auto"/>
