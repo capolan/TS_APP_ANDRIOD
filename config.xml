@@ -12,6 +12,8 @@
     <allow-intent href="*"/>
     <access origin="*"/>
 </platform>
+<preference name="Fullscreen" value="true" />
+<preference name="Orientation" value="portrait" />
 <preference name="phonegap-version" value="cli-6.5.0" />
 <preference name="xwalkMultipleApk" value="false" />
 <plugin name="cordova-plugin-crosswalk-webview"/>
